@@ -10,12 +10,12 @@ import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import com.iup.tp.twitup.datamodel.Database;
 import com.iup.tp.twitup.datamodel.IDatabase;
+import com.iup.tp.twitup.datamodel.Twit;
 import com.iup.tp.twitup.datamodel.User;
+import com.iup.tp.twitup.document.MaxLengthTextDocument;
 
 public class CreationTwitView extends JPanel {
 	
@@ -48,6 +48,11 @@ public class CreationTwitView extends JPanel {
 		
 		twitContent = new JTextField();
 		
+		MaxLengthTextDocument maxLength = new MaxLengthTextDocument();
+		maxLength.setMaxChars(150); // number max of characters (150)
+
+		twitContent.setDocument(maxLength);
+		
 		buttonSubmit = new JButton( new AbstractAction("Twiter !"){
 			/**
 			 * 
@@ -56,7 +61,11 @@ public class CreationTwitView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Twit créé ! ");
+				long millis = System.currentTimeMillis();
+				System.out.println("Création du compte : ");
+				User user = new User(UUID.randomUUID(), "tag", "pwd", "sylvain", null, null);
+				Twit twit = new Twit(UUID.randomUUID(), user, millis, twitContent.getText() );
+				db.addTwit(twit);
 			}
 		});
 		
@@ -69,12 +78,11 @@ public class CreationTwitView extends JPanel {
 		
 		
 		this.add(header, c);
-		
+
 		this.add(twitLabel, c);
 		c.ipady = 40;
-		c.ipady = 0;
 		this.add(twitContent, c);
-		
+		c.ipady = 1;
 		this.add(buttonSubmit, c);
 		
 		
