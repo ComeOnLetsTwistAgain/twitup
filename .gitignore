@@ -1,4 +1,4 @@
 bin/*
-src/resources/configuration.properties
+/src/resources/configuration.properties
 
 /bin/
