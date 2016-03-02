@@ -15,6 +15,7 @@ import com.iup.tp.twitup.core.EntityManager;
 import com.iup.tp.twitup.core.Twitup;
 import com.iup.tp.twitup.datamodel.Database;
 import com.iup.tp.twitup.datamodel.DatabaseObserver;
+import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.IDatabaseObserver;
 import com.iup.tp.twitup.datamodel.Twit;
 import com.iup.tp.twitup.datamodel.User;
@@ -31,7 +32,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	
 	private PropertiesManager propertiesManager = new PropertiesManager();
 	
-	private Database db;
+	private IDatabase db;
 	
 	private String exchangeDir;
 	
@@ -45,10 +46,10 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 			   							  		 new Insets(0, 0, 0, 0), 0, 0);
 	
 	
-	public TwitupMainView(Twitup t){
+	public TwitupMainView(Twitup t, IDatabase db){
 		this.frame = new JFrame();
 		this.t = t;
-		this.db = (Database) t.getmDatabase();
+		this.db = db;
 		
 		//exchange dir
 		this.exchangeDir = this.getExchangeDirectory();
