@@ -52,9 +52,28 @@ public class CreationCompteView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Création du compte : " + fieldUsername.getText() + " | " + fieldPassword.getText());
-				User user = new User(UUID.randomUUID(), fieldUsername.getText(), "--", fieldUsername.getText(), new HashSet<String>(), "");
-				db.addUser(user);
+
+				boolean inputNotValid = fieldUsername.getText().equals("") || fieldPassword.getText().equals("");
+				boolean isTagUnique = isTagUnique(fieldUsername.getText());
+				
+				if(inputNotValid){
+					System.err.println("[AUTH ERR] - Les champs doivent être renseignés");
+				} else if(isTagUnique) {
+					System.err.println("[AUTH ERR] - Le tag existe déjà");
+				}
+				else {
+					
+					User user = new User(
+											UUID.randomUUID(), //uuid
+											fieldUsername.getText(), //tag
+											fieldPassword.getText(), //pass
+											fieldUsername.getText(), //name
+											new HashSet<String>(), //follows
+											"" //avatar path TODO
+										); 
+					db.addUser(user);
+				}
+				
 			}
 		});
 
@@ -78,6 +97,14 @@ public class CreationCompteView extends JPanel {
 
 
 		this.setVisible(true);
+	}
+	
+	
+	private boolean isTagUnique(String tag){
+		for(User u : db.getUsers())
+			if(u.getUserTag().equals(tag))
+				return true;
+		return false;
 	}
 
 }
