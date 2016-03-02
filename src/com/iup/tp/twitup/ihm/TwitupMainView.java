@@ -163,7 +163,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 				frame.getContentPane().removeAll();
 				frame.getContentPane().invalidate();
 				
-				frame.getContentPane().add(new CreationTwitView(db), constraintForPanels);
+				frame.getContentPane().add(new CreationTwitView(db, t), constraintForPanels);
 				frame.getContentPane().revalidate();
 			}
 		});
@@ -177,9 +177,6 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 			}
 		});
 		itemAPropos.getAccessibleContext().setAccessibleDescription("A Propos");
-		
-		
-		
 		
 		menuBar.add(menuFichier);
 		menuBar.add(menuCompte);
