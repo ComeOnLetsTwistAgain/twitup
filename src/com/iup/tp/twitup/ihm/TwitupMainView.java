@@ -119,7 +119,9 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menuFichier = new JMenu("Fichier");
 		JMenu menuCompte = new JMenu("Compte");
+		JMenu menuTwits = new JMenu("Twits");
 		JMenu menuAPropos = new JMenu("?");
+		
 		
 		//Fichier		
 		JMenuItem itemQuitter = new JMenuItem(new AbstractAction("Quitter", new ImageIcon("src/resources/images/exitIcon_20.png")){
@@ -161,6 +163,17 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 			}
 		});
 		
+		// Twits
+		JMenuItem itemCreationTwit = new JMenuItem(new AbstractAction("Créer un twit"){
+			public void actionPerformed(ActionEvent e) {
+				frame.getContentPane().removeAll();
+				frame.getContentPane().invalidate();
+				
+				frame.getContentPane().add(new CreationTwitView(db), constraintForPanels);
+				frame.getContentPane().revalidate();
+			}
+		});
+		
 		
 		//?
 		JMenuItem itemAPropos = new JMenuItem(new AbstractAction("A Propos"){
@@ -176,11 +189,14 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		
 		menuBar.add(menuFichier);
 		menuBar.add(menuCompte);
+		menuBar.add(menuTwits);
 		menuBar.add(menuAPropos);
+		
 		menuFichier.add(itemParametres);
 		menuFichier.add(itemQuitter);
 		menuCompte.add(itemConnexionCompte);
 		menuCompte.add(itemCreationCompte);
+		menuTwits.add(itemCreationTwit);
 		menuAPropos.add(itemAPropos);
 		
 		frame.setJMenuBar(menuBar);
