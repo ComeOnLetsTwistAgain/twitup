@@ -1,17 +1,24 @@
 package com.iup.tp.twitup.ihm;
 
-import java.awt.*;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.util.HashSet;
 import java.util.UUID;
 
-import javax.swing.*;
+import javax.swing.AbstractAction;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 import com.iup.tp.twitup.datamodel.Database;
 import com.iup.tp.twitup.datamodel.User;
 
-public class CreationCompteView extends JPanel {
+public class CreationTwitView extends JPanel {
 	
+
 	/**
 	 * 
 	 */
@@ -20,15 +27,13 @@ public class CreationCompteView extends JPanel {
 	Database db;
 	
 	JLabel header;
-	JLabel username;
-	JLabel password;
-	JTextField fieldUsername;
-	JTextField fieldPassword;
+	JLabel twitLabel;
+	JTextField twitContent;
 	
 	JButton buttonSubmit; 
 	
 	
-	public CreationCompteView(Database db){
+	public CreationTwitView(Database db){
 		this.db = db;
 		this.initGUI();
 	}
@@ -36,15 +41,13 @@ public class CreationCompteView extends JPanel {
 	private void initGUI(){
 		this.setLayout(new GridBagLayout());
 		
-		header = new JLabel("Création d'un compte");
-		username = new JLabel("Nom d'utilisateur");
-		password = new JLabel("Mot de passe");
+		header = new JLabel("Ecrire un nouveau twit ");
+		twitLabel = new JLabel("");
 		header.setHorizontalAlignment(JTextField.CENTER);
 		
-		fieldUsername = new JTextField();
-		fieldPassword = new JPasswordField();
+		twitContent = new JTextField();
 		
-		buttonSubmit = new JButton( new AbstractAction("Créer le compte"){
+		buttonSubmit = new JButton( new AbstractAction("Twiter !"){
 			/**
 			 * 
 			 */
@@ -52,10 +55,7 @@ public class CreationCompteView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Création du compte : " + fieldUsername.getText() + " | " + fieldPassword.getText());
-				
-				User user = new User(UUID.randomUUID(), fieldUsername.getText(), "--", fieldUsername.getText(), new HashSet<String>(), "");
-				db.addUser(user);
+				System.out.println("Twit créé ! ");
 			}
 		});
 		
@@ -69,11 +69,10 @@ public class CreationCompteView extends JPanel {
 		
 		this.add(header, c);
 		
-		this.add(username, c);
-		this.add(fieldUsername, c);
-		
-		this.add(password, c);
-		this.add(fieldPassword, c);
+		this.add(twitLabel, c);
+		c.ipady = 40;
+		c.ipady = 0;
+		this.add(twitContent, c);
 		
 		this.add(buttonSubmit, c);
 		
