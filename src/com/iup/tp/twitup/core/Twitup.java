@@ -61,12 +61,13 @@ public class Twitup
   public Twitup()
   {
 	  
-	  
+	// Initialisation de la base de données
+	this.initDatabase();
+	
     // Init du look and feel de l'application
     this.initLookAndFeel();
 
-    // Initialisation de la base de données
-    this.initDatabase();
+    
 
     if (this.mIsMockEnabled)
     {
@@ -90,7 +91,7 @@ public class Twitup
    */
   protected void initLookAndFeel()
   {
-	  this.mMainView = new TwitupMainView(this);
+	  this.mMainView = new TwitupMainView(this, mDatabase);
   }
 
   /**

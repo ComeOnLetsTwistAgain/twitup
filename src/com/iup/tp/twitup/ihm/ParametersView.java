@@ -28,7 +28,7 @@ public class ParametersView extends JPanel{
 	    }
 	    
 	    for(String s : hm.values()){
-	    	System.out.println(s);
+	    	//System.out.println(s);
 	    }
 	    
 	    liste = new JComboBox(hm.keySet().toArray());

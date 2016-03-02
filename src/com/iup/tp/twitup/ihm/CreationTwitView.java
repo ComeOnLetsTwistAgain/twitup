@@ -14,6 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.iup.tp.twitup.datamodel.Database;
+import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.User;
 
 public class CreationTwitView extends JPanel {
@@ -24,7 +25,7 @@ public class CreationTwitView extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	Database db;
+	IDatabase db;
 	
 	JLabel header;
 	JLabel twitLabel;
@@ -33,7 +34,7 @@ public class CreationTwitView extends JPanel {
 	JButton buttonSubmit; 
 	
 	
-	public CreationTwitView(Database db){
+	public CreationTwitView(IDatabase db){
 		this.db = db;
 		this.initGUI();
 	}
