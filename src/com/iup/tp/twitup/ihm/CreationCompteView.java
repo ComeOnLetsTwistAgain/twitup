@@ -2,6 +2,8 @@ package com.iup.tp.twitup.ihm;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.HashSet;
+import java.util.UUID;
 
 import javax.swing.*;
 
@@ -42,7 +44,8 @@ public class CreationCompteView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Création du compte : " + fieldUsername.getText() + " | " + fieldPassword.getText());
 				
-				//User user = new User();
+				User newUser = new User(UUID.randomUUID(), fieldUsername.getText(), "--", fieldUsername.getText(), new HashSet<String>(), "");
+				db.addUser(user);
 			}
 		});
 		
