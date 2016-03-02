@@ -2,10 +2,17 @@ package com.iup.tp.twitup.ihm;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.HashSet;
+import java.util.UUID;
 
 import javax.swing.*;
 
+import com.iup.tp.twitup.datamodel.Database;
+import com.iup.tp.twitup.datamodel.User;
+
 public class CreationCompteView extends JPanel {
+	
+	Database db;
 	
 	JLabel header;
 	JLabel username;
@@ -16,8 +23,8 @@ public class CreationCompteView extends JPanel {
 	JButton buttonSubmit; 
 	
 	
-	public CreationCompteView(){
-		
+	public CreationCompteView(Database db){
+		this.db = db;
 		this.initGUI();
 	}
 	
@@ -36,6 +43,9 @@ public class CreationCompteView extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Création du compte : " + fieldUsername.getText() + " | " + fieldPassword.getText());
+				
+				User newUser = new User(UUID.randomUUID(), fieldUsername.getText(), "--", fieldUsername.getText(), new HashSet<String>(), "");
+				db.addUser(user);
 			}
 		});
 		

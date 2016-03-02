@@ -163,4 +163,70 @@ public class Twitup
   public void setEchangeDirectory(String e){
 	  this.mExchangeDirectoryPath = e;
   }
+
+public IDatabase getmDatabase() {
+	return mDatabase;
+}
+
+public void setmDatabase(IDatabase mDatabase) {
+	this.mDatabase = mDatabase;
+}
+
+public EntityManager getmEntityManager() {
+	return mEntityManager;
+}
+
+public void setmEntityManager(EntityManager mEntityManager) {
+	this.mEntityManager = mEntityManager;
+}
+
+public TwitupMainView getmMainView() {
+	return mMainView;
+}
+
+public void setmMainView(TwitupMainView mMainView) {
+	this.mMainView = mMainView;
+}
+
+public IWatchableDirectory getmWatchableDirectory() {
+	return mWatchableDirectory;
+}
+
+public void setmWatchableDirectory(IWatchableDirectory mWatchableDirectory) {
+	this.mWatchableDirectory = mWatchableDirectory;
+}
+
+public String getmExchangeDirectoryPath() {
+	return mExchangeDirectoryPath;
+}
+
+public void setmExchangeDirectoryPath(String mExchangeDirectoryPath) {
+	this.mExchangeDirectoryPath = mExchangeDirectoryPath;
+}
+
+public boolean ismIsMockEnabled() {
+	return mIsMockEnabled;
+}
+
+public void setmIsMockEnabled(boolean mIsMockEnabled) {
+	this.mIsMockEnabled = mIsMockEnabled;
+}
+
+public String getmUiClassName() {
+	return mUiClassName;
+}
+
+public void setmUiClassName(String mUiClassName) {
+	this.mUiClassName = mUiClassName;
+}
+
+public DatabaseObserver getObserver() {
+	return observer;
+}
+
+public void setObserver(DatabaseObserver observer) {
+	this.observer = observer;
+}
+  
+  
 }
