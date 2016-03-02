@@ -31,6 +31,8 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	
 	private PropertiesManager propertiesManager = new PropertiesManager();
 	
+	private Database db;
+	
 	private String exchangeDir;
 	
 	//Element de swing
@@ -46,6 +48,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	public TwitupMainView(Twitup t){
 		this.frame = new JFrame();
 		this.t = t;
+		this.db = (Database) t.getmDatabase();
 		
 		//exchange dir
 		this.exchangeDir = this.getExchangeDirectory();
@@ -152,7 +155,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 				frame.getContentPane().removeAll();
 				frame.getContentPane().invalidate();
 				
-				frame.getContentPane().add(new CreationCompteView(), constraintForPanels);
+				frame.getContentPane().add(new CreationCompteView(db), constraintForPanels);
 				frame.getContentPane().revalidate();
 			}
 		});

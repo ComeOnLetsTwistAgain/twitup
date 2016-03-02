@@ -5,7 +5,12 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 
+import com.iup.tp.twitup.datamodel.Database;
+import com.iup.tp.twitup.datamodel.User;
+
 public class CreationCompteView extends JPanel {
+	
+	Database db;
 	
 	JLabel header;
 	JLabel username;
@@ -16,8 +21,8 @@ public class CreationCompteView extends JPanel {
 	JButton buttonSubmit; 
 	
 	
-	public CreationCompteView(){
-		
+	public CreationCompteView(Database db){
+		this.db = db;
 		this.initGUI();
 	}
 	
@@ -36,6 +41,8 @@ public class CreationCompteView extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Création du compte : " + fieldUsername.getText() + " | " + fieldPassword.getText());
+				
+				//User user = new User();
 			}
 		});
 		
