@@ -146,7 +146,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 				frame.getContentPane().removeAll();
 				frame.getContentPane().invalidate();
 				
-				frame.getContentPane().add(new ConnexionCompteView(), constraintForPanels);
+				frame.getContentPane().add(new ConnexionCompteView(db, t), constraintForPanels);
 				frame.getContentPane().revalidate();
 			}
 		});

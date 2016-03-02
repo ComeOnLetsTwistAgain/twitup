@@ -6,6 +6,7 @@ import com.iup.tp.twitup.common.PropertiesManager;
 import com.iup.tp.twitup.datamodel.Database;
 import com.iup.tp.twitup.datamodel.DatabaseObserver;
 import com.iup.tp.twitup.datamodel.IDatabase;
+import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.events.file.IWatchableDirectory;
 import com.iup.tp.twitup.events.file.WatchableDirectory;
 import com.iup.tp.twitup.ihm.TwitupMainView;
@@ -18,6 +19,11 @@ import com.iup.tp.twitup.ihm.TwitupMock;
  */
 public class Twitup
 {
+	/**
+   * Base de données.
+   */
+  protected User currentUser;
+	
   /**
    * Base de données.
    */
@@ -228,6 +234,16 @@ public DatabaseObserver getObserver() {
 public void setObserver(DatabaseObserver observer) {
 	this.observer = observer;
 }
+
+public User getCurrentUser() {
+	return currentUser;
+}
+
+public void setCurrentUser(User currentUser) {
+	this.currentUser = currentUser;
+}
+
+
   
   
 }
