@@ -52,7 +52,7 @@ public class Twitup
   /**
    * Idnique si le mode bouchoné est activé.
    */
-  protected boolean mIsMockEnabled = false;
+  protected boolean mIsMockEnabled = true;
 
   /**
    * Nom de la classe de l'UI.
