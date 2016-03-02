@@ -36,9 +36,6 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	
 	private String exchangeDir;
 	
-	//Element de swing
-	JList<String> twitList;
-	ArrayList<String> data = new ArrayList<String>();
 	
 	GridBagConstraints constraintForPanels = new GridBagConstraints(0, 0, 2, 1, 1, 1,
 			   							  		 GridBagConstraints.CENTER, 
@@ -106,9 +103,6 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	    this.frame.setLayout(new GridBagLayout());
 	    
 	    
-	    //list de page d'accueil
-	    twitList = new JList<String>();
-	    JScrollPane scrollPane = new JScrollPane(twitList);
 		
 	    
 	    
