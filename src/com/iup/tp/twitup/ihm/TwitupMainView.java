@@ -200,6 +200,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		menuFichier.add(itemQuitter);
 		menuCompte.add(itemConnexionCompte);
 		menuCompte.add(itemCreationCompte);
+		menuCompte.add(itemMonProfil);
 		menuTwits.add(itemCreationTwit);
 		menuAPropos.add(itemAPropos);
 		
