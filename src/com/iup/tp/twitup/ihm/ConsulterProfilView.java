@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -32,6 +33,8 @@ public class ConsulterProfilView extends JPanel {
 	JTextField fieldUsername;
 	JTextField fieldPassword;
 	JTextField fieldAvatar;
+	
+	ImageIcon img;
 	
 	JButton buttonSubmit; 
 	
@@ -64,6 +67,8 @@ public class ConsulterProfilView extends JPanel {
 			fieldUsername = new JTextField(t.getCurrentUser().getName());
 			fieldPassword = new JPasswordField(t.getCurrentUser().getUserPassword());
 			fieldAvatar = new JTextField(t.getCurrentUser().getAvatarPath());
+			
+			img = new ImageIcon();
 			
 			buttonSubmit = new JButton( new AbstractAction("Modifier"){
 				/**
@@ -105,6 +110,123 @@ public class ConsulterProfilView extends JPanel {
 	private void modifierProfil(){
 		controller.modifierProfil(this);
 	}
+
+
+	public ConsulterProfilController getController() {
+		return controller;
+	}
+
+
+	public void setController(ConsulterProfilController controller) {
+		this.controller = controller;
+	}
+
+
+	public Twitup getT() {
+		return t;
+	}
+
+
+	public void setT(Twitup t) {
+		this.t = t;
+	}
+
+
+	public JLabel getErrorNotConnected() {
+		return errorNotConnected;
+	}
+
+
+	public void setErrorNotConnected(JLabel errorNotConnected) {
+		this.errorNotConnected = errorNotConnected;
+	}
+
+
+	public JLabel getHeader() {
+		return header;
+	}
+
+
+	public void setHeader(JLabel header) {
+		this.header = header;
+	}
+
+
+	public JLabel getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(JLabel username) {
+		this.username = username;
+	}
+
+
+	public JLabel getAvatar() {
+		return avatar;
+	}
+
+
+	public void setAvatar(JLabel avatar) {
+		this.avatar = avatar;
+	}
+
+
+	public JLabel getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(JLabel password) {
+		this.password = password;
+	}
+
+
+	public JTextField getFieldUsername() {
+		return fieldUsername;
+	}
+
+
+	public void setFieldUsername(JTextField fieldUsername) {
+		this.fieldUsername = fieldUsername;
+	}
+
+
+	public JTextField getFieldPassword() {
+		return fieldPassword;
+	}
+
+
+	public void setFieldPassword(JTextField fieldPassword) {
+		this.fieldPassword = fieldPassword;
+	}
+
+
+	public JTextField getFieldAvatar() {
+		return fieldAvatar;
+	}
+
+
+	public void setFieldAvatar(JTextField fieldAvatar) {
+		this.fieldAvatar = fieldAvatar;
+	}
+
+
+	public JButton getButtonSubmit() {
+		return buttonSubmit;
+	}
+
+
+	public void setButtonSubmit(JButton buttonSubmit) {
+		this.buttonSubmit = buttonSubmit;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
 	
 
 }
