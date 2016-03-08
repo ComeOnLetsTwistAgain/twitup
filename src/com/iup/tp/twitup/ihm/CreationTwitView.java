@@ -3,21 +3,14 @@ package com.iup.tp.twitup.ihm;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
-import java.util.HashSet;
-import java.util.UUID;
-
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.iup.tp.twitup.core.CreationCompteController;
 import com.iup.tp.twitup.core.CreationTwitController;
 import com.iup.tp.twitup.core.Twitup;
-import com.iup.tp.twitup.datamodel.IDatabase;
-import com.iup.tp.twitup.datamodel.Twit;
-import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.document.MaxLengthTextDocument;
 
 public class CreationTwitView extends JPanel {
@@ -30,7 +23,6 @@ public class CreationTwitView extends JPanel {
 	
 	CreationTwitController controller;
 
-	IDatabase db;
 	Twitup t;
 
 	JLabel header;
@@ -40,8 +32,8 @@ public class CreationTwitView extends JPanel {
 	JButton buttonSubmit; 
 
 
-	public CreationTwitView(IDatabase db, Twitup t){
-		this.db = db;
+	public CreationTwitView(CreationTwitController controller, Twitup t){
+		controller = controller;
 		this.t = t;
 		this.initGUI();
 	}
@@ -52,14 +44,6 @@ public class CreationTwitView extends JPanel {
 
 	public void setController(CreationTwitController controller) {
 		this.controller = controller;
-	}
-
-	public IDatabase getDb() {
-		return db;
-	}
-
-	public void setDb(IDatabase db) {
-		this.db = db;
 	}
 
 	public Twitup getT() {
