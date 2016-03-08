@@ -9,9 +9,11 @@ import com.iup.tp.twitup.ihm.CreationCompteView;
 
 public class CreationCompteController {
 	IDatabase db;
+	EntityManager em;
 	
-	public CreationCompteController(IDatabase db){
+	public CreationCompteController(IDatabase db, EntityManager em){
 		this.db = db;
+		this.em = em;
 	}
 	
 	public void createCompte(CreationCompteView v){
@@ -34,7 +36,7 @@ public class CreationCompteController {
 									new HashSet<String>(), //follows
 									"" //avatar path TODO
 								); 
-			db.addUser(user);
+			em.sendUser(user);
 		}
 		
 	}

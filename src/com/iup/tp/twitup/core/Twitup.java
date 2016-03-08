@@ -24,15 +24,18 @@ public class Twitup
 {
 	ConnexionController connexionController;
 	CreationCompteController creationCompteController;
+	ConsulterProfilController consulterProfilController;
 	
 	JPanel parametersView;
 	JPanel connexionView;
 	JPanel creationCompteView;
+	JPanel consulterProfilView;
 	
 	final static String PARAMETERS = "parametres";
 	final static String CREATETWIT = "vue de création de twit";
 	final static String CREATEACCOUNT = "vue de création de compte";
 	final static String CONNEXION = "vue de connexion";
+	final static String CONSULTERPROFIL = "vue de profil";
 	
 	/**
    * Après connexion, contient les infos du user.
@@ -96,11 +99,13 @@ public class Twitup
       this.initMock();
     }
 
-    // Initialisation de l'IHM
-    this.initGui();
+   
 
     // Initialisation du répertoire d'échange
     this.initDirectory(PropertiesManager.loadProperties("src/resources/configuration.properties").getProperty("EXCHANGE_DIRECTORY"));
+    
+    // Initialisation de l'IHM
+    this.initGui();
     
     observer = new DatabaseObserver(mDatabase, mMainView);
     mDatabase.addObserver(observer);
@@ -108,11 +113,13 @@ public class Twitup
     
     //init des vues et des controllers
     this.connexionController = new ConnexionController(this.mDatabase);
-    this.creationCompteController = new CreationCompteController(this.mDatabase);
+    this.creationCompteController = new CreationCompteController(this.mDatabase, this.mEntityManager);
+    this.consulterProfilController = new ConsulterProfilController(this.mDatabase, this.mEntityManager);
     
     this.parametersView = new ParametersView();
     this.connexionView = new ConnexionCompteView(connexionController, this);
     this.creationCompteView = new CreationCompteView(creationCompteController, this);
+    this.consulterProfilView = new ConsulterProfilView(consulterProfilController, this);
     
     this.mMainView.getCards().add(connexionView, CONNEXION);
     this.mMainView.getCards().add(parametersView, PARAMETERS);
@@ -138,6 +145,11 @@ public class Twitup
   
   public void switchToCreationCompte(){
 	  ((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), CREATEACCOUNT);
+	  this.mMainView.getFrame().pack();
+  }
+  
+  public void switchToProfil(){
+	  ((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), CONSULTERPROFIL);
 	  this.mMainView.getFrame().pack();
   }
 

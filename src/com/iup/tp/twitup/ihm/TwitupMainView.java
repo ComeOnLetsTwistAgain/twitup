@@ -65,8 +65,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		
 		//selection du répertoire d'échange si il n'est pas renseigné dans le fichier de conf
 		Properties p = propertiesManager.loadProperties("src/resources/configuration.properties");
-		
-		if(this.exchangeDir.equals("")){
+		if(controller.getmExchangeDirectoryPath().equals("")){
 			try {
 				
 				JFileChooser fileChooser = new JFileChooser();
@@ -90,11 +89,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 				e.printStackTrace();
 			} 
 		} else {
-			
-			this.exchangeDir = p.getProperty("EXCHANGE_DIRECTORY");
-		    controller.setEchangeDirectory(this.exchangeDir);
-		    controller.initDirectory(this.exchangeDir);
-		    System.out.println("Directory already set : " + this.exchangeDir);
+		    System.out.println("Directory already set : " + controller.getmExchangeDirectoryPath());
 		}
 		
 		
@@ -183,6 +178,18 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 			}
 		});
 		itemAPropos.getAccessibleContext().setAccessibleDescription("A Propos");
+		
+		//Profil
+		JMenuItem itemMonProfil = new JMenuItem(new AbstractAction("Mon profil"){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.switchToProfil();
+				
+			}
+			
+		});
+		itemMonProfil.getAccessibleContext().setAccessibleDescription("Consulter mon profil");
 		
 		menuBar.add(menuFichier);
 		menuBar.add(menuCompte);
