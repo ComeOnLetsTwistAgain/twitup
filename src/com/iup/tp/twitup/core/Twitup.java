@@ -2,6 +2,10 @@ package com.iup.tp.twitup.core;
 
 import java.io.File;
 
+import javax.swing.JPanel;
+
+import java.awt.CardLayout;
+
 import com.iup.tp.twitup.common.PropertiesManager;
 import com.iup.tp.twitup.datamodel.Database;
 import com.iup.tp.twitup.datamodel.DatabaseObserver;
@@ -9,8 +13,7 @@ import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.events.file.IWatchableDirectory;
 import com.iup.tp.twitup.events.file.WatchableDirectory;
-import com.iup.tp.twitup.ihm.TwitupMainView;
-import com.iup.tp.twitup.ihm.TwitupMock;
+import com.iup.tp.twitup.ihm.*;
 
 /**
  * Classe principale l'application.
@@ -19,8 +22,18 @@ import com.iup.tp.twitup.ihm.TwitupMock;
  */
 public class Twitup
 {
+	ConnexionController connexionController;
+	
+	JPanel parametersView;
+	JPanel connexionView;
+	
+	final static String PARAMETERS = "parametres";
+	final static String CREATETWIT = "vue de création de twit";
+	final static String CREATEACCOUNT = "vue de création de compte";
+	final static String CONNEXION = "vue de connexion";
+	
 	/**
-   * Base de données.
+   * Après connexion, contient les infos du user.
    */
   protected User currentUser;
 	
@@ -89,8 +102,28 @@ public class Twitup
     
     observer = new DatabaseObserver(mDatabase, mMainView);
     mDatabase.addObserver(observer);
+    
+    
+    //init des vues et des controllers
+    this.connexionController = new ConnexionController(mDatabase);
+    
+    this.parametersView = new ParametersView();
+    //this.connexionView = new ConnexionCompteView();
+    
+    this.mMainView.getCards().add(parametersView, PARAMETERS);
+    
   
   }
+  
+  /*
+   * Fonctions de switch de vue
+   */
+  
+  public void switchToParameters(){
+	  ((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), PARAMETERS);
+	  this.mMainView.getFrame().pack();
+  }
+  
 
   /**
    * Initialisation du look and feel de l'application.

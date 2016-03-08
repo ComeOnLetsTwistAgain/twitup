@@ -26,8 +26,8 @@ import com.iup.tp.twitup.datamodel.User;
  */
 public class TwitupMainView extends JFrame implements IDatabaseObserver
 {
-	//element parent
-	private Twitup t;
+	//controller
+	private Twitup controller;
 	
 	private JFrame frame;
 	
@@ -38,6 +38,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	private String exchangeDir;
 	
 	private JPanel cards;
+	
 	final static String PARAMETERS = "vue des parametres";
 	final static String CREATETWIT = "vue de création de twit";
 	final static String CREATEACCOUNT = "vue de création de compte";
@@ -50,9 +51,9 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 			   							  		 new Insets(0, 0, 0, 0), 0, 0);
 	
 	
-	public TwitupMainView(Twitup t, IDatabase db){
+	public TwitupMainView(Twitup controller, IDatabase db){
 		this.frame = new JFrame();
-		this.t = t;
+		this.controller = controller;
 		this.db = db;
 		
 		//exchange dir
@@ -79,8 +80,8 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 				    propertiesManager.writeProperties(p, "src/resources/configuration.properties");
 				    
 				    this.exchangeDir = p.getProperty("EXCHANGE_DIRECTORY");
-				    t.setEchangeDirectory(this.exchangeDir);
-				    t.initDirectory(this.exchangeDir);
+				    controller.setEchangeDirectory(this.exchangeDir);
+				    controller.initDirectory(this.exchangeDir);
 				    System.out.println("Changed directory to : " + this.exchangeDir);
 				    
 				} else if(result == JFileChooser.CANCEL_OPTION)
@@ -91,8 +92,8 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		} else {
 			
 			this.exchangeDir = p.getProperty("EXCHANGE_DIRECTORY");
-		    t.setEchangeDirectory(this.exchangeDir);
-		    t.initDirectory(this.exchangeDir);
+		    controller.setEchangeDirectory(this.exchangeDir);
+		    controller.initDirectory(this.exchangeDir);
 		    System.out.println("Directory already set : " + this.exchangeDir);
 		}
 		
@@ -114,17 +115,15 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	    
 	    
 	    //adding layout
-	    JPanel parametersView = new ParametersView();
-	    JPanel creationTwitView = new CreationTwitView(db, t);
+	    /*JPanel parametersView = new ParametersView();
+	    JPanel creationTwitView = new CreationTwitView(db, controller);
 	    JPanel creationCompteView = new CreationCompteView(db);
-	    JPanel connexionView = new ConnexionCompteView(db, t);
+	    JPanel connexionView = new ConnexionCompteView(db, controller);*/
 	    
-	    this.cards.add(connexionView, CONNEXION);
+	    /*this.cards.add(connexionView, CONNEXION);
 	    this.cards.add(parametersView, PARAMETERS);
 	    this.cards.add(creationTwitView, CREATETWIT);
-	    this.cards.add(creationCompteView, CREATEACCOUNT);
-	    
-	    
+	    this.cards.add(creationCompteView, CREATEACCOUNT);*/
 	    //
 		
 	    
@@ -150,7 +149,8 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		
 		JMenuItem itemParametres = new JMenuItem(new AbstractAction("Paramêtres"){
 			public void actionPerformed(ActionEvent e) {
-				((CardLayout) cards.getLayout()).show(cards,PARAMETERS); 
+				controller.switchToParameters();
+				//((CardLayout) cards.getLayout()).show(cards,PARAMETERS); 
 			}
 		});
 		itemParametres.getAccessibleContext().setAccessibleDescription("Paramêtres");
@@ -224,6 +224,22 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	
 	
 	
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
+	public JPanel getCards() {
+		return cards;
+	}
+
+	public void setCards(JPanel cards) {
+		this.cards = cards;
+	}
 
 	@Override
 	public void notifyTwitAdded(Twit addedTwit) {
