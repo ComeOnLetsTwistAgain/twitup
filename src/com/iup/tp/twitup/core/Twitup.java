@@ -114,8 +114,8 @@ public class Twitup
     this.connexionView = new ConnexionCompteView(connexionController, this);
     this.creationCompteView = new CreationCompteView(creationCompteController, this);
     
-    this.mMainView.getCards().add(parametersView, PARAMETERS);
     this.mMainView.getCards().add(connexionView, CONNEXION);
+    this.mMainView.getCards().add(parametersView, PARAMETERS);
     this.mMainView.getCards().add(creationCompteView, CREATEACCOUNT);
     
   
