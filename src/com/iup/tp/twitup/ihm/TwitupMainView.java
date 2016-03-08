@@ -1,5 +1,6 @@
 package com.iup.tp.twitup.ihm;
 
+import java.awt.CardLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -35,6 +36,12 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	private IDatabase db;
 	
 	private String exchangeDir;
+	
+	private JPanel cards;
+	final static String PARAMETERS = "vue des parametres";
+	final static String CREATETWIT = "vue de création de twit";
+	final static String CREATEACCOUNT = "vue de création de compte";
+	final static String CONNEXION = "vue de connexion";
 	
 	
 	GridBagConstraints constraintForPanels = new GridBagConstraints(0, 0, 2, 1, 1, 1,
@@ -100,12 +107,28 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	    this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.frame.setIconImage( new ImageIcon("src/resources/images/logoIUP_20.png").getImage());
 	    
+	    
 	    this.frame.setLayout(new GridBagLayout());
 	    
+	    this.cards = new JPanel(new CardLayout());
 	    
+	    
+	    //adding layout
+	    JPanel parametersView = new ParametersView();
+	    JPanel creationTwitView = new CreationTwitView(db, t);
+	    JPanel creationCompteView = new CreationCompteView(db);
+	    JPanel connexionView = new ConnexionCompteView(db, t);
+	    
+	    this.cards.add(connexionView, CONNEXION);
+	    this.cards.add(parametersView, PARAMETERS);
+	    this.cards.add(creationTwitView, CREATETWIT);
+	    this.cards.add(creationCompteView, CREATEACCOUNT);
+	    
+	    
+	    //
 		
 	    
-	    
+	    this.frame.add(this.cards);
 	    this.frame.setVisible(true);
 	}
 	
@@ -127,11 +150,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		
 		JMenuItem itemParametres = new JMenuItem(new AbstractAction("Paramêtres"){
 			public void actionPerformed(ActionEvent e) {
-				frame.getContentPane().removeAll();
-				frame.getContentPane().invalidate();
-				
-				frame.getContentPane().add(new ParametersView(), constraintForPanels);
-				frame.getContentPane().revalidate();
+				((CardLayout) cards.getLayout()).show(cards,PARAMETERS); 
 			}
 		});
 		itemParametres.getAccessibleContext().setAccessibleDescription("Paramêtres");
@@ -139,32 +158,20 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		//Compte
 		JMenuItem itemConnexionCompte = new JMenuItem(new AbstractAction("Se connecter"){
 			public void actionPerformed(ActionEvent e) {
-				frame.getContentPane().removeAll();
-				frame.getContentPane().invalidate();
-				
-				frame.getContentPane().add(new ConnexionCompteView(db, t), constraintForPanels);
-				frame.getContentPane().revalidate();
+				((CardLayout) cards.getLayout()).show(cards,CONNEXION); 
 			}
 		});
 		
 		JMenuItem itemCreationCompte = new JMenuItem(new AbstractAction("Créer un compte"){
 			public void actionPerformed(ActionEvent e) {
-				frame.getContentPane().removeAll();
-				frame.getContentPane().invalidate();
-				
-				frame.getContentPane().add(new CreationCompteView(db), constraintForPanels);
-				frame.getContentPane().revalidate();
+				((CardLayout) cards.getLayout()).show(cards,CREATEACCOUNT); 
 			}
 		});
 		
 		// Twits
 		JMenuItem itemCreationTwit = new JMenuItem(new AbstractAction("Créer un twit"){
 			public void actionPerformed(ActionEvent e) {
-				frame.getContentPane().removeAll();
-				frame.getContentPane().invalidate();
-				
-				frame.getContentPane().add(new CreationTwitView(db, t), constraintForPanels);
-				frame.getContentPane().revalidate();
+				((CardLayout) cards.getLayout()).show(cards,CREATETWIT); 
 			}
 		});
 		
