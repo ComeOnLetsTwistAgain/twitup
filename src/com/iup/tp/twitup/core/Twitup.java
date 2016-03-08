@@ -5,6 +5,7 @@ import java.io.File;
 import javax.swing.JPanel;
 
 import java.awt.CardLayout;
+
 import com.iup.tp.twitup.common.PropertiesManager;
 import com.iup.tp.twitup.datamodel.Database;
 import com.iup.tp.twitup.datamodel.DatabaseObserver;
@@ -25,6 +26,7 @@ public class Twitup
 	CreationCompteController creationCompteController;
 	ConsulterProfilController consulterProfilController;
 	CreationTwitController creationTwitController; 
+	ConsultationTwitController consultationTwitController;
 	
 	JPanel parametersView;
 	JPanel connexionView;
@@ -115,19 +117,23 @@ public class Twitup
 		this.connexionController = new ConnexionController(this.mDatabase);
 		this.creationCompteController = new CreationCompteController(this.mDatabase,this.mEntityManager);
 		this.creationTwitController = new CreationTwitController(this.mDatabase, this);
-
+		this.consulterProfilController = new ConsulterProfilController(this.mDatabase, this.mEntityManager, this);
+		this.consultationTwitController = new ConsultationTwitController(this.mDatabase, this.mEntityManager, this);
+		
 		this.parametersView = new ParametersView();
 		this.connexionView = new ConnexionCompteView(connexionController, this);
 		this.creationCompteView = new CreationCompteView(creationCompteController, this);
 		this.creationTwitView = new CreationTwitView(creationTwitController, this);
-		
+		this.consulterProfilView = new ConsulterProfilView(consulterProfilController, this);
+		this.consultationTwitView = new ConsultationTwitView(consultationTwitController, this);
+
 		this.mMainView.getCards().add(connexionView, CONNEXION);
 		this.mMainView.getCards().add(parametersView, PARAMETERS);
 		this.mMainView.getCards().add(creationCompteView, CREATEACCOUNT);
 		this.mMainView.getCards().add(creationTwitView,CREATETWIT);
-		
-		//this.mMainView.getCards().add(consultationTwitView,CONSULTERTWIT);
-		
+		this.mMainView.getCards().add(consultationTwitView,CONSULTERTWIT);
+
+
 	}
 
 	/*
