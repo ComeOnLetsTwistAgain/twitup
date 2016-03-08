@@ -153,6 +153,12 @@ public class Twitup
 	  ((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), CONSULTERPROFIL);
 	  this.mMainView.getFrame().pack();
   }
+  
+  public boolean isLoggedIn(){
+	  if(this.currentUser == null || this.currentUser.equals(""))
+		  return false;
+	  return true;
+  }
 
   /**
    * Initialisation du look and feel de l'application.
