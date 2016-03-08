@@ -16,7 +16,7 @@ public class CreationCompteController {
 	
 	public void createCompte(CreationCompteView v){
 		
-		boolean inputNotValid = v.getUsername().getText().equals("") || v.getPassword().getText().equals("");
+		boolean inputNotValid = v.getFieldUsername().getText().equals("") || v.getFieldPassword().getText().equals("");
 		boolean isTagUnique = isTagUnique(v.getUsername().getText());
 		
 		if(inputNotValid){
@@ -28,9 +28,9 @@ public class CreationCompteController {
 			
 			User user = new User(
 									UUID.randomUUID(), //uuid
-									v.getUsername().getText(), //tag
-									v.getPassword().getText(), //pass
-									v.getUsername().getText(), //name
+									v.getFieldUsername().getText(), //tag
+									v.getFieldPassword().getText(), //pass
+									v.getFieldUsername().getText(), //name
 									new HashSet<String>(), //follows
 									"" //avatar path TODO
 								); 

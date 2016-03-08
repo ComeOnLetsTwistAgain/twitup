@@ -128,6 +128,7 @@ public class Twitup
   public void switchToParameters(){
 	  ((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), PARAMETERS);
 	  this.mMainView.getFrame().pack();
+	  
   }
   
   public void switchToConnexion(){
