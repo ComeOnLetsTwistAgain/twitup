@@ -39,12 +39,6 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	
 	private JPanel cards;
 	
-	final static String PARAMETERS = "vue des parametres";
-	final static String CREATETWIT = "vue de création de twit";
-	final static String CREATEACCOUNT = "vue de création de compte";
-	final static String CONNEXION = "vue de connexion";
-	
-	
 	GridBagConstraints constraintForPanels = new GridBagConstraints(0, 0, 2, 1, 1, 1,
 			   							  		 GridBagConstraints.CENTER, 
 			   							  		 GridBagConstraints.BOTH, 
@@ -142,12 +136,12 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		});
 		itemQuitter.getAccessibleContext().setAccessibleDescription("Quitter l'application");
 		
-		JMenuItem itemParametres = new JMenuItem(new AbstractAction("Paramêtres"){
+		JMenuItem itemParametres = new JMenuItem(new AbstractAction("Paramètres"){
 			public void actionPerformed(ActionEvent e) {
 				controller.switchToParameters();
 			}
 		});
-		itemParametres.getAccessibleContext().setAccessibleDescription("Paramêtres");
+		itemParametres.getAccessibleContext().setAccessibleDescription("Paramètres");
 		
 		//Compte
 		JMenuItem itemConnexionCompte = new JMenuItem(new AbstractAction("Se connecter"){
@@ -165,7 +159,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		// Twits
 		JMenuItem itemCreationTwit = new JMenuItem(new AbstractAction("Créer un twit"){
 			public void actionPerformed(ActionEvent e) {
-				((CardLayout) cards.getLayout()).show(cards,CREATETWIT); 
+				controller.switchToCreationCompte();
 			}
 		});
 		
@@ -184,7 +178,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.switchToProfil();
+				// controller.switchToProfil();
 				
 			}
 			
