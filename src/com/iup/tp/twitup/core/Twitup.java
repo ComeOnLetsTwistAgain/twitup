@@ -114,7 +114,7 @@ public class Twitup
     //init des vues et des controllers
     this.connexionController = new ConnexionController(this.mDatabase);
     this.creationCompteController = new CreationCompteController(this.mDatabase, this.mEntityManager);
-    this.consulterProfilController = new ConsulterProfilController(this.mDatabase, this.mEntityManager);
+    this.consulterProfilController = new ConsulterProfilController(this.mDatabase, this.mEntityManager, this);
     
     this.parametersView = new ParametersView();
     this.connexionView = new ConnexionCompteView(connexionController, this);
@@ -150,6 +150,7 @@ public class Twitup
   }
   
   public void switchToProfil(){
+	  //this.consulterProfilView.initGUI();
 	  ((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), CONSULTERPROFIL);
 	  this.mMainView.getFrame().pack();
   }

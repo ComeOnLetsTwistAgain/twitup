@@ -20,6 +20,8 @@ public class ConsulterProfilView extends JPanel {
 	ConsulterProfilController controller;
 	Twitup t;
 	
+	JLabel errorNotConnected;
+	
 	JLabel header;
 	JLabel username;
 	JLabel avatar;
@@ -36,9 +38,11 @@ public class ConsulterProfilView extends JPanel {
 		initGUI();
 	}
 	
-	private void initGUI(){
-this.setLayout(new GridBagLayout());
+	public void initGUI(){
+		this.setLayout(new GridBagLayout());
 		
+		errorNotConnected = new JLabel("Vous n'êtes pas connecté");
+	
 		header = new JLabel("Mon profil");
 		username = new JLabel("Nom d'utilisateur");
 		password = new JLabel("Mot de passe");
@@ -47,6 +51,7 @@ this.setLayout(new GridBagLayout());
 		
 		fieldUsername = new JTextField();
 		fieldPassword = new JPasswordField();
+		fieldAvatar = new JTextField();
 		
 		buttonSubmit = new JButton( new AbstractAction("Modifier"){
 			@Override
@@ -63,16 +68,23 @@ this.setLayout(new GridBagLayout());
         c.weightx = 0;
         c.gridwidth = GridBagConstraints.REMAINDER;
 		
+		if(controller.getCurrentUser() != null){
+			this.add(header, c);
+			
+			this.add(username, c);
+			this.add(fieldUsername, c);
+			
+			this.add(password, c);
+			this.add(fieldPassword, c);
+			
+			this.add(avatar, c);
+			this.add(fieldAvatar, c);
+			
+			this.add(buttonSubmit, c);
+		} else {
+			this.add(errorNotConnected, c);
+		}
 		
-		this.add(header, c);
-		
-		this.add(username, c);
-		this.add(fieldUsername, c);
-		
-		this.add(password, c);
-		this.add(fieldPassword, c);
-		
-		this.add(buttonSubmit, c);
 		
 		
 		this.setVisible(true);
