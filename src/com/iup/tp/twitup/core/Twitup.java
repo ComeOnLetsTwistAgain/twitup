@@ -5,7 +5,6 @@ import java.io.File;
 import javax.swing.JPanel;
 
 import java.awt.CardLayout;
-
 import com.iup.tp.twitup.common.PropertiesManager;
 import com.iup.tp.twitup.datamodel.Database;
 import com.iup.tp.twitup.datamodel.DatabaseObserver;
@@ -24,275 +23,293 @@ public class Twitup
 {
 	ConnexionController connexionController;
 	CreationCompteController creationCompteController;
-	
+	CreationTwitController creationTwitController;
+
 	JPanel parametersView;
 	JPanel connexionView;
 	JPanel creationCompteView;
-	
-	final static String PARAMETERS = "parametres";
-	final static String CREATETWIT = "vue de création de twit";
+	JPanel creationTwitView;
+	JPanel consultationTwitView;
+
+
+	final static String PARAMETERS = "vue des parametres";
 	final static String CREATEACCOUNT = "vue de création de compte";
 	final static String CONNEXION = "vue de connexion";
-	
+	final static String CREATETWIT = "vue de création de twit";
+	final static String CONSULTERTWIT = "vue d'affichage d'un twit";
+
 	/**
-   * Après connexion, contient les infos du user.
-   */
-  protected User currentUser;
+	 * Après connexion, contient les infos du user.
+	 */
+	protected User currentUser;
+
+	/**
+	 * Base de données.
+	 */
+	protected IDatabase mDatabase;
+
+	/**
+	 * Gestionnaire des entités contenu de la base de données.
+	 */
+	protected EntityManager mEntityManager;
+
+	/**
+	 * Vue principale de l'application.
+	 */
+	protected TwitupMainView mMainView;
+
+	/**
+	 * Classe de surveillance de répertoire
+	 */
+	protected IWatchableDirectory mWatchableDirectory;
+
+	/**
+	 * Répertoire d'échange de l'application.
+	 */
+	protected String mExchangeDirectoryPath;
+
+	/**
+	 * Idnique si le mode bouchoné est activé.
+	 */
+	protected boolean mIsMockEnabled = true;
+
+	/**
+	 * Nom de la classe de l'UI.
+	 */
+	protected String mUiClassName;
+
+	private DatabaseObserver observer; 
+
+	/**
+	 * Constructeur.
+	 */
+	public Twitup()
+	{
+
+		// Initialisation de la base de données
+		this.initDatabase();
+
+		// Init du look and feel de l'application
+		this.initLookAndFeel();
+
+
+
+		if (this.mIsMockEnabled)
+		{
+			// Initialisation du bouchon de travail
+			this.initMock();
+		}
+
+		// Initialisation de l'IHM
+		this.initGui();
+
+		// Initialisation du répertoire d'échange
+		this.initDirectory(PropertiesManager.loadProperties("src/resources/configuration.properties").getProperty("EXCHANGE_DIRECTORY"));
+
+		observer = new DatabaseObserver(mDatabase, mMainView);
+		mDatabase.addObserver(observer);
+
+
+		//init des controllers et des vues
+		this.connexionController = new ConnexionController(this.mDatabase);
+		this.creationCompteController = new CreationCompteController(this.mDatabase);
+		this.creationTwitController = new CreationTwitController(this.mDatabase, this);
+
+		this.parametersView = new ParametersView();
+		this.connexionView = new ConnexionCompteView(connexionController, this);
+		this.creationCompteView = new CreationCompteView(creationCompteController, this);
+				
+
+		this.mMainView.getCards().add(connexionView, CONNEXION);
+		this.mMainView.getCards().add(parametersView, PARAMETERS);
+		this.mMainView.getCards().add(creationCompteView, CREATEACCOUNT);
+		this.mMainView.getCards().add(creationTwitView,CREATETWIT);
+		this.mMainView.getCards().add(consultationTwitView,CONSULTERTWIT);
+		
+	}
+
+	/*
+	 * Fonctions de switch de vue
+	 */
+
+	public void switchToParameters(){
+		((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), PARAMETERS);
+		this.mMainView.getFrame().pack();
+
+	}
+
+	public void switchToConnexion(){
+		((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), CONNEXION);
+		this.mMainView.getFrame().pack();
+	}
+
+	public void switchToCreationCompte(){
+		((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), CREATEACCOUNT);
+		this.mMainView.getFrame().pack();
+	}
+
+	public void switchToCreationTwit(){
+		((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), CREATETWIT);
+		this.mMainView.getFrame().pack();
+	}
 	
-  /**
-   * Base de données.
-   */
-  protected IDatabase mDatabase;
+	public void switchToConsultationTwit(){
+		((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), CONSULTERTWIT);
+		this.mMainView.getFrame().pack();
+	}
 
-  /**
-   * Gestionnaire des entités contenu de la base de données.
-   */
-  protected EntityManager mEntityManager;
+	/**
+	 * Initialisation du look and feel de l'application.
+	 */
+	protected void initLookAndFeel()
+	{
+		this.mMainView = new TwitupMainView(this, mDatabase);
+	}
 
-  /**
-   * Vue principale de l'application.
-   */
-  protected TwitupMainView mMainView;
+	/**
+	 * Initialisation de l'interface graphique.
+	 */
+	protected void initGui()
+	{
+		this.mMainView.initLookFeel();
+		this.mMainView.initMenu();
+		this.mMainView.initGUI();
+	}
 
-  /**
-   * Classe de surveillance de répertoire
-   */
-  protected IWatchableDirectory mWatchableDirectory;
+	/**
+	 * Initialisation du répertoire d'échange (depuis la conf ou depuis un file chooser). <br/>
+	 * <b>Le chemin doit obligatoirement avoir été saisi et être valide avant de pouvoir utiliser l'application</b>
+	 */
+	protected void initDirectory()
+	{}
 
-  /**
-   * Répertoire d'échange de l'application.
-   */
-  protected String mExchangeDirectoryPath;
+	/**
+	 * Indique si le fichier donné est valide pour servire de répertoire d'échange
+	 * 
+	 * @param directory
+	 *          , Répertoire à tester.
+	 */
+	protected boolean isValideExchangeDirectory(File directory)
+	{
+		// Valide si répertoire disponible en lecture et écriture
+		return directory != null && directory.exists() && directory.isDirectory() && directory.canRead()
+				&& directory.canWrite();
+	}
 
-  /**
-   * Idnique si le mode bouchoné est activé.
-   */
-  protected boolean mIsMockEnabled = true;
+	/**
+	 * Initialisation du mode bouchoné de l'application
+	 */
+	protected void initMock()
+	{
+		TwitupMock mock = new TwitupMock(this.mDatabase, this.mEntityManager);
+		mock.showGUI();
+	}
 
-  /**
-   * Nom de la classe de l'UI.
-   */
-  protected String mUiClassName;
-  
-  private DatabaseObserver observer; 
+	/**
+	 * Initialisation de la base de données
+	 */
+	protected void initDatabase()
+	{
+		mDatabase = new Database();
+		mEntityManager = new EntityManager(mDatabase);
+	}
 
-  /**
-   * Constructeur.
-   */
-  public Twitup()
-  {
-	  
-	// Initialisation de la base de données
-	this.initDatabase();
-	
-    // Init du look and feel de l'application
-    this.initLookAndFeel();
+	/**
+	 * Initialisation du répertoire d'échange.
+	 * 
+	 * @param directoryPath
+	 */
+	public void initDirectory(String directoryPath)
+	{
+		mExchangeDirectoryPath = directoryPath;
+		mWatchableDirectory = new WatchableDirectory(directoryPath);
+		mEntityManager.setExchangeDirectory(directoryPath);
 
-    
+		mWatchableDirectory.initWatching();
+		mWatchableDirectory.addObserver(mEntityManager);
+	}
 
-    if (this.mIsMockEnabled)
-    {
-      // Initialisation du bouchon de travail
-      this.initMock();
-    }
+	public String getExchangeDirectory(){
+		return this.mExchangeDirectoryPath;
+	}
 
-    // Initialisation de l'IHM
-    this.initGui();
+	public void setEchangeDirectory(String e){
+		this.mExchangeDirectoryPath = e;
+	}
 
-    // Initialisation du répertoire d'échange
-    this.initDirectory(PropertiesManager.loadProperties("src/resources/configuration.properties").getProperty("EXCHANGE_DIRECTORY"));
-    
-    observer = new DatabaseObserver(mDatabase, mMainView);
-    mDatabase.addObserver(observer);
-    
-    
-    //init des vues et des controllers
-    this.connexionController = new ConnexionController(this.mDatabase);
-    this.creationCompteController = new CreationCompteController(this.mDatabase);
-    
-    this.parametersView = new ParametersView();
-    this.connexionView = new ConnexionCompteView(connexionController, this);
-    this.creationCompteView = new CreationCompteView(creationCompteController, this);
-    
-    this.mMainView.getCards().add(connexionView, CONNEXION);
-    this.mMainView.getCards().add(parametersView, PARAMETERS);
-    this.mMainView.getCards().add(creationCompteView, CREATEACCOUNT);
-    
-  
-  }
-  
-  /*
-   * Fonctions de switch de vue
-   */
-  
-  public void switchToParameters(){
-	  ((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), PARAMETERS);
-	  this.mMainView.getFrame().pack();
-	  
-  }
-  
-  public void switchToConnexion(){
-	  ((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), CONNEXION);
-	  this.mMainView.getFrame().pack();
-  }
-  
-  public void switchToCreationCompte(){
-	  ((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), CREATEACCOUNT);
-	  this.mMainView.getFrame().pack();
-  }
+	public IDatabase getmDatabase() {
+		return mDatabase;
+	}
 
-  /**
-   * Initialisation du look and feel de l'application.
-   */
-  protected void initLookAndFeel()
-  {
-	  this.mMainView = new TwitupMainView(this, mDatabase);
-  }
+	public void setmDatabase(IDatabase mDatabase) {
+		this.mDatabase = mDatabase;
+	}
 
-  /**
-   * Initialisation de l'interface graphique.
-   */
-  protected void initGui()
-  {
-	  this.mMainView.initLookFeel();
-	  this.mMainView.initMenu();
-	  this.mMainView.initGUI();
-  }
+	public EntityManager getmEntityManager() {
+		return mEntityManager;
+	}
 
-  /**
-   * Initialisation du répertoire d'échange (depuis la conf ou depuis un file chooser). <br/>
-   * <b>Le chemin doit obligatoirement avoir été saisi et être valide avant de pouvoir utiliser l'application</b>
-   */
-  protected void initDirectory()
-  {}
+	public void setmEntityManager(EntityManager mEntityManager) {
+		this.mEntityManager = mEntityManager;
+	}
 
-  /**
-   * Indique si le fichier donné est valide pour servire de répertoire d'échange
-   * 
-   * @param directory
-   *          , Répertoire à tester.
-   */
-  protected boolean isValideExchangeDirectory(File directory)
-  {
-    // Valide si répertoire disponible en lecture et écriture
-    return directory != null && directory.exists() && directory.isDirectory() && directory.canRead()
-        && directory.canWrite();
-  }
+	public TwitupMainView getmMainView() {
+		return mMainView;
+	}
 
-  /**
-   * Initialisation du mode bouchoné de l'application
-   */
-  protected void initMock()
-  {
-    TwitupMock mock = new TwitupMock(this.mDatabase, this.mEntityManager);
-    mock.showGUI();
-  }
+	public void setmMainView(TwitupMainView mMainView) {
+		this.mMainView = mMainView;
+	}
 
-  /**
-   * Initialisation de la base de données
-   */
-  protected void initDatabase()
-  {
-    mDatabase = new Database();
-    mEntityManager = new EntityManager(mDatabase);
-  }
+	public IWatchableDirectory getmWatchableDirectory() {
+		return mWatchableDirectory;
+	}
 
-  /**
-   * Initialisation du répertoire d'échange.
-   * 
-   * @param directoryPath
-   */
-  public void initDirectory(String directoryPath)
-  {
-    mExchangeDirectoryPath = directoryPath;
-    mWatchableDirectory = new WatchableDirectory(directoryPath);
-    mEntityManager.setExchangeDirectory(directoryPath);
+	public void setmWatchableDirectory(IWatchableDirectory mWatchableDirectory) {
+		this.mWatchableDirectory = mWatchableDirectory;
+	}
 
-    mWatchableDirectory.initWatching();
-    mWatchableDirectory.addObserver(mEntityManager);
-  }
-  
-  public String getExchangeDirectory(){
-	  return this.mExchangeDirectoryPath;
-  }
-  
-  public void setEchangeDirectory(String e){
-	  this.mExchangeDirectoryPath = e;
-  }
+	public String getmExchangeDirectoryPath() {
+		return mExchangeDirectoryPath;
+	}
 
-public IDatabase getmDatabase() {
-	return mDatabase;
-}
+	public void setmExchangeDirectoryPath(String mExchangeDirectoryPath) {
+		this.mExchangeDirectoryPath = mExchangeDirectoryPath;
+	}
 
-public void setmDatabase(IDatabase mDatabase) {
-	this.mDatabase = mDatabase;
-}
+	public boolean ismIsMockEnabled() {
+		return mIsMockEnabled;
+	}
 
-public EntityManager getmEntityManager() {
-	return mEntityManager;
-}
+	public void setmIsMockEnabled(boolean mIsMockEnabled) {
+		this.mIsMockEnabled = mIsMockEnabled;
+	}
 
-public void setmEntityManager(EntityManager mEntityManager) {
-	this.mEntityManager = mEntityManager;
-}
+	public String getmUiClassName() {
+		return mUiClassName;
+	}
 
-public TwitupMainView getmMainView() {
-	return mMainView;
-}
+	public void setmUiClassName(String mUiClassName) {
+		this.mUiClassName = mUiClassName;
+	}
 
-public void setmMainView(TwitupMainView mMainView) {
-	this.mMainView = mMainView;
-}
+	public DatabaseObserver getObserver() {
+		return observer;
+	}
 
-public IWatchableDirectory getmWatchableDirectory() {
-	return mWatchableDirectory;
-}
+	public void setObserver(DatabaseObserver observer) {
+		this.observer = observer;
+	}
 
-public void setmWatchableDirectory(IWatchableDirectory mWatchableDirectory) {
-	this.mWatchableDirectory = mWatchableDirectory;
-}
+	public User getCurrentUser() {
+		return currentUser;
+	}
 
-public String getmExchangeDirectoryPath() {
-	return mExchangeDirectoryPath;
-}
-
-public void setmExchangeDirectoryPath(String mExchangeDirectoryPath) {
-	this.mExchangeDirectoryPath = mExchangeDirectoryPath;
-}
-
-public boolean ismIsMockEnabled() {
-	return mIsMockEnabled;
-}
-
-public void setmIsMockEnabled(boolean mIsMockEnabled) {
-	this.mIsMockEnabled = mIsMockEnabled;
-}
-
-public String getmUiClassName() {
-	return mUiClassName;
-}
-
-public void setmUiClassName(String mUiClassName) {
-	this.mUiClassName = mUiClassName;
-}
-
-public DatabaseObserver getObserver() {
-	return observer;
-}
-
-public void setObserver(DatabaseObserver observer) {
-	this.observer = observer;
-}
-
-public User getCurrentUser() {
-	return currentUser;
-}
-
-public void setCurrentUser(User currentUser) {
-	this.currentUser = currentUser;
-}
+	public void setCurrentUser(User currentUser) {
+		this.currentUser = currentUser;
+	}
 
 
-  
-  
+
+
 }

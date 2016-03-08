@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.iup.tp.twitup.core.CreationCompteController;
+import com.iup.tp.twitup.core.CreationTwitController;
 import com.iup.tp.twitup.core.Twitup;
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.Twit;
@@ -25,6 +27,8 @@ public class CreationTwitView extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	CreationTwitController controller;
 
 	IDatabase db;
 	Twitup t;
@@ -40,6 +44,54 @@ public class CreationTwitView extends JPanel {
 		this.db = db;
 		this.t = t;
 		this.initGUI();
+	}
+
+	public CreationTwitController getController() {
+		return controller;
+	}
+
+	public void setController(CreationTwitController controller) {
+		this.controller = controller;
+	}
+
+	public IDatabase getDb() {
+		return db;
+	}
+
+	public void setDb(IDatabase db) {
+		this.db = db;
+	}
+
+	public Twitup getT() {
+		return t;
+	}
+
+	public void setT(Twitup t) {
+		this.t = t;
+	}
+
+	public JLabel getHeader() {
+		return header;
+	}
+
+	public void setHeader(JLabel header) {
+		this.header = header;
+	}
+
+	public JLabel getTwitLabel() {
+		return twitLabel;
+	}
+
+	public void setTwitLabel(JLabel twitLabel) {
+		this.twitLabel = twitLabel;
+	}
+
+	public JTextField getTwitContent() {
+		return twitContent;
+	}
+
+	public void setTwitContent(JTextField twitContent) {
+		this.twitContent = twitContent;
 	}
 
 	private void initGUI(){
@@ -64,29 +116,9 @@ public class CreationTwitView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-
-
-				User user = t.getCurrentUser();
-
-				if (user != null)
-				{
-
-					long millis = System.currentTimeMillis();					
-					Twit twit = new Twit(UUID.randomUUID(), user, millis, twitContent.getText() );
-					db.addTwit(twit);
-					System.out.println("Création du twit : ");
-
-					for (Twit toto:db.getTwitsWithUserTag(user.getUserTag()))
-					{
-						System.out.println("Twit : "+toto.getText());
-					}
-
-				}else{
-					System.out.println("Pas de current user");
-				}
-
+				createTwit();
 			}
+			
 		});
 
 		GridBagConstraints c = new GridBagConstraints();
@@ -107,6 +139,10 @@ public class CreationTwitView extends JPanel {
 
 
 		this.setVisible(true);
+	}	
+	
+	private void createTwit() {
+		controller.creationTwit(this);
 	}
 
 }
