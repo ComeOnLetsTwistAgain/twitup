@@ -132,7 +132,8 @@ public class Twitup
 		this.mMainView.getCards().add(creationCompteView, CREATEACCOUNT);
 		this.mMainView.getCards().add(creationTwitView,CREATETWIT);
 		this.mMainView.getCards().add(consultationTwitView,CONSULTERTWIT);
-	
+
+
 	}
 
 	/*
@@ -162,6 +163,18 @@ public class Twitup
 	
 	public void switchToConsultationTwit(){
 		((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), CONSULTERTWIT);
+		this.mMainView.getFrame().pack();
+	}
+	
+	public void switchToConsulterProfil(){
+
+		this.consulterProfilController = new ConsulterProfilController(this.mDatabase, this.mEntityManager, this);
+		this.consulterProfilView = new ConsulterProfilView(consulterProfilController, this);
+		this.mMainView.getCards().add(consulterProfilView, CONSULTERPROFIL);
+		
+		
+		
+		((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), CONSULTERPROFIL);
 		this.mMainView.getFrame().pack();
 	}
 	

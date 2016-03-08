@@ -159,7 +159,13 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		// Twits
 		JMenuItem itemCreationTwit = new JMenuItem(new AbstractAction("Créer un twit"){
 			public void actionPerformed(ActionEvent e) {
-				controller.switchToCreationCompte();
+				controller.switchToCreationTwit();
+			}
+		});
+		
+		JMenuItem itemConsultationTwit = new JMenuItem(new AbstractAction("Consulter un twit"){
+			public void actionPerformed(ActionEvent e) {
+				controller.switchToConsultationTwit();
 			}
 		});
 		
@@ -178,7 +184,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// controller.switchToProfil();
+				controller.switchToConsulterProfil();
 				
 			}
 			
@@ -198,6 +204,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		menuCompte.add(itemMonProfil);
 		
 		menuTwits.add(itemCreationTwit);
+		menuTwits.add(itemConsultationTwit);
 		
 		menuAPropos.add(itemAPropos);
 		
