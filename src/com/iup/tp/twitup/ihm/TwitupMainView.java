@@ -150,7 +150,6 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		JMenuItem itemParametres = new JMenuItem(new AbstractAction("Paramêtres"){
 			public void actionPerformed(ActionEvent e) {
 				controller.switchToParameters();
-				//((CardLayout) cards.getLayout()).show(cards,PARAMETERS); 
 			}
 		});
 		itemParametres.getAccessibleContext().setAccessibleDescription("Paramêtres");
@@ -158,13 +157,13 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		//Compte
 		JMenuItem itemConnexionCompte = new JMenuItem(new AbstractAction("Se connecter"){
 			public void actionPerformed(ActionEvent e) {
-				((CardLayout) cards.getLayout()).show(cards,CONNEXION); 
+				controller.switchToConnexion();
 			}
 		});
 		
 		JMenuItem itemCreationCompte = new JMenuItem(new AbstractAction("Créer un compte"){
 			public void actionPerformed(ActionEvent e) {
-				((CardLayout) cards.getLayout()).show(cards,CREATEACCOUNT); 
+				controller.switchToCreationCompte();
 			}
 		});
 		

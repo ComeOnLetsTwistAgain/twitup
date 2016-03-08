@@ -134,6 +134,11 @@ public class Twitup
 	  ((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), CONNEXION);
 	  this.mMainView.getFrame().pack();
   }
+  
+  public void switchToCreationCompte(){
+	  ((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), CREATEACCOUNT);
+	  this.mMainView.getFrame().pack();
+  }
 
   /**
    * Initialisation du look and feel de l'application.
