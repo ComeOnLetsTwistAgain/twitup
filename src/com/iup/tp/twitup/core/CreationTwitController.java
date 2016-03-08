@@ -28,15 +28,20 @@ public class CreationTwitController {
 			long millis = System.currentTimeMillis();					
 			Twit twit = new Twit(UUID.randomUUID(), user, millis, v.getTwitContent().getText() );
 			db.addTwit(twit);
-			System.out.println("Création du twit : ");
-
-			for (Twit toto:db.getTwitsWithUserTag(user.getUserTag()))
-			{
-				System.out.println("Twit : "+toto.getText());
-			}
+			System.out.println("Création du twit");
 
 		}else{
 			System.out.println("Pas de current user");
+		}
+	}
+	
+	public void afficherTwits()
+	{
+		User user = t.getCurrentUser();
+		
+		for (Twit toto:db.getTwitsWithUserTag(user.getUserTag()))
+		{
+			System.out.println("Twit : "+toto.getText());
 		}
 	}
 	

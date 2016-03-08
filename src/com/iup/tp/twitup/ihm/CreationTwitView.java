@@ -33,7 +33,7 @@ public class CreationTwitView extends JPanel {
 
 
 	public CreationTwitView(CreationTwitController controller, Twitup t){
-		controller = controller;
+		this.controller = controller;
 		this.t = t;
 		this.initGUI();
 	}
