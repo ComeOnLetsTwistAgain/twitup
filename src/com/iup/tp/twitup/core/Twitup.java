@@ -125,7 +125,7 @@ public class Twitup
 		this.mMainView.getCards().add(parametersView, PARAMETERS);
 		this.mMainView.getCards().add(creationCompteView, CREATEACCOUNT);
 		this.mMainView.getCards().add(creationTwitView,CREATETWIT);
-		this.mMainView.getCards().add(consultationTwitView,CONSULTERTWIT);
+		// this.mMainView.getCards().add(consultationTwitView,CONSULTERTWIT);
 		
 	}
 
