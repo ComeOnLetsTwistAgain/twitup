@@ -8,13 +8,14 @@ import java.util.UUID;
 
 import javax.swing.*;
 
+import com.iup.tp.twitup.core.ConnexionController;
 import com.iup.tp.twitup.core.Twitup;
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.User;
 
 public class ConnexionCompteView extends JPanel{
 	
-	IDatabase db;
+	ConnexionController controller;
 	Twitup t;
 	
 	JLabel header;
@@ -25,14 +26,14 @@ public class ConnexionCompteView extends JPanel{
 	
 	JButton buttonSubmit; 
 	
-	public ConnexionCompteView(IDatabase db, Twitup t){
-		this.db = db;
-		this.t=t;
+	public ConnexionCompteView(ConnexionController controller, Twitup t){
+		this.controller = controller;
+		this.t = t;
 		initGUI();
 	}
 	
 	private void initGUI(){
-this.setLayout(new GridBagLayout());
+		this.setLayout(new GridBagLayout());
 		
 		header = new JLabel("Connexion");
 		username = new JLabel("Nom d'utilisateur");
@@ -45,24 +46,8 @@ this.setLayout(new GridBagLayout());
 		buttonSubmit = new JButton( new AbstractAction("Connexion"){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				connexion();
 				
-				boolean inputNotValid = fieldUsername.getText().equals("") || fieldPassword.getText().equals("");
-				boolean isUserNotValid = isUserNotValid(fieldUsername.getText());
-				
-				if(inputNotValid){
-					System.err.println("[AUTH ERR] - Les champs doivent être renseignés");
-				} else if(isUserNotValid){
-					System.err.println("[AUTH ERR] - Le mot de passe ou l'utilisateur est invalide");
-				} 
-				else {
-					User user = getUserByTag(fieldUsername.getText());
-					if(user != null){
-						System.out.println("Connecté au compte : " + user.getUserTag());
-						t.setCurrentUser(user);
-					}
-						
-						
-				}
 			}
 		});
 		
@@ -88,18 +73,75 @@ this.setLayout(new GridBagLayout());
 		this.setVisible(true);
 	}
 	
-	private boolean isUserNotValid(String tag){
-		for(User u : db.getUsers())
-			if(u.getUserTag().equals(tag))
-				return false;
-		return true;
+	private void connexion(){
+		controller.connexion(this);
+	}
+
+	public ConnexionController getController() {
+		return controller;
+	}
+
+	public void setController(ConnexionController controller) {
+		this.controller = controller;
+	}
+
+	public Twitup getT() {
+		return t;
+	}
+
+	public void setT(Twitup t) {
+		this.t = t;
+	}
+
+	public JLabel getHeader() {
+		return header;
+	}
+
+	public void setHeader(JLabel header) {
+		this.header = header;
+	}
+
+	public JLabel getUsername() {
+		return username;
+	}
+
+	public void setUsername(JLabel username) {
+		this.username = username;
+	}
+
+	public JLabel getPassword() {
+		return password;
+	}
+
+	public void setPassword(JLabel password) {
+		this.password = password;
+	}
+
+	public JTextField getFieldUsername() {
+		return fieldUsername;
+	}
+
+	public void setFieldUsername(JTextField fieldUsername) {
+		this.fieldUsername = fieldUsername;
+	}
+
+	public JTextField getFieldPassword() {
+		return fieldPassword;
+	}
+
+	public void setFieldPassword(JTextField fieldPassword) {
+		this.fieldPassword = fieldPassword;
+	}
+
+	public JButton getButtonSubmit() {
+		return buttonSubmit;
+	}
+
+	public void setButtonSubmit(JButton buttonSubmit) {
+		this.buttonSubmit = buttonSubmit;
 	}
 	
-	private User getUserByTag(String tag){
-		for(User u : db.getUsers())
-			if(u.getUserTag().equals(tag))
-				return u;
-		return null;
-	}
+	
+	
 
 }

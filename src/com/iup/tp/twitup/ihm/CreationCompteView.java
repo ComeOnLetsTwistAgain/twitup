@@ -7,6 +7,9 @@ import java.util.UUID;
 
 import javax.swing.*;
 
+import com.iup.tp.twitup.core.ConnexionController;
+import com.iup.tp.twitup.core.CreationCompteController;
+import com.iup.tp.twitup.core.Twitup;
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.User;
 
@@ -16,8 +19,9 @@ public class CreationCompteView extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	IDatabase db;
+	
+	CreationCompteController controller;
+	Twitup t;
 
 	JLabel header;
 	JLabel username;
@@ -28,8 +32,9 @@ public class CreationCompteView extends JPanel {
 	JButton buttonSubmit; 
 
 
-	public CreationCompteView(IDatabase db){
-		this.db = db;
+	public CreationCompteView(CreationCompteController controller, Twitup t){
+		this.controller = controller;
+		this.t = t;
 		this.initGUI();
 	}
 
@@ -53,26 +58,7 @@ public class CreationCompteView extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				boolean inputNotValid = fieldUsername.getText().equals("") || fieldPassword.getText().equals("");
-				boolean isTagUnique = isTagUnique(fieldUsername.getText());
-				
-				if(inputNotValid){
-					System.err.println("[AUTH ERR] - Les champs doivent être renseignés");
-				} else if(isTagUnique) {
-					System.err.println("[AUTH ERR] - Le tag existe déjà");
-				}
-				else {
-					
-					User user = new User(
-											UUID.randomUUID(), //uuid
-											fieldUsername.getText(), //tag
-											fieldPassword.getText(), //pass
-											fieldUsername.getText(), //name
-											new HashSet<String>(), //follows
-											"" //avatar path TODO
-										); 
-					db.addUser(user);
-				}
+				createCompte();
 				
 			}
 		});
@@ -99,12 +85,63 @@ public class CreationCompteView extends JPanel {
 		this.setVisible(true);
 	}
 	
-	
-	private boolean isTagUnique(String tag){
-		for(User u : db.getUsers())
-			if(u.getUserTag().equals(tag))
-				return true;
-		return false;
+	private void createCompte(){
+		controller.createCompte(this);
 	}
+
+	public JLabel getHeader() {
+		return header;
+	}
+
+	public void setHeader(JLabel header) {
+		this.header = header;
+	}
+
+	public JLabel getUsername() {
+		return username;
+	}
+
+	public void setUsername(JLabel username) {
+		this.username = username;
+	}
+
+	public JLabel getPassword() {
+		return password;
+	}
+
+	public void setPassword(JLabel password) {
+		this.password = password;
+	}
+
+	public JTextField getFieldUsername() {
+		return fieldUsername;
+	}
+
+	public void setFieldUsername(JTextField fieldUsername) {
+		this.fieldUsername = fieldUsername;
+	}
+
+	public JTextField getFieldPassword() {
+		return fieldPassword;
+	}
+
+	public void setFieldPassword(JTextField fieldPassword) {
+		this.fieldPassword = fieldPassword;
+	}
+
+	public JButton getButtonSubmit() {
+		return buttonSubmit;
+	}
+
+	public void setButtonSubmit(JButton buttonSubmit) {
+		this.buttonSubmit = buttonSubmit;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
+	
 
 }

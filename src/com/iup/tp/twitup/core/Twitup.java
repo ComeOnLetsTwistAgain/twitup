@@ -23,9 +23,11 @@ import com.iup.tp.twitup.ihm.*;
 public class Twitup
 {
 	ConnexionController connexionController;
+	CreationCompteController creationCompteController;
 	
 	JPanel parametersView;
 	JPanel connexionView;
+	JPanel creationCompteView;
 	
 	final static String PARAMETERS = "parametres";
 	final static String CREATETWIT = "vue de création de twit";
@@ -105,12 +107,16 @@ public class Twitup
     
     
     //init des vues et des controllers
-    this.connexionController = new ConnexionController(mDatabase);
+    this.connexionController = new ConnexionController(this.mDatabase);
+    this.creationCompteController = new CreationCompteController(this.mDatabase);
     
     this.parametersView = new ParametersView();
-    //this.connexionView = new ConnexionCompteView();
+    this.connexionView = new ConnexionCompteView(connexionController, this);
+    this.creationCompteView = new CreationCompteView(creationCompteController, this);
     
     this.mMainView.getCards().add(parametersView, PARAMETERS);
+    this.mMainView.getCards().add(connexionView, CONNEXION);
+    this.mMainView.getCards().add(creationCompteView, CREATEACCOUNT);
     
   
   }
@@ -124,6 +130,10 @@ public class Twitup
 	  this.mMainView.getFrame().pack();
   }
   
+  public void switchToConnexion(){
+	  ((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), CONNEXION);
+	  this.mMainView.getFrame().pack();
+  }
 
   /**
    * Initialisation du look and feel de l'application.
