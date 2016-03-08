@@ -1,8 +1,11 @@
 package com.iup.tp.twitup.ihm;
 
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -35,8 +38,10 @@ public class ConsulterProfilView extends JPanel {
 	JTextField fieldAvatar;
 	
 	ImageIcon img;
+	JLabel labelimg;
 	
 	JButton buttonSubmit; 
+	JButton buttonChangeAvatar; 
 	
 	public ConsulterProfilView(	ConsulterProfilController controller, Twitup t){
 		this.controller = controller;
@@ -68,7 +73,15 @@ public class ConsulterProfilView extends JPanel {
 			fieldPassword = new JPasswordField(t.getCurrentUser().getUserPassword());
 			fieldAvatar = new JTextField(t.getCurrentUser().getAvatarPath());
 			
-			img = new ImageIcon();
+			img = new ImageIcon(t.getCurrentUser().getAvatarPath());
+			
+			Image i = img.getImage();
+			BufferedImage bi = new BufferedImage(i.getWidth(null), i.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+			Graphics g = bi.createGraphics();
+			g.drawImage(i, 0, 0, img.getIconWidth()/2, img.getIconHeight()/2, null, null);
+			img = new ImageIcon(bi);
+			
+			labelimg = new JLabel(fieldAvatar.getText(), img, JLabel.CENTER);
 			
 			buttonSubmit = new JButton( new AbstractAction("Modifier"){
 				/**
@@ -83,8 +96,16 @@ public class ConsulterProfilView extends JPanel {
 				}
 			});
 			
+			buttonChangeAvatar = new JButton(new AbstractAction("changer l'image"){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					modifierAvatar();
+					
+				}
+				
+			});
 			
-	        
 	        
 			this.add(header, c);
 			
@@ -96,19 +117,23 @@ public class ConsulterProfilView extends JPanel {
 			
 			this.add(avatar, c);
 			this.add(fieldAvatar, c);
+			this.add(labelimg, c);
+			this.add(buttonChangeAvatar, c);
 			
 			this.add(buttonSubmit, c);
 		} else {
 			this.add(errorNotConnected, c);
 		}
 		
-		
-		
 		this.setVisible(true);
 	}
 	
 	private void modifierProfil(){
 		controller.modifierProfil(this);
+	}
+	
+	private void modifierAvatar(){
+		controller.modifierAvatar(this);
 	}
 
 
