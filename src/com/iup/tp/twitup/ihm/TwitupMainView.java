@@ -178,7 +178,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// controller.switchToProfil();
+				controller.switchToConsulterProfil();
 				
 			}
 			

@@ -2,6 +2,7 @@ package com.iup.tp.twitup.core;
 
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.User;
+import com.iup.tp.twitup.ihm.ConsulterProfilView;
 
 public class ConsulterProfilController {
 	IDatabase db;
@@ -16,6 +17,12 @@ public class ConsulterProfilController {
 	
 	public User getCurrentUser(){
 		return t.getCurrentUser();
+	}
+	
+	public void modifierProfil(ConsulterProfilView v){
+		
+		
+		
 	}
 	
 	

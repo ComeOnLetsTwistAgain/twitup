@@ -11,12 +11,15 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import com.iup.tp.twitup.core.ConnexionController;
 import com.iup.tp.twitup.core.ConsulterProfilController;
 import com.iup.tp.twitup.core.Twitup;
 
 public class ConsulterProfilView extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ConsulterProfilController controller;
 	Twitup t;
 	
@@ -38,29 +41,12 @@ public class ConsulterProfilView extends JPanel {
 		initGUI();
 	}
 	
+	
 	public void initGUI(){
 		this.setLayout(new GridBagLayout());
 		
 		errorNotConnected = new JLabel("Vous n'êtes pas connecté");
 	
-		header = new JLabel("Mon profil");
-		username = new JLabel("Nom d'utilisateur");
-		password = new JLabel("Mot de passe");
-		avatar = new JLabel("Chemin de l'avatar");
-		header.setHorizontalAlignment(JTextField.CENTER);
-		
-		fieldUsername = new JTextField();
-		fieldPassword = new JPasswordField();
-		fieldAvatar = new JTextField();
-		
-		buttonSubmit = new JButton( new AbstractAction("Modifier"){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//connexion();
-				
-			}
-		});
-		
 		GridBagConstraints c = new GridBagConstraints();
 		
 		c.fill = GridBagConstraints.BOTH;
@@ -69,6 +55,32 @@ public class ConsulterProfilView extends JPanel {
         c.gridwidth = GridBagConstraints.REMAINDER;
 		
 		if(controller.getCurrentUser() != null){
+			header = new JLabel("Mon profil");
+			username = new JLabel("Nom d'utilisateur");
+			password = new JLabel("Mot de passe");
+			avatar = new JLabel("Chemin de l'avatar");
+			header.setHorizontalAlignment(JTextField.CENTER);
+			
+			fieldUsername = new JTextField(t.getCurrentUser().getName());
+			fieldPassword = new JPasswordField(t.getCurrentUser().getUserPassword());
+			fieldAvatar = new JTextField(t.getCurrentUser().getAvatarPath());
+			
+			buttonSubmit = new JButton( new AbstractAction("Modifier"){
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					modifierProfil();
+					
+				}
+			});
+			
+			
+	        
+	        
 			this.add(header, c);
 			
 			this.add(username, c);
@@ -88,6 +100,10 @@ public class ConsulterProfilView extends JPanel {
 		
 		
 		this.setVisible(true);
+	}
+	
+	private void modifierProfil(){
+		controller.modifierProfil(this);
 	}
 	
 
