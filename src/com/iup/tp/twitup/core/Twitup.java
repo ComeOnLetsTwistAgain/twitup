@@ -23,20 +23,23 @@ public class Twitup
 {
 	ConnexionController connexionController;
 	CreationCompteController creationCompteController;
-	CreationTwitController creationTwitController;
-
+	ConsulterProfilController consulterProfilController;
+	CreationTwitController creationTwitController; 
+	
 	JPanel parametersView;
 	JPanel connexionView;
 	JPanel creationCompteView;
+	JPanel consulterProfilView;
 	JPanel creationTwitView;
 	JPanel consultationTwitView;
-
-
-	final static String PARAMETERS = "vue des parametres";
+	
+	final static String PARAMETERS = "parametres";
+	final static String CREATETWIT = "vue de création de twit";
 	final static String CREATEACCOUNT = "vue de création de compte";
 	final static String CONNEXION = "vue de connexion";
-	final static String CREATETWIT = "vue de création de twit";
+	final static String CONSULTERPROFIL = "vue de profil";
 	final static String CONSULTERTWIT = "vue d'affichage d'un twit";
+	
 
 	/**
 	 * Après connexion, contient les infos du user.
@@ -78,7 +81,7 @@ public class Twitup
 	 */
 	protected String mUiClassName;
 
-	private DatabaseObserver observer; 
+	private DatabaseObserver observer;
 
 	/**
 	 * Constructeur.
@@ -92,19 +95,17 @@ public class Twitup
 		// Init du look and feel de l'application
 		this.initLookAndFeel();
 
-
-
 		if (this.mIsMockEnabled)
 		{
 			// Initialisation du bouchon de travail
 			this.initMock();
 		}
 
-		// Initialisation de l'IHM
-		this.initGui();
-
 		// Initialisation du répertoire d'échange
 		this.initDirectory(PropertiesManager.loadProperties("src/resources/configuration.properties").getProperty("EXCHANGE_DIRECTORY"));
+		
+		// Initialisation de l'IHM
+		this.initGui();
 
 		observer = new DatabaseObserver(mDatabase, mMainView);
 		mDatabase.addObserver(observer);
@@ -112,13 +113,13 @@ public class Twitup
 
 		//init des controllers et des vues
 		this.connexionController = new ConnexionController(this.mDatabase);
-		this.creationCompteController = new CreationCompteController(this.mDatabase);
+		this.creationCompteController = new CreationCompteController(this.mDatabase,this.mEntityManager);
 		this.creationTwitController = new CreationTwitController(this.mDatabase, this);
 
 		this.parametersView = new ParametersView();
 		this.connexionView = new ConnexionCompteView(connexionController, this);
 		this.creationCompteView = new CreationCompteView(creationCompteController, this);
-				
+		this.creationTwitView = new CreationTwitView(this.mDatabase, this);
 
 		this.mMainView.getCards().add(connexionView, CONNEXION);
 		this.mMainView.getCards().add(parametersView, PARAMETERS);
@@ -157,6 +158,8 @@ public class Twitup
 		((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), CONSULTERTWIT);
 		this.mMainView.getFrame().pack();
 	}
+	
+	
 
 	/**
 	 * Initialisation du look and feel de l'application.
