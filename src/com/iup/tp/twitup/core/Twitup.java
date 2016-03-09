@@ -27,6 +27,7 @@ public class Twitup
 	ConsulterProfilController consulterProfilController;
 	CreationTwitController creationTwitController; 
 	ConsultationTwitController consultationTwitController;
+	AllUsersController allUsersController;
 	
 	JPanel parametersView;
 	JPanel connexionView;
@@ -34,6 +35,7 @@ public class Twitup
 	JPanel consulterProfilView;
 	JPanel creationTwitView;
 	JPanel consultationTwitView;
+	JPanel allUsersView;
 	
 	final static String PARAMETERS = "parametres";
 	final static String CREATETWIT = "vue de création de twit";
@@ -41,6 +43,7 @@ public class Twitup
 	final static String CONNEXION = "vue de connexion";
 	final static String CONSULTERPROFIL = "vue de profil";
 	final static String CONSULTERTWIT = "vue d'affichage d'un twit";
+	final static String ALLUSERS = "vue d'affichage des users";
 	
 
 	/**
@@ -119,6 +122,7 @@ public class Twitup
 		this.creationTwitController = new CreationTwitController(this.mDatabase, this);
 		this.consulterProfilController = new ConsulterProfilController(this.mDatabase, this.mEntityManager, this);
 		this.consultationTwitController = new ConsultationTwitController(this.mDatabase, this.mEntityManager, this);
+		this.allUsersController = new AllUsersController(this.mDatabase, this.mEntityManager, this);
 		
 		this.parametersView = new ParametersView();
 		this.connexionView = new ConnexionCompteView(connexionController, this);
@@ -126,6 +130,7 @@ public class Twitup
 		this.creationTwitView = new CreationTwitView(creationTwitController, this);
 		this.consulterProfilView = new ConsulterProfilView(consulterProfilController, this);
 		this.consultationTwitView = new ConsultationTwitView(consultationTwitController, this);
+		this.allUsersView = new AllUsersView(allUsersController, this);
 
 		this.mMainView.getCards().add(connexionView, CONNEXION);
 		this.mMainView.getCards().add(parametersView, PARAMETERS);
@@ -174,6 +179,11 @@ public class Twitup
 		
 		
 		((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), CONSULTERPROFIL);
+		this.mMainView.getFrame().pack();
+	}
+	
+	public void switchToAllUsers(){
+		((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), ALLUSERS);
 		this.mMainView.getFrame().pack();
 	}
 	
