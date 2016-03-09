@@ -63,6 +63,7 @@ public class ParametersView extends JPanel{
 		
 		prop = PropertiesManager.loadProperties("src/resources/configuration.properties");
 		
+		dossierChoisiTextField.setEnabled(false);
 		dossierChoisiTextField.setText(prop.getProperty("EXCHANGE_DIRECTORY"));
 
 		dossierButton.addActionListener(new ActionListener()
