@@ -178,6 +178,10 @@ public class Twitup
 	}
 	
 	
+	public void logout(){
+		this.currentUser = null;
+	}
+	
 
 
 

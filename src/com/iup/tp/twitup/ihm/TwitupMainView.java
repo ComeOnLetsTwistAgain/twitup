@@ -124,6 +124,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menuFichier = new JMenu("Fichier");
 		JMenu menuCompte = new JMenu("Compte");
+		JMenu menuUtilisateurs = new JMenu("Utilisateurs");
 		JMenu menuTwits = new JMenu("Twits");
 		JMenu menuAPropos = new JMenu("?");
 		
@@ -191,8 +192,32 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		});
 		itemMonProfil.getAccessibleContext().setAccessibleDescription("Consulter mon profil");
 		
+		JMenuItem itemSeDeconnecter = new JMenuItem(new AbstractAction("Se déconnecter"){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.logout();
+				
+			}
+			
+		});
+		itemMonProfil.getAccessibleContext().setAccessibleDescription("Consulter mon profil");
+		
+		//utilisateurs
+		JMenuItem itemTousLesUtilisateurs = new JMenuItem(new AbstractAction("Tous les utilisateurs"){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.logout();
+				
+			}
+			
+		});
+		itemMonProfil.getAccessibleContext().setAccessibleDescription("Consulter la liste de tous les utilisateurs");
+		
 		menuBar.add(menuFichier);
 		menuBar.add(menuCompte);
+		menuBar.add(menuUtilisateurs);
 		menuBar.add(menuTwits);
 		menuBar.add(menuAPropos);
 		
@@ -202,6 +227,9 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		menuCompte.add(itemConnexionCompte);
 		menuCompte.add(itemCreationCompte);
 		menuCompte.add(itemMonProfil);
+		menuCompte.add(itemSeDeconnecter);
+		
+		menuUtilisateurs.add(itemTousLesUtilisateurs);
 		
 		menuTwits.add(itemCreationTwit);
 		menuTwits.add(itemConsultationTwit);
