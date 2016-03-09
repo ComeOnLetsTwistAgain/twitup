@@ -35,7 +35,7 @@ public class Twitup
 	JPanel consulterProfilView;
 	JPanel creationTwitView;
 	JPanel consultationTwitView;
-	JPanel allUsersView;
+	AllUsersView allUsersView;
 	
 	final static String PARAMETERS = "parametres";
 	final static String CREATETWIT = "vue de création de twit";
@@ -136,6 +136,7 @@ public class Twitup
 		this.mMainView.getCards().add(creationCompteView, CREATEACCOUNT);
 		this.mMainView.getCards().add(creationTwitView,CREATETWIT);
 		this.mMainView.getCards().add(consultationTwitView,CONSULTERTWIT);
+		this.mMainView.getCards().add(allUsersView, ALLUSERS);
 
 
 	}
@@ -182,8 +183,9 @@ public class Twitup
 	}
 	
 	public void switchToAllUsers(){
+		this.allUsersView.initGUI();
 		((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), ALLUSERS);
-		this.mMainView.getFrame().pack();
+		//this.mMainView.getFrame().pack();
 	}
 	
 	
