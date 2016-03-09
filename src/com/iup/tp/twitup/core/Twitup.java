@@ -140,6 +140,7 @@ public class Twitup
 		this.mMainView.getCards().add(allUsersView, ALLUSERS);
 		
 		//ajout de certain controller en observateur de la base
+		this.mDatabase.addObserver(this.allUsersController);
 
 	}
 
@@ -349,7 +350,143 @@ public class Twitup
 		this.currentUser = currentUser;
 	}
 
+	public ConnexionController getConnexionController() {
+		return connexionController;
+	}
 
+	public void setConnexionController(ConnexionController connexionController) {
+		this.connexionController = connexionController;
+	}
+
+	public CreationCompteController getCreationCompteController() {
+		return creationCompteController;
+	}
+
+	public void setCreationCompteController(
+			CreationCompteController creationCompteController) {
+		this.creationCompteController = creationCompteController;
+	}
+
+	public ConsulterProfilController getConsulterProfilController() {
+		return consulterProfilController;
+	}
+
+	public void setConsulterProfilController(
+			ConsulterProfilController consulterProfilController) {
+		this.consulterProfilController = consulterProfilController;
+	}
+
+	public CreationTwitController getCreationTwitController() {
+		return creationTwitController;
+	}
+
+	public void setCreationTwitController(
+			CreationTwitController creationTwitController) {
+		this.creationTwitController = creationTwitController;
+	}
+
+	public ConsultationTwitController getConsultationTwitController() {
+		return consultationTwitController;
+	}
+
+	public void setConsultationTwitController(
+			ConsultationTwitController consultationTwitController) {
+		this.consultationTwitController = consultationTwitController;
+	}
+
+	public AllUsersController getAllUsersController() {
+		return allUsersController;
+	}
+
+	public void setAllUsersController(AllUsersController allUsersController) {
+		this.allUsersController = allUsersController;
+	}
+
+	public JPanel getParametersView() {
+		return parametersView;
+	}
+
+	public void setParametersView(JPanel parametersView) {
+		this.parametersView = parametersView;
+	}
+
+	public JPanel getConnexionView() {
+		return connexionView;
+	}
+
+	public void setConnexionView(JPanel connexionView) {
+		this.connexionView = connexionView;
+	}
+
+	public JPanel getCreationCompteView() {
+		return creationCompteView;
+	}
+
+	public void setCreationCompteView(JPanel creationCompteView) {
+		this.creationCompteView = creationCompteView;
+	}
+
+	public JPanel getConsulterProfilView() {
+		return consulterProfilView;
+	}
+
+	public void setConsulterProfilView(JPanel consulterProfilView) {
+		this.consulterProfilView = consulterProfilView;
+	}
+
+	public JPanel getCreationTwitView() {
+		return creationTwitView;
+	}
+
+	public void setCreationTwitView(JPanel creationTwitView) {
+		this.creationTwitView = creationTwitView;
+	}
+
+	public JPanel getConsultationTwitView() {
+		return consultationTwitView;
+	}
+
+	public void setConsultationTwitView(JPanel consultationTwitView) {
+		this.consultationTwitView = consultationTwitView;
+	}
+
+	public AllUsersView getAllUsersView() {
+		return allUsersView;
+	}
+
+	public void setAllUsersView(AllUsersView allUsersView) {
+		this.allUsersView = allUsersView;
+	}
+
+	public static String getParameters() {
+		return PARAMETERS;
+	}
+
+	public static String getCreatetwit() {
+		return CREATETWIT;
+	}
+
+	public static String getCreateaccount() {
+		return CREATEACCOUNT;
+	}
+
+	public static String getConnexion() {
+		return CONNEXION;
+	}
+
+	public static String getConsulterprofil() {
+		return CONSULTERPROFIL;
+	}
+
+	public static String getConsultertwit() {
+		return CONSULTERTWIT;
+	}
+
+	public static String getAllusers() {
+		return ALLUSERS;
+	}
+
+	
 
 
 }

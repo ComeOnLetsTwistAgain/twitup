@@ -17,16 +17,19 @@ public class AllUsersView extends JPanel {
 	AllUsersController controller;
 	Twitup t;
 	
+	int i = 1;
+	
 	JPanel listPanel;
 	
 	public AllUsersView(AllUsersController controller, Twitup t){
 		this.controller = controller;
 		this.t = t;
+		this.setLayout(new GridBagLayout());
 	}
 	
 	public void initGUI(){
 		
-		this.setLayout(new GridBagLayout());
+		
 		
 		/*JPanel panel = new JPanel();
 		panel.setLayout(new GridBagLayout());
@@ -40,7 +43,7 @@ public class AllUsersView extends JPanel {
 		
 		
 		
-		int i = 1;
+		/*int i = 1;
 		for(User u : controller.getUsers()){
 			
 			GridBagConstraints c = new GridBagConstraints(0, i, 1, 1, 1, 1,
@@ -53,11 +56,25 @@ public class AllUsersView extends JPanel {
 			
 			this.add(compu, c);
 			i++;
-		}
+		}*/
 		
 		
 		
 		
+	}
+	
+	public void addUserToView(User u)
+	{
+		GridBagConstraints c = new GridBagConstraints(0, i, 1, 1, 1, 1,
+				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
+						5, 5, 0, 5), 0, 0);
+	
+		System.out.println("user " + u.toString());
+		ComponentUser compu = new ComponentUser(controller, u);
+		
+		
+		this.add(compu, c);
+		this.i++;
 	}
 
 }

@@ -49,6 +49,8 @@ public class AllUsersController implements IDatabaseObserver {
 	public void notifyUserAdded(User addedUser) {
 		// TODO Auto-generated method stub
 		System.out.println("il faut ajouter un user dans la vue !");
+		t.getAllUsersView().addUserToView(addedUser);
+		t.getmMainView().getFrame().pack();
 	}
 
 	@Override
