@@ -34,6 +34,7 @@ public class ConsulterProfilController {
 				v.getFieldAvatar().getText()
 				);
 		
+		
 		em.sendUser(userToModify);
 		
 		t.setCurrentUser(userToModify);
@@ -50,7 +51,7 @@ public class ConsulterProfilController {
 		    
 		    v.getFieldAvatar().setText(selectedFile.getAbsolutePath());
 		    
-		    v.initGUI();
+		    //v.initGUI();
 		    
 		}
 	}

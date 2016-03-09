@@ -28,14 +28,14 @@ public class AllUsersView extends JPanel {
 		
 		this.setLayout(new GridBagLayout());
 		
-		JPanel panel = new JPanel();
+		/*JPanel panel = new JPanel();
 		panel.setLayout(new GridBagLayout());
 		JScrollPane scrollPane = new JScrollPane(panel);
-		scrollPane.setPreferredSize(new Dimension(100, 400));
+		scrollPane.setPreferredSize(new Dimension(300, 500));
 		
-		this.add(scrollPane, new GridBagConstraints(0, 0, 2, 1, 1, 1,
+		this.add(scrollPane, new GridBagConstraints(0, 0, GridBagConstraints.RELATIVE, GridBagConstraints.RELATIVE, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.BOTH, new Insets(
-						5, 5, 0, 5), 0, 0));
+						5, 5, 0, 5), 0, 0));*/
 		
 		
 		
@@ -44,14 +44,14 @@ public class AllUsersView extends JPanel {
 		for(User u : controller.getUsers()){
 			
 			GridBagConstraints c = new GridBagConstraints(0, i, 1, 1, 1, 1,
-						GridBagConstraints.LINE_START, GridBagConstraints.LINE_START, new Insets(
+						GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 								5, 5, 0, 5), 0, 0);
 			
-			System.out.println(u.toString());
-			ComponentUser compu = new ComponentUser(u);
+			System.out.println("user " + u.toString());
+			ComponentUser compu = new ComponentUser(controller, u);
 			
 			
-			panel.add(compu, c);
+			this.add(compu, c);
 			i++;
 		}
 		
