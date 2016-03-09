@@ -36,7 +36,7 @@ public class ComponentUser extends JPanel {
 		
 		this.add(username, c);
 		
-		
+		this.setVisible(true);
 	}
 	
 	
