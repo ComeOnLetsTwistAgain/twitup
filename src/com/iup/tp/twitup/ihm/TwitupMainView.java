@@ -191,6 +191,17 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		});
 		itemMonProfil.getAccessibleContext().setAccessibleDescription("Consulter mon profil");
 		
+		JMenuItem itemSeDeconnecter = new JMenuItem(new AbstractAction("Se déconnecter"){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.logout();
+				
+			}
+			
+		});
+		itemMonProfil.getAccessibleContext().setAccessibleDescription("Consulter mon profil");
+		
 		menuBar.add(menuFichier);
 		menuBar.add(menuCompte);
 		menuBar.add(menuTwits);
@@ -202,6 +213,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		menuCompte.add(itemConnexionCompte);
 		menuCompte.add(itemCreationCompte);
 		menuCompte.add(itemMonProfil);
+		menuCompte.add(itemSeDeconnecter);
 		
 		menuTwits.add(itemCreationTwit);
 		menuTwits.add(itemConsultationTwit);
