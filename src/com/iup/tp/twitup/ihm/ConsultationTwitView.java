@@ -69,24 +69,8 @@ public class ConsultationTwitView extends JPanel {
 		{
 			for (Twit l:liste)
 			{
-				nameLabel = new JLabel();
-				userLabel = new JLabel();
-				twitContentLabel = new JLabel();
-				dateLabel = new JLabel();
-
-				nameLabel.setName("nomView");
-				userLabel.setName("userView");
-				twitContentLabel.setName("contenuView");
-				dateLabel.setName("dateView");
-
-				// Image du twit
-				userIcon = new ImageIcon();
-				imageTwitIcon = new ImageIcon();
-
-				this.add(nameLabel, c);
-				this.add(userLabel, c);
-				this.add(twitContentLabel, c);
-				this.add(dateLabel, c);
+				// instancier un nouveau 
+				TwitComponentView t = new TwitComponentView(c);
 			} 
 
 			this.setVisible(true);
