@@ -1,5 +1,6 @@
 package com.iup.tp.twitup.ihm;
 
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
@@ -21,9 +22,19 @@ public class ComponentUser extends JPanel {
 	}
 	
 	private void initGUI(){
-		
 		this.setLayout(new GridBagLayout());
-		//this.
+		
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.fill = GridBagConstraints.BOTH;
+        c.weightx = 1;
+        c.weightx = 0;
+        c.gridwidth = GridBagConstraints.REMAINDER;
+		
+        
+		JLabel username = new JLabel(u.getName());
+		
+		this.add(username, c);
 		
 		
 	}
