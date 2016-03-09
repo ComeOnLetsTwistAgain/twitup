@@ -1,10 +1,13 @@
 package com.iup.tp.twitup.ihm;
 
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import com.iup.tp.twitup.datamodel.Twit;
 
 public class TwitComponentView extends JPanel {
 	
@@ -21,8 +24,11 @@ public class TwitComponentView extends JPanel {
 	private ImageIcon userIcon;
 	private ImageIcon imageTwitIcon;
 	
-	public TwitComponentView (GridBagConstraints c)
+	public TwitComponentView (Twit l, GridBagConstraints c)
 	{
+		
+		this.setLayout(new GridBagLayout());
+		
 		nameLabel = new JLabel();
 		userLabel = new JLabel();
 		twitContentLabel = new JLabel();
@@ -42,7 +48,5 @@ public class TwitComponentView extends JPanel {
 		this.add(twitContentLabel, c);
 		this.add(dateLabel, c);
 	}
-	
-	
 
 }

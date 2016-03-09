@@ -28,19 +28,6 @@ public class ConsultationTwitView extends JPanel {
 	ConsultationTwitController controller;
 	Twitup t;
 
-	// scroll pane
-	ScrollPane sp;
-
-	// texte des twits
-	JLabel nameLabel;
-	JLabel userLabel;
-	JLabel twitContentLabel;
-	JLabel dateLabel;
-
-	// Image du twit
-	ImageIcon userIcon;
-	ImageIcon imageTwitIcon;
-
 	// Liste Twits
 	Set<Twit> liste;
 
@@ -52,30 +39,39 @@ public class ConsultationTwitView extends JPanel {
 
 	private void initGUI(){
 
-		sp = new ScrollPane();		
-		this.setLayout(new GridBagLayout());
-		this.add(sp);
-
 		GridBagConstraints c = new GridBagConstraints();
-
-		c.fill = GridBagConstraints.BOTH;
+		this.setLayout(new GridBagLayout());
+	
+		/*c.fill = GridBagConstraints.BOTH;
 		c.weightx = 1;
 		c.weightx = 0;
-		c.gridwidth = GridBagConstraints.REMAINDER;
+		c.gridwidth = GridBagConstraints.REMAINDER;*/
 		
 		liste = controller.getTwits();
 
 		if (liste != null)
 		{
-			for (Twit l:liste)
-			{
-				// instancier un nouveau 
-				TwitComponentView t = new TwitComponentView(c);
-			} 
-
-			this.setVisible(true);
-		}
+			afficherTwits(liste, c);
+		} 
 		
+	}
+	
+	private void afficherTwits(Set<Twit> liste, GridBagConstraints c)
+	{
+		for (Twit l:liste)
+		{
+			
+			c.fill = GridBagConstraints.BOTH;
+			c.weightx = 1;
+			c.weightx = 0;
+			c.gridwidth = GridBagConstraints.REMAINDER;
+			
+			// instancier un nouveau composant twitView
+			System.out.println("twit :"+l.getText());
+			TwitComponentView t = new TwitComponentView(l,c);
+			this.add(t);
+			
+		} 
 	}
 
 }

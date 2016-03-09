@@ -27,10 +27,16 @@ public class ConsultationTwitController {
 		if (user != null)
 		{
 			liste = this.db.getTwits();
-			System.out.println("Création du twit");
+			if (liste != null)
+			{
+				System.out.println("La liste contient des twits ");
+			} else {
+				System.out.println("La liste ne contient pas de twits ");
+			}
+			
 
 		}else{
-			System.out.println("Pas de current user");
+			System.out.println("Vous n'êtes pas connectés ");
 		}		
 		return liste;
 	}
