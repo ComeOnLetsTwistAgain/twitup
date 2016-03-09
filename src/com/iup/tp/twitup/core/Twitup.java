@@ -137,7 +137,8 @@ public class Twitup
 		this.mMainView.getCards().add(creationTwitView,CREATETWIT);
 		this.mMainView.getCards().add(consultationTwitView,CONSULTERTWIT);
 		this.mMainView.getCards().add(allUsersView, ALLUSERS);
-
+		
+		//ajout de certain controller en observateur de la base
 
 	}
 

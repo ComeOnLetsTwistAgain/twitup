@@ -73,15 +73,21 @@ public class ConsulterProfilView extends JPanel {
 			fieldPassword = new JPasswordField(t.getCurrentUser().getUserPassword());
 			fieldAvatar = new JTextField(t.getCurrentUser().getAvatarPath());
 			
-			img = new ImageIcon(t.getCurrentUser().getAvatarPath());
+			/*if(!t.getCurrentUser().getAvatarPath().equals("")){
+				img = new ImageIcon(t.getCurrentUser().getAvatarPath());
+				
+				
+				
+				Image i = img.getImage();
+				BufferedImage bi = new BufferedImage(i.getWidth(null), i.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+				Graphics g = bi.createGraphics();
+				g.drawImage(i, 0, 0, img.getIconWidth()/2, img.getIconHeight()/2, null, null);
+				img = new ImageIcon(bi);
+				
+				labelimg = new JLabel(fieldAvatar.getText(), img, JLabel.CENTER);
+			}*/
 			
-			Image i = img.getImage();
-			BufferedImage bi = new BufferedImage(i.getWidth(null), i.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-			Graphics g = bi.createGraphics();
-			g.drawImage(i, 0, 0, img.getIconWidth()/2, img.getIconHeight()/2, null, null);
-			img = new ImageIcon(bi);
 			
-			labelimg = new JLabel(fieldAvatar.getText(), img, JLabel.CENTER);
 			
 			buttonSubmit = new JButton( new AbstractAction("Modifier"){
 				/**
@@ -117,7 +123,8 @@ public class ConsulterProfilView extends JPanel {
 			
 			this.add(avatar, c);
 			this.add(fieldAvatar, c);
-			this.add(labelimg, c);
+			/*if(!t.getCurrentUser().getAvatarPath().equals(""))
+				this.add(labelimg, c);*/
 			this.add(buttonChangeAvatar, c);
 			
 			this.add(buttonSubmit, c);
