@@ -1,2 +1,4 @@
-src/resources/configuration.properties
+configuration.*
 /bin/
+*.twt
+*.usr
