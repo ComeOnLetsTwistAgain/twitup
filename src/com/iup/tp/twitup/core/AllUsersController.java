@@ -23,10 +23,17 @@ public class AllUsersController implements IDatabaseObserver {
 		return db.getUsers();
 	}
 	
+	public boolean isAlreadyFollowing(User u){
+		
+		for(String user : t.getCurrentUser().getFollows())
+			if(u.getUserTag().equals(user))
+				return true;
+		return false;
+	}
+	
 	public void follow(User u){
 		if(t.getCurrentUser() != null){
 			t.getCurrentUser().addFollowing(u.getUserTag());
-			System.out.println(t.getCurrentUser().getFollows());
 		} else {
 			System.out.println("vous n'êtes pas connecté");
 		}
@@ -68,5 +75,31 @@ public class AllUsersController implements IDatabaseObserver {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public IDatabase getDb() {
+		return db;
+	}
+
+	public void setDb(IDatabase db) {
+		this.db = db;
+	}
+
+	public EntityManager getEm() {
+		return em;
+	}
+
+	public void setEm(EntityManager em) {
+		this.em = em;
+	}
+
+	public Twitup getT() {
+		return t;
+	}
+
+	public void setT(Twitup t) {
+		this.t = t;
+	}
+	
+	
 
 }

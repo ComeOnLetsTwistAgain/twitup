@@ -28,6 +28,7 @@ public class ConnexionController {
 			if(user != null){
 				System.out.println("Connecté au compte : " + user.getUserTag());
 				v.getT().setCurrentUser(user);
+				v.getT().afterConnexion();
 			}
 
 

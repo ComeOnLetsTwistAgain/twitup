@@ -1,5 +1,6 @@
 package com.iup.tp.twitup.ihm;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -127,6 +128,7 @@ public class ConsulterProfilView extends JPanel {
 			panel.add(buttonChangeAvatar, c);
 			
 			panel.add(buttonSubmit, c);
+			
 			
 			this.add(panel);
 		} else {

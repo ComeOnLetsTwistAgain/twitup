@@ -24,6 +24,8 @@ public class AllUsersView extends JPanel {
 	public AllUsersView(AllUsersController controller, Twitup t){
 		this.controller = controller;
 		this.t = t;
+		
+		
 		this.setLayout(new GridBagLayout());
 	}
 	
