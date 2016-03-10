@@ -32,41 +32,13 @@ public class ConsultationTwitView extends JPanel {
 
 	private void initGUI(){
 
-		/*GridBagConstraints c = new GridBagConstraints();
-		this.setLayout(new GridBagLayout());
-
-		c.fill = GridBagConstraints.BOTH;
-		c.weightx = 1;
-		c.weightx = 0;
-		c.gridwidth = GridBagConstraints.REMAINDER;
-
-		liste = controller.getTwits();
-
-		if (liste != null)
-		{
-			for (Twit l:liste)
-			{
-
-				c.fill = GridBagConstraints.BOTH;
-				c.weightx = 1;
-				c.weightx = 0;
-				c.gridwidth = GridBagConstraints.REMAINDER;
-
-				// instancier un nouveau composant twitView
-				System.out.println("twit :"+l.getText());
-				TwitComponentView t = new TwitComponentView(l,c);
-				this.add(t);
-
-			} 
-		} */
-		 
-
 		this.setLayout(new GridBagLayout());
 
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridBagLayout());
 		JScrollPane scrollPane = new JScrollPane(panel);
 		scrollPane.setPreferredSize(new Dimension(100, 400));
+		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 
 		this.add(scrollPane, new GridBagConstraints(0, 0, 2, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.BOTH, new Insets(
