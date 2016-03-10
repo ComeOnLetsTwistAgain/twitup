@@ -1,6 +1,7 @@
 package com.iup.tp.twitup.ihm;
 
 import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -71,8 +72,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		this.db = db;
 		
 		//exchange dir
-		this.exchangeDir = this.getExchangeDirectory();
-		
+		this.exchangeDir = this.getExchangeDirectory();		
 	}
 	
 	public void initGUI(){
@@ -116,6 +116,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	    this.frame.setLocationRelativeTo(null);
 	    this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.frame.setIconImage( new ImageIcon("src/resources/images/logoIUP_20.png").getImage());
+	    
 	    
 	    
 	    
