@@ -34,7 +34,7 @@ public class Twitup
 	JPanel creationCompteView;
 	JPanel consulterProfilView;
 	JPanel creationTwitView;
-	JPanel consultationTwitView;
+	ConsultationTwitView consultationTwitView;
 	AllUsersView allUsersView;
 	
 	final static String PARAMETERS = "parametres";
@@ -140,6 +140,7 @@ public class Twitup
 		
 		//ajout de certain controller en observateur de la base
 		this.mDatabase.addObserver(this.allUsersController);
+		this.mDatabase.addObserver(this.consultationTwitController);
 
 	}
 
@@ -441,11 +442,11 @@ public class Twitup
 		this.creationTwitView = creationTwitView;
 	}
 
-	public JPanel getConsultationTwitView() {
+	public ConsultationTwitView getConsultationTwitView() {
 		return consultationTwitView;
 	}
 
-	public void setConsultationTwitView(JPanel consultationTwitView) {
+	public void setConsultationTwitView(ConsultationTwitView consultationTwitView) {
 		this.consultationTwitView = consultationTwitView;
 	}
 

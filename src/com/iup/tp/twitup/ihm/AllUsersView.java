@@ -19,7 +19,7 @@ public class AllUsersView extends JPanel {
 	
 	int i = 1;
 	
-	JPanel listPanel;
+	JPanel panel;
 	
 	public AllUsersView(AllUsersController controller, Twitup t){
 		this.controller = controller;
@@ -29,21 +29,17 @@ public class AllUsersView extends JPanel {
 	
 	public void initGUI(){
 		
-		
-		
-		/*JPanel panel = new JPanel();
+		/*panel = new JPanel();
 		panel.setLayout(new GridBagLayout());
 		JScrollPane scrollPane = new JScrollPane(panel);
 		scrollPane.setPreferredSize(new Dimension(300, 500));
 		
 		this.add(scrollPane, new GridBagConstraints(0, 0, GridBagConstraints.RELATIVE, GridBagConstraints.RELATIVE, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.BOTH, new Insets(
-						5, 5, 0, 5), 0, 0));*/
+						5, 5, 0, 5), 0, 0));		
 		
 		
-		
-		
-		/*int i = 1;
+		int i = 1;
 		for(User u : controller.getUsers()){
 			
 			GridBagConstraints c = new GridBagConstraints(0, i, 1, 1, 1, 1,
@@ -56,8 +52,8 @@ public class AllUsersView extends JPanel {
 			
 			this.add(compu, c);
 			i++;
-		}*/
-		
+		}
+		*/
 		
 		
 		
