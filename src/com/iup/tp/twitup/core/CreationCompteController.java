@@ -34,7 +34,7 @@ public class CreationCompteController {
 									v.getFieldPassword().getText(), //pass
 									v.getFieldUsername().getText(), //name
 									new HashSet<String>(), //follows
-									"" //avatar path TODO
+									"src/resources/images/default_user.png" //avatar path par défault
 								); 
 			em.sendUser(user);
 		}
