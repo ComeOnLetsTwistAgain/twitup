@@ -41,7 +41,7 @@ public class TwitComponentView extends JPanel {
 		
 		GridBagConstraints c = new GridBagConstraints();
 		
-		c.fill = GridBagConstraints.BOTH;
+		c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 1;
         c.weightx = 0;
         c.gridwidth = GridBagConstraints.REMAINDER;
