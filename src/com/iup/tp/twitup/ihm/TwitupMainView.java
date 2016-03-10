@@ -39,6 +39,8 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	
 	private JPanel cards;
 	
+	private JMenuBar menuBar;
+	
 	GridBagConstraints constraintForPanels = new GridBagConstraints(0, 0, 2, 1, 1, 1,
 			   							  		 GridBagConstraints.CENTER, 
 			   							  		 GridBagConstraints.BOTH, 
@@ -121,10 +123,10 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	}
 	
 	public void initMenu(){
-		JMenuBar menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
 		JMenu menuFichier = new JMenu("Fichier");
 		JMenu menuCompte = new JMenu("Compte");
-		JMenu menuUtilisateurs = new JMenu("Utilisateurs");
+		
 		JMenu menuTwits = new JMenu("Twits");
 		JMenu menuAPropos = new JMenu("?");
 		
@@ -203,21 +205,11 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		});
 		itemMonProfil.getAccessibleContext().setAccessibleDescription("Consulter mon profil");
 		
-		//utilisateurs
-		JMenuItem itemTousLesUtilisateurs = new JMenuItem(new AbstractAction("Tous les utilisateurs"){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controller.switchToAllUsers();
-				
-			}
-			
-		});
-		itemMonProfil.getAccessibleContext().setAccessibleDescription("Consulter la liste de tous les utilisateurs");
+		
 		
 		menuBar.add(menuFichier);
 		menuBar.add(menuCompte);
-		menuBar.add(menuUtilisateurs);
+		
 		menuBar.add(menuTwits);
 		menuBar.add(menuAPropos);
 		
@@ -229,7 +221,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		menuCompte.add(itemMonProfil);
 		menuCompte.add(itemSeDeconnecter);
 		
-		menuUtilisateurs.add(itemTousLesUtilisateurs);
+		
 		
 		menuTwits.add(itemCreationTwit);
 		menuTwits.add(itemConsultationTwit);
@@ -238,6 +230,27 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		
 		
 		frame.setJMenuBar(menuBar);
+	}
+	
+	public void afterConnexion(){
+		
+		JMenu menuUtilisateurs = new JMenu("Utilisateurs");
+		
+		//utilisateurs
+		JMenuItem itemTousLesUtilisateurs = new JMenuItem(new AbstractAction("Tous les utilisateurs"){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.switchToAllUsers();
+				
+			}
+			
+		});
+		itemTousLesUtilisateurs.getAccessibleContext().setAccessibleDescription("Consulter la liste de tous les utilisateurs");
+		
+		
+		this.menuBar.add(menuUtilisateurs);
+		menuUtilisateurs.add(itemTousLesUtilisateurs);
 	}
 	
 	public void initLookFeel(){
@@ -279,6 +292,56 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 
 	public void setCards(JPanel cards) {
 		this.cards = cards;
+	}
+	
+	
+
+	public Twitup getController() {
+		return controller;
+	}
+
+	public void setController(Twitup controller) {
+		this.controller = controller;
+	}
+
+	public PropertiesManager getPropertiesManager() {
+		return propertiesManager;
+	}
+
+	public void setPropertiesManager(PropertiesManager propertiesManager) {
+		this.propertiesManager = propertiesManager;
+	}
+
+	public IDatabase getDb() {
+		return db;
+	}
+
+	public void setDb(IDatabase db) {
+		this.db = db;
+	}
+
+	public String getExchangeDir() {
+		return exchangeDir;
+	}
+
+	public void setExchangeDir(String exchangeDir) {
+		this.exchangeDir = exchangeDir;
+	}
+
+	public JMenuBar _getMenuBar() {
+		return menuBar;
+	}
+
+	public void setMenuBar(JMenuBar menuBar) {
+		this.menuBar = menuBar;
+	}
+
+	public GridBagConstraints getConstraintForPanels() {
+		return constraintForPanels;
+	}
+
+	public void setConstraintForPanels(GridBagConstraints constraintForPanels) {
+		this.constraintForPanels = constraintForPanels;
 	}
 
 	@Override

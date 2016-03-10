@@ -145,11 +145,16 @@ public class Twitup
 	}
 	
 	public void afterConnexion(){
+		//
+		this.getmMainView().afterConnexion();
+		
 		//all users
 		this.allUsersController = new AllUsersController(this.mDatabase, this.mEntityManager, this);
 		this.allUsersView = new AllUsersView(allUsersController, this);
 		this.mMainView.getCards().add(allUsersView, ALLUSERS);
 		this.mDatabase.addObserver(this.allUsersController);
+		
+		
 	}
 
 	/*
