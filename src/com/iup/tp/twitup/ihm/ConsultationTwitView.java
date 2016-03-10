@@ -76,7 +76,7 @@ public class ConsultationTwitView extends JPanel {
 						5, 5, 0, 5), 0, 0));
 
 		this.add(scrollPane, new GridBagConstraints(0, 1, 2, 1, 1, 1,
-				GridBagConstraints.LINE_START, GridBagConstraints.BOTH, new Insets(
+				GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(
 						5, 5, 0, 5), 0, 0));
 
 
