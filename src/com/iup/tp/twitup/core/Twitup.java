@@ -207,6 +207,10 @@ public class Twitup
 	
 	public void logout(){
 		this.currentUser = null;
+		this.mMainView.afterDeconnexion();
+		
+		((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), CONNEXION);
+		this.mMainView.getFrame().pack();
 	}
 	
 

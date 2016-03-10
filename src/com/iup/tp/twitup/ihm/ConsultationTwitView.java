@@ -86,7 +86,7 @@ public class ConsultationTwitView extends JPanel {
 	{
 
 		GridBagConstraints c = new GridBagConstraints(0, i, 1, 1, 1, 1,
-				GridBagConstraints.LINE_START, GridBagConstraints.CENTER, new Insets(
+				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0);
 
 		System.out.println(t.getText());
