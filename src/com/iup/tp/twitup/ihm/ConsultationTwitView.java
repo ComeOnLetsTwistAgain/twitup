@@ -65,7 +65,7 @@ public class ConsultationTwitView extends JPanel {
 
 
 		this.add(rechercherTwitLabel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
-				GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(
+				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0));
 	
 		this.add(rechercheTwitTextField, new GridBagConstraints(1, 0, 1, 1, 1, 1,
