@@ -1,8 +1,11 @@
 package com.iup.tp.twitup.ihm;
 
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -40,16 +43,16 @@ public class ComponentUser extends JPanel {
         c.weightx = 0;
         c.gridwidth = GridBagConstraints.REMAINDER;
 		
-        
+        img = new ImageIcon(u.getAvatarPath());
 		JLabel username = new JLabel(u.getName());
 		
-		/*Image i = img.getImage();
-		BufferedImage bi = new BufferedImage(i.getWidth(null), i.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+		Image i = img.getImage();
+		BufferedImage bi = new BufferedImage(20, 20, BufferedImage.TYPE_INT_ARGB);
 		Graphics g = bi.createGraphics();
 		g.drawImage(i, 0, 0, 20, 20, null, null);
-		img = new ImageIcon(bi);*/
+		img = new ImageIcon(bi);
 		
-		//this.add(new JLabel("", img, JLabel.CENTER), c);
+		this.add(new JLabel("", img, JLabel.CENTER), c);
 		followButton = new JButton(new AbstractAction("Suivre"){
 
 			@Override

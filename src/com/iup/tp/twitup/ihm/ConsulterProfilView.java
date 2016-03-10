@@ -27,6 +27,8 @@ public class ConsulterProfilView extends JPanel {
 	ConsulterProfilController controller;
 	Twitup t;
 	
+	JPanel panel = new JPanel();
+	
 	JLabel errorNotConnected;
 	
 	JLabel header;
@@ -51,13 +53,13 @@ public class ConsulterProfilView extends JPanel {
 	
 	
 	public void initGUI(){
-		this.setLayout(new GridBagLayout());
+		panel.setLayout(new GridBagLayout());
 		
 		errorNotConnected = new JLabel("Vous n'êtes pas connecté");
 	
 		GridBagConstraints c = new GridBagConstraints();
 		
-		c.fill = GridBagConstraints.BOTH;
+		c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 1;
         c.weightx = 0;
         c.gridwidth = GridBagConstraints.REMAINDER;
@@ -76,11 +78,10 @@ public class ConsulterProfilView extends JPanel {
 			img = new ImageIcon(t.getCurrentUser().getAvatarPath());
 			
 			
-			
 			Image i = img.getImage();
 			BufferedImage bi = new BufferedImage(i.getWidth(null), i.getHeight(null), BufferedImage.TYPE_INT_ARGB);
 			Graphics g = bi.createGraphics();
-			g.drawImage(i, 0, 0, img.getIconWidth()/2, img.getIconHeight()/2, null, null);
+			g.drawImage(i, 0, 0, 40, 40, null, null);
 			img = new ImageIcon(bi);
 			
 			labelimg = new JLabel("", img, JLabel.CENTER);
@@ -111,21 +112,23 @@ public class ConsulterProfilView extends JPanel {
 			});
 			
 	        
-			this.add(header, c);
+			panel.add(header, c);
 			
-			this.add(username, c);
-			this.add(fieldUsername, c);
+			panel.add(username, c);
+			panel.add(fieldUsername, c);
 			
-			this.add(password, c);
-			this.add(fieldPassword, c);
+			panel.add(password, c);
+			panel.add(fieldPassword, c);
 			
-			this.add(avatar, c);
-			this.add(fieldAvatar, c);
+			panel.add(avatar, c);
+			panel.add(fieldAvatar, c);
 			
-			this.add(labelimg, c);
-			this.add(buttonChangeAvatar, c);
+			panel.add(labelimg, c);
+			panel.add(buttonChangeAvatar, c);
 			
-			this.add(buttonSubmit, c);
+			panel.add(buttonSubmit, c);
+			
+			this.add(panel);
 		} else {
 			this.add(errorNotConnected, c);
 		}
