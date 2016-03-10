@@ -34,6 +34,8 @@ public class AllUsersController implements IDatabaseObserver {
 	public void follow(User u){
 		if(t.getCurrentUser() != null){
 			t.getCurrentUser().addFollowing(u.getUserTag());
+			em.sendUser(t.getCurrentUser());
+			
 		} else {
 			System.out.println("vous n'êtes pas connecté");
 		}

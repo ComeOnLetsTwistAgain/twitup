@@ -44,7 +44,8 @@ public class TwitComponentView extends JPanel {
 		c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 1;
         c.weightx = 0;
-        c.gridwidth = GridBagConstraints.REMAINDER;
+       // c.gridwidth = GridBagConstraints.REMAINDER;
+        c.anchor = GridBagConstraints.FIRST_LINE_START;
 		
 		nameLabel = new JLabel();
 		userLabel = new JLabel();
@@ -62,8 +63,8 @@ public class TwitComponentView extends JPanel {
 
 		this.add(nameLabel, c);
 		this.add(userLabel, c);
-		this.add(twitContentLabel, c);
-		this.add(dateLabel, c);
+		//this.add(twitContentLabel, c);
+		//this.add(dateLabel, c);
 		
 		this.setVisible(true);
 	}	
