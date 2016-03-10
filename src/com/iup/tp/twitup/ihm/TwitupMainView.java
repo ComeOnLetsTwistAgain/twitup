@@ -51,11 +51,13 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	JMenuItem itemQuitter;
 	JMenuItem itemParametres;
 	JMenuItem itemConnexionCompte;
+	JMenuItem itemDeconnexionCompte;
 	JMenuItem itemCreationCompte;
 	JMenuItem itemCreationTwit;
 	JMenuItem itemConsultationTwit;
 	JMenuItem itemAPropos;
 	JMenuItem itemMonProfil;
+	JMenuItem itemTousLesUtilisateurs;
 	
 	GridBagConstraints constraintForPanels = new GridBagConstraints(0, 0, 2, 1, 1, 1,
 			   							  		 GridBagConstraints.CENTER, 
@@ -173,6 +175,12 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 			}
 		});
 		
+		itemDeconnexionCompte = new JMenuItem(new AbstractAction("Se Déconnecter"){
+			public void actionPerformed(ActionEvent e) {
+				controller.logout();
+			}
+		});
+		
 		itemCreationCompte = new JMenuItem(new AbstractAction("Créer un compte"){
 			public void actionPerformed(ActionEvent e) {
 				controller.switchToCreationCompte();
@@ -217,7 +225,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		
 		
 		//utilisateurs
-		JMenuItem itemTousLesUtilisateurs = new JMenuItem(new AbstractAction("Tous les utilisateurs"){
+		itemTousLesUtilisateurs = new JMenuItem(new AbstractAction("Tous les utilisateurs"){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -244,6 +252,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		menuCompte.add(itemConnexionCompte);
 		menuCompte.add(itemCreationCompte);
 		menuCompte.add(itemMonProfil);
+		menuCompte.add(itemDeconnexionCompte);
 		
 		menuUtilisateurs.add(itemTousLesUtilisateurs);
 		
@@ -254,6 +263,9 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		
 		//de base certain menu sont cachés
 		menuUtilisateurs.setVisible(false);
+		menuTwits.setVisible(false);
+		itemDeconnexionCompte.setVisible(false);
+		itemMonProfil.setVisible(false);
 		
 		frame.setJMenuBar(menuBar);
 	}
@@ -261,6 +273,10 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	public void afterConnexion(){
 		//rendre visible certain menu
 		menuUtilisateurs.setVisible(true);
+		menuTwits.setVisible(true);
+		itemDeconnexionCompte.setVisible(true);
+		itemMonProfil.setVisible(true);
+		
 	}
 	
 	public void initLookFeel(){
