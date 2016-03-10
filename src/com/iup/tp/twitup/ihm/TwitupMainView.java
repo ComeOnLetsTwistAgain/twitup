@@ -38,8 +38,24 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	private String exchangeDir;
 	
 	private JPanel cards;
+	private JPanel panel = new JPanel();
 	
-	private JMenuBar menuBar;
+	
+	JMenuBar menuBar;
+	JMenu menuFichier;
+	JMenu menuCompte;
+	JMenu menuUtilisateurs;
+	JMenu menuTwits;
+	JMenu menuAPropos;
+	
+	JMenuItem itemQuitter;
+	JMenuItem itemParametres;
+	JMenuItem itemConnexionCompte;
+	JMenuItem itemCreationCompte;
+	JMenuItem itemCreationTwit;
+	JMenuItem itemConsultationTwit;
+	JMenuItem itemAPropos;
+	JMenuItem itemMonProfil;
 	
 	GridBagConstraints constraintForPanels = new GridBagConstraints(0, 0, 2, 1, 1, 1,
 			   							  		 GridBagConstraints.CENTER, 
@@ -100,7 +116,8 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	    this.frame.setIconImage( new ImageIcon("src/resources/images/logoIUP_20.png").getImage());
 	    
 	    
-	    this.frame.setLayout(new GridBagLayout());
+	    
+	    this.panel.setLayout(new GridBagLayout());
 	    
 	    this.cards = new JPanel(new CardLayout());
 	    
@@ -118,28 +135,31 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	    //
 		
 	    
-	    this.frame.add(this.cards);
+	    this.panel.add(this.cards);
+	    
+	    this.frame.setContentPane(panel);
+	    
 	    this.frame.setVisible(true);
 	}
 	
 	public void initMenu(){
 		menuBar = new JMenuBar();
-		JMenu menuFichier = new JMenu("Fichier");
-		JMenu menuCompte = new JMenu("Compte");
-		
-		JMenu menuTwits = new JMenu("Twits");
-		JMenu menuAPropos = new JMenu("?");
+		menuFichier = new JMenu("Fichier");
+		menuCompte = new JMenu("Compte");
+		menuUtilisateurs = new JMenu("Utilisateurs");
+		menuTwits = new JMenu("Twits");
+		menuAPropos = new JMenu("?");
 		
 		
 		//Fichier		
-		JMenuItem itemQuitter = new JMenuItem(new AbstractAction("Quitter", new ImageIcon("src/resources/images/exitIcon_20.png")){
+		itemQuitter = new JMenuItem(new AbstractAction("Quitter", new ImageIcon("src/resources/images/exitIcon_20.png")){
 			public void actionPerformed(ActionEvent e) {
 				frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 			}
 		});
 		itemQuitter.getAccessibleContext().setAccessibleDescription("Quitter l'application");
 		
-		JMenuItem itemParametres = new JMenuItem(new AbstractAction("Paramètres"){
+		itemParametres = new JMenuItem(new AbstractAction("Paramètres"){
 			public void actionPerformed(ActionEvent e) {
 				controller.switchToParameters();
 			}
@@ -147,26 +167,26 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		itemParametres.getAccessibleContext().setAccessibleDescription("Paramètres");
 		
 		//Compte
-		JMenuItem itemConnexionCompte = new JMenuItem(new AbstractAction("Se connecter"){
+		itemConnexionCompte = new JMenuItem(new AbstractAction("Se connecter"){
 			public void actionPerformed(ActionEvent e) {
 				controller.switchToConnexion();
 			}
 		});
 		
-		JMenuItem itemCreationCompte = new JMenuItem(new AbstractAction("Créer un compte"){
+		itemCreationCompte = new JMenuItem(new AbstractAction("Créer un compte"){
 			public void actionPerformed(ActionEvent e) {
 				controller.switchToCreationCompte();
 			}
 		});
 		
 		// Twits
-		JMenuItem itemCreationTwit = new JMenuItem(new AbstractAction("Créer un twit"){
+		itemCreationTwit = new JMenuItem(new AbstractAction("Créer un twit"){
 			public void actionPerformed(ActionEvent e) {
 				controller.switchToCreationTwit();
 			}
 		});
 		
-		JMenuItem itemConsultationTwit = new JMenuItem(new AbstractAction("Consulter twits"){
+		itemConsultationTwit = new JMenuItem(new AbstractAction("Consulter un twit"){
 			public void actionPerformed(ActionEvent e) {
 				controller.switchToConsultationTwit();
 			}
@@ -174,7 +194,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		
 		
 		//?
-		JMenuItem itemAPropos = new JMenuItem(new AbstractAction("A Propos"){
+		itemAPropos = new JMenuItem(new AbstractAction("A Propos"){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "à propos de TwitUp ...", "A Propos", JOptionPane.INFORMATION_MESSAGE);
@@ -183,7 +203,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		itemAPropos.getAccessibleContext().setAccessibleDescription("A Propos");
 		
 		//Profil
-		JMenuItem itemMonProfil = new JMenuItem(new AbstractAction("Mon profil"){
+		itemMonProfil = new JMenuItem(new AbstractAction("Mon profil"){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -194,47 +214,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		});
 		itemMonProfil.getAccessibleContext().setAccessibleDescription("Consulter mon profil");
 		
-		JMenuItem itemSeDeconnecter = new JMenuItem(new AbstractAction("Se déconnecter"){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controller.logout();
-				
-			}
-			
-		});
-		itemMonProfil.getAccessibleContext().setAccessibleDescription("Consulter mon profil");
 		
-		
-		
-		menuBar.add(menuFichier);
-		menuBar.add(menuCompte);
-		
-		menuBar.add(menuTwits);
-		menuBar.add(menuAPropos);
-		
-		menuFichier.add(itemParametres);
-		menuFichier.add(itemQuitter);
-		
-		menuCompte.add(itemConnexionCompte);
-		menuCompte.add(itemCreationCompte);
-		menuCompte.add(itemMonProfil);
-		menuCompte.add(itemSeDeconnecter);
-		
-		
-		
-		menuTwits.add(itemCreationTwit);
-		menuTwits.add(itemConsultationTwit);
-		
-		menuAPropos.add(itemAPropos);
-		
-		
-		frame.setJMenuBar(menuBar);
-	}
-	
-	public void afterConnexion(){
-		
-		JMenu menuUtilisateurs = new JMenu("Utilisateurs");
 		
 		//utilisateurs
 		JMenuItem itemTousLesUtilisateurs = new JMenuItem(new AbstractAction("Tous les utilisateurs"){
@@ -249,8 +229,38 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		itemTousLesUtilisateurs.getAccessibleContext().setAccessibleDescription("Consulter la liste de tous les utilisateurs");
 		
 		
-		this.menuBar.add(menuUtilisateurs);
+		
+		
+		
+		menuBar.add(menuFichier);
+		menuBar.add(menuCompte);
+		menuBar.add(menuUtilisateurs);
+		menuBar.add(menuTwits);
+		menuBar.add(menuAPropos);
+		
+		menuFichier.add(itemParametres);
+		menuFichier.add(itemQuitter);
+		
+		menuCompte.add(itemConnexionCompte);
+		menuCompte.add(itemCreationCompte);
+		menuCompte.add(itemMonProfil);
+		
 		menuUtilisateurs.add(itemTousLesUtilisateurs);
+		
+		menuTwits.add(itemCreationTwit);
+		menuTwits.add(itemConsultationTwit);
+		
+		menuAPropos.add(itemAPropos);
+		
+		//de base certain menu sont cachés
+		menuUtilisateurs.setVisible(false);
+		
+		frame.setJMenuBar(menuBar);
+	}
+	
+	public void afterConnexion(){
+		//rendre visible certain menu
+		menuUtilisateurs.setVisible(true);
 	}
 	
 	public void initLookFeel(){
@@ -275,24 +285,6 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	
 	
 	
-	
-	
-
-	public JFrame getFrame() {
-		return frame;
-	}
-
-	public void setFrame(JFrame frame) {
-		this.frame = frame;
-	}
-
-	public JPanel getCards() {
-		return cards;
-	}
-
-	public void setCards(JPanel cards) {
-		this.cards = cards;
-	}
 	
 	
 
@@ -336,12 +328,124 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		this.menuBar = menuBar;
 	}
 
+	public JMenu getMenuFichier() {
+		return menuFichier;
+	}
+
+	public void setMenuFichier(JMenu menuFichier) {
+		this.menuFichier = menuFichier;
+	}
+
+	public JMenu getMenuCompte() {
+		return menuCompte;
+	}
+
+	public void setMenuCompte(JMenu menuCompte) {
+		this.menuCompte = menuCompte;
+	}
+
+	public JMenu getMenuTwits() {
+		return menuTwits;
+	}
+
+	public void setMenuTwits(JMenu menuTwits) {
+		this.menuTwits = menuTwits;
+	}
+
+	public JMenu getMenuAPropos() {
+		return menuAPropos;
+	}
+
+	public void setMenuAPropos(JMenu menuAPropos) {
+		this.menuAPropos = menuAPropos;
+	}
+
+	public JMenuItem getItemQuitter() {
+		return itemQuitter;
+	}
+
+	public void setItemQuitter(JMenuItem itemQuitter) {
+		this.itemQuitter = itemQuitter;
+	}
+
+	public JMenuItem getItemParametres() {
+		return itemParametres;
+	}
+
+	public void setItemParametres(JMenuItem itemParametres) {
+		this.itemParametres = itemParametres;
+	}
+
+	public JMenuItem getItemConnexionCompte() {
+		return itemConnexionCompte;
+	}
+
+	public void setItemConnexionCompte(JMenuItem itemConnexionCompte) {
+		this.itemConnexionCompte = itemConnexionCompte;
+	}
+
+	public JMenuItem getItemCreationCompte() {
+		return itemCreationCompte;
+	}
+
+	public void setItemCreationCompte(JMenuItem itemCreationCompte) {
+		this.itemCreationCompte = itemCreationCompte;
+	}
+
+	public JMenuItem getItemCreationTwit() {
+		return itemCreationTwit;
+	}
+
+	public void setItemCreationTwit(JMenuItem itemCreationTwit) {
+		this.itemCreationTwit = itemCreationTwit;
+	}
+
+	public JMenuItem getItemConsultationTwit() {
+		return itemConsultationTwit;
+	}
+
+	public void setItemConsultationTwit(JMenuItem itemConsultationTwit) {
+		this.itemConsultationTwit = itemConsultationTwit;
+	}
+
+	public JMenuItem getItemAPropos() {
+		return itemAPropos;
+	}
+
+	public void setItemAPropos(JMenuItem itemAPropos) {
+		this.itemAPropos = itemAPropos;
+	}
+
+	public JMenuItem getItemMonProfil() {
+		return itemMonProfil;
+	}
+
+	public void setItemMonProfil(JMenuItem itemMonProfil) {
+		this.itemMonProfil = itemMonProfil;
+	}
+
 	public GridBagConstraints getConstraintForPanels() {
 		return constraintForPanels;
 	}
 
 	public void setConstraintForPanels(GridBagConstraints constraintForPanels) {
 		this.constraintForPanels = constraintForPanels;
+	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
+	public JPanel getCards() {
+		return cards;
+	}
+
+	public void setCards(JPanel cards) {
+		this.cards = cards;
 	}
 
 	@Override

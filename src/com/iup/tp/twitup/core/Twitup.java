@@ -145,7 +145,7 @@ public class Twitup
 	}
 	
 	public void afterConnexion(){
-		//
+		//on rajoute les liens de menu
 		this.getmMainView().afterConnexion();
 		
 		//all users
