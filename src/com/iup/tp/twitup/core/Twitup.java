@@ -121,7 +121,7 @@ public class Twitup
 		this.creationTwitController = new CreationTwitController(this.mDatabase, this, this.mEntityManager);
 		this.consulterProfilController = new ConsulterProfilController(this.mDatabase, this.mEntityManager, this);
 		this.consultationTwitController = new ConsultationTwitController(this.mDatabase, this.mEntityManager, this);
-		this.allUsersController = new AllUsersController(this.mDatabase, this.mEntityManager, this);
+		//
 		
 		this.parametersView = new ParametersView();
 		this.connexionView = new ConnexionCompteView(connexionController, this);
@@ -129,19 +129,32 @@ public class Twitup
 		this.creationTwitView = new CreationTwitView(creationTwitController, this);
 		this.consulterProfilView = new ConsulterProfilView(consulterProfilController, this);
 		this.consultationTwitView = new ConsultationTwitView(consultationTwitController, this);
-		this.allUsersView = new AllUsersView(allUsersController, this);
+		//
 
 		this.mMainView.getCards().add(connexionView, CONNEXION);
 		this.mMainView.getCards().add(parametersView, PARAMETERS);
 		this.mMainView.getCards().add(creationCompteView, CREATEACCOUNT);
 		this.mMainView.getCards().add(creationTwitView,CREATETWIT);
 		this.mMainView.getCards().add(consultationTwitView,CONSULTERTWIT);
-		this.mMainView.getCards().add(allUsersView, ALLUSERS);
+		
 		
 		//ajout de certain controller en observateur de la base
-		this.mDatabase.addObserver(this.allUsersController);
+		//
 		this.mDatabase.addObserver(this.consultationTwitController);
 
+	}
+	
+	public void afterConnexion(){
+		//
+		this.getmMainView().afterConnexion();
+		
+		//all users
+		this.allUsersController = new AllUsersController(this.mDatabase, this.mEntityManager, this);
+		this.allUsersView = new AllUsersView(allUsersController, this);
+		this.mMainView.getCards().add(allUsersView, ALLUSERS);
+		this.mDatabase.addObserver(this.allUsersController);
+		
+		
 	}
 
 	/*
