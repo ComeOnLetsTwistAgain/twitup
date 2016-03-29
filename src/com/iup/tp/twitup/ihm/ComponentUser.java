@@ -1,5 +1,6 @@
 package com.iup.tp.twitup.ihm;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -8,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 
 import javax.swing.AbstractAction;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -37,6 +39,7 @@ public class ComponentUser extends JPanel {
 		this.setLayout(new GridBagLayout());
 		
 		GridBagConstraints c = new GridBagConstraints();
+		this.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 1;
@@ -73,10 +76,7 @@ public class ComponentUser extends JPanel {
 				}
 				
 			});
-		}
-		
-		
-		
+		}		
 		
 		this.add(username, c);
 		this.add(followButton);
