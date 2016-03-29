@@ -278,6 +278,9 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		itemDeconnexionCompte.setVisible(true);
 		itemMonProfil.setVisible(true);
 		
+		itemConnexionCompte.setVisible(false);
+		itemCreationCompte.setVisible(false);
+		
 	}
 	
 	public void afterDeconnexion(){

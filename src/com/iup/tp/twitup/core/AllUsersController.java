@@ -17,6 +17,9 @@ public class AllUsersController implements IDatabaseObserver {
 		this.db = db;
 		this.em = em;
 		this.t = twitup;
+		
+		
+		System.out.println("following : " + t.getCurrentUser().getFollows());
 	}
 	
 	public Set<User> getUsers(){
@@ -24,17 +27,17 @@ public class AllUsersController implements IDatabaseObserver {
 	}
 	
 	public boolean isAlreadyFollowing(User u){
-		
-		for(String user : t.getCurrentUser().getFollows())
-			if(u.getUserTag().equals(user))
-				return true;
+		if(t.getCurrentUser() != null)
+			for(String user : t.getCurrentUser().getFollows())
+				if(u.getUserTag().equals(user))
+					return true;
 		return false;
 	}
 	
 	public void follow(User u){
 		if(t.getCurrentUser() != null){
 			t.getCurrentUser().addFollowing(u.getUserTag());
-			em.sendUser(t.getCurrentUser());
+			db.modifiyUser(t.getCurrentUser());
 			
 		} else {
 			System.out.println("vous n'êtes pas connecté");

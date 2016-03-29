@@ -20,70 +20,68 @@ import com.iup.tp.twitup.datamodel.User;
 
 public class ComponentUser extends JPanel {
 	AllUsersController controller;
-	
+
 	User u;
-	
+
 	JPanel mainPanel;
 	ImageIcon img;
 	JButton followButton;
-	
+
 	JLabel username;
-	
+
 	public ComponentUser(AllUsersController controller, User u){
 		this.u = u;
 		this.controller = controller;
 		initGUI();
 	}
-	
-	private void initGUI(){
+
+	public void initGUI(){
 		this.setLayout(new GridBagLayout());
-		
+
 		GridBagConstraints c = new GridBagConstraints();
 		this.setBorder(BorderFactory.createLineBorder(Color.black));
-		
+
 		c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 1;
-        c.weightx = 0;
-        c.gridwidth = GridBagConstraints.REMAINDER;
-		
-        img = new ImageIcon(u.getAvatarPath());
+		c.weightx = 1;
+		c.weightx = 0;
+		c.gridwidth = GridBagConstraints.REMAINDER;
+
+		img = new ImageIcon(u.getAvatarPath());
 		JLabel username = new JLabel(u.getName());
-		
+
 		Image i = img.getImage();
 		BufferedImage bi = new BufferedImage(20, 20, BufferedImage.TYPE_INT_ARGB);
 		Graphics g = bi.createGraphics();
 		g.drawImage(i, 0, 0, 20, 20, null, null);
 		img = new ImageIcon(bi);
-		
+
 		this.add(new JLabel("", img, JLabel.CENTER), c);
-		
-		if(controller.getT().getCurrentUser() != null && controller.isAlreadyFollowing(u)){
-			followButton = new JButton(new AbstractAction("Ne plus suivre"){
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("ne plus suivre" + u);
-				}
-				
-			});
-		} else {
-			followButton = new JButton(new AbstractAction("Suivre"){
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
+
+
+
+		followButton = new JButton(new AbstractAction("Suivre"){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				if(controller.isAlreadyFollowing(u)){
+					System.out.println("unfollow " + u);
+				} else {
 					controller.follow(u);
-					System.out.println(controller.isAlreadyFollowing(u));
 				}
-				
-			});
-		}		
-		
+			}
+
+		});
+
+
 		this.add(username, c);
 		this.add(followButton);
-		
+
 		this.setVisible(true);
 	}
-	
-	
+
+
 
 }
