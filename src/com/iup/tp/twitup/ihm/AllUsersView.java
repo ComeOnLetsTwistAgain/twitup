@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import com.iup.tp.twitup.core.AllUsersController;
 import com.iup.tp.twitup.core.Twitup;
+import com.iup.tp.twitup.datamodel.Twit;
 import com.iup.tp.twitup.datamodel.User;
 
 public class AllUsersView extends JPanel {
@@ -38,16 +39,12 @@ public class AllUsersView extends JPanel {
 	public AllUsersView(AllUsersController controller, Twitup t){
 		this.controller = controller;
 		this.t = t;
-		
-		
 		this.setLayout(new GridBagLayout());
 		this.initGUI();
 	}
 	
 	public void initGUI(){
 		
-		this.setLayout(new GridBagLayout());
-
 		panel = new JPanel();
 		panel.setLayout(new GridBagLayout());
 		
@@ -65,16 +62,26 @@ public class AllUsersView extends JPanel {
 		
 		
 		scrollPane = new JScrollPane(panel);
-		scrollPane.setPreferredSize(new Dimension(100, 400));
+		scrollPane.setPreferredSize(new Dimension(800, 600));
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 
-		this.add(rechercherUserLabel, new GridBagConstraints(0, 0, 2, 1, 1, 1,
-				GridBagConstraints.LINE_START, GridBagConstraints.BOTH, new Insets(
+		
+		this.add(rechercherUserLabel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
+				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
+						5, 5, 0, 5), 0, 0));
+	
+		this.add(rechercheUserTextField, new GridBagConstraints(1, 0, 1, 1, 1, 1,
+				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
+						5, 5, 0, 5), 0, 0));
+		this.add(rechercherUserButton, new GridBagConstraints(2, 0, 1, 1, 1, 1,
+				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
+						5, 5, 0, 5), 0, 0));
+
+		this.add(scrollPane, new GridBagConstraints(0, 1, 3, 1, 1, 1,
+				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0));
 		
-		this.add(scrollPane, new GridBagConstraints(0, 0, 2, 1, 1, 1,
-				GridBagConstraints.LINE_START, GridBagConstraints.BOTH, new Insets(
-						5, 5, 0, 5), 0, 0));	
+
 		
 	}
 	
@@ -92,5 +99,5 @@ public class AllUsersView extends JPanel {
 		panel.add(compu, c);
 		i++;
 	}
-
+	
 }
