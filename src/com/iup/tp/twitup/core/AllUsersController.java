@@ -19,28 +19,38 @@ public class AllUsersController implements IDatabaseObserver {
 		this.t = twitup;
 		
 		
-		System.out.println("following : " + t.getCurrentUser().getFollows());
+		//System.out.println("following : " + t.getCurrentUser().getFollows());
 	}
 	
 	public Set<User> getUsers(){
 		return db.getUsers();
 	}
 	
-	public boolean isAlreadyFollowing(User u){
-		if(t.getCurrentUser() != null)
-			for(String user : t.getCurrentUser().getFollows())
-				if(u.getUserTag().equals(user))
-					return true;
-		return false;
-	}
+	
 	
 	public void follow(User u){
 		if(t.getCurrentUser() != null){
 			t.getCurrentUser().addFollowing(u.getUserTag());
-			db.modifiyUser(t.getCurrentUser());
+			//db.modifiyUser(t.getCurrentUser());
+			em.sendUser(t.getCurrentUser());
+			t.getmMainView().getFrame().pack();
 			
+			System.out.println("following : " + t.getCurrentUser().getFollows());
 		} else {
 			System.out.println("vous n'êtes pas connecté");
+		}
+	}
+	
+	public void unfollow(User u){
+		if(t.getCurrentUser() != null){
+			t.getCurrentUser().removeFollowing(u.getUserTag());
+			//db.modifiyUser(t.getCurrentUser());
+			em.sendUser(t.getCurrentUser());
+			t.getmMainView().getFrame().pack();
+			
+			System.out.println("following : " + t.getCurrentUser().getFollows());
+		} else {
+			System.out.println("Vous n'êtes pas connecté");
 		}
 	}
 
