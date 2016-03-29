@@ -31,9 +31,8 @@ public class AllUsersController implements IDatabaseObserver {
 	public void follow(User u){
 		if(t.getCurrentUser() != null){
 			t.getCurrentUser().addFollowing(u.getUserTag());
-			//db.modifiyUser(t.getCurrentUser());
 			em.sendUser(t.getCurrentUser());
-			t.getmMainView().getFrame().pack();
+			t.getmMainView().getFrame().repaint();
 			
 			System.out.println("following : " + t.getCurrentUser().getFollows());
 		} else {
@@ -44,9 +43,8 @@ public class AllUsersController implements IDatabaseObserver {
 	public void unfollow(User u){
 		if(t.getCurrentUser() != null){
 			t.getCurrentUser().removeFollowing(u.getUserTag());
-			//db.modifiyUser(t.getCurrentUser());
 			em.sendUser(t.getCurrentUser());
-			t.getmMainView().getFrame().pack();
+			t.getmMainView().getFrame().repaint();
 			
 			System.out.println("following : " + t.getCurrentUser().getFollows());
 		} else {

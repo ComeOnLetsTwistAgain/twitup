@@ -68,10 +68,11 @@ public class ComponentUser extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					
 					if(controller.getT().getCurrentUser().isFollowing(u)){
-						System.out.println("unfollow " + u);
 						controller.unfollow(u);
+						followButton.setText("Suivre");
 					} else {
 						controller.follow(u);
+						followButton.setText("Ne plus suivre");
 					}
 					
 					
