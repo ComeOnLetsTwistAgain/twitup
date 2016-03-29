@@ -33,7 +33,7 @@ public class ComponentUser extends JPanel {
 		initGUI();
 	}
 	
-	private void initGUI(){
+	public void initGUI(){
 		this.setLayout(new GridBagLayout());
 		
 		GridBagConstraints c = new GridBagConstraints();
@@ -54,26 +54,31 @@ public class ComponentUser extends JPanel {
 		
 		this.add(new JLabel("", img, JLabel.CENTER), c);
 		
-		if(controller.getT().getCurrentUser() != null && controller.isAlreadyFollowing(u)){
-			followButton = new JButton(new AbstractAction("Ne plus suivre"){
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("ne plus suivre" + u);
-				}
-				
-			});
-		} else {
+		
+		
+		
+			
 			followButton = new JButton(new AbstractAction("Suivre"){
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					controller.follow(u);
-					System.out.println(controller.isAlreadyFollowing(u));
+					
+					if(controller.isAlreadyFollowing(u)){
+						System.out.println("unfollow " + u);
+					} else {
+						controller.follow(u);
+					}
+					
+					
+					
 				}
 				
 			});
-		}
+			
+			if(controller.isAlreadyFollowing(u)){
+				followButton.setText("Ne plus suivre");
+			}
+			
 		
 		
 		
