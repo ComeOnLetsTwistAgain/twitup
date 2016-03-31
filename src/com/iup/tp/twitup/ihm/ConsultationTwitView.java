@@ -105,7 +105,9 @@ public class ConsultationTwitView extends JPanel {
 	public void viderPanel()
 	{
 		panel.removeAll();	
+		panel.revalidate();
 		panel.repaint();
+
 	}
 
 

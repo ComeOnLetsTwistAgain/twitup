@@ -43,7 +43,7 @@ public class ConsultationTwitController implements IDatabaseObserver {
 		// TODO Auto-generated method stub
 		System.out.println("Ajouter un twit dans la liste");
 		t.getConsultationTwitView().addTwitToView(addedTwit);
-		
+
 		t.getConsultationTwitView().getParent().revalidate();
 		t.getConsultationTwitView().getParent().repaint();
 	}
@@ -87,66 +87,79 @@ public class ConsultationTwitController implements IDatabaseObserver {
 	{
 		Set<Twit> allTwits = this.db.getTwits();
 		Set<Twit> res = new  HashSet<Twit>();
-		
+
+
 		// la recherche a été initiée on vide le panel actuel
 		viderView();
 
 		/*
 		 *  si la recherche est vide on affiche tout les twits
 		 *  sinon on fait la recherche et on sort la liste de twits qui nous interessent
-		 */
-		
-		if (texte == null)
+		 */		
+		if (texte.equals(""))
 		{
 			afficherTwitsToView(allTwits);
 		}else{
-			Iterator<Twit> iterator = allTwits.iterator();
-			while (iterator.hasNext()) {
-				Twit element = iterator.next();
+
+			// matcher sur les hashtags
+			Matcher matchHashtag = hashtagPattern.matcher(texte);
+			// matcher sur les mentions
+			Matcher matchMention = mentionPattern.matcher(texte);
+
+			// si la recherche est un hashtag
+			if ( matchHashtag.find() ) {
+				System.out.println("hashtag detecté : "+texte);
+				texte = texte.replace("#", "");
+				System.out.println("Suppression du # et recherche sur "+texte);
+
+				// on ajoute tout les twits avec le hashtag
+				res.addAll(this.db.getTwitsWithTag(texte));				
+			}
+
+			// si la recherche est une mention
+			else if (matchMention.find())
+			{
+				System.out.println("mention detectée : "+texte);
+				texte = texte.replace("@", "");
+				System.out.println("Suppression du @ et recherche sur "+texte);
+
+				// ajout de tout les twits avec la mention de la personne
+				res.addAll(this.db.getTwitsWithUserTag(texte));
+
+				// ajout de tout les twits de la personne 
+				for(Twit t : allTwits){
+					if(t.getTwiter().getUserTag().equals(texte))
+						res.add(t);
+				}
+
+			} else if
+			
+			// si il n'y a aucun des deux symboles ci-dessus on recherche sur tout
+			( !matchHashtag.find() && !matchMention.find()) {
+				System.out.println("pas de hashtag et pas de mention détectée recherche sur tout");
 				
-				/* faire la recherche ici */
-				
-				if (element.getText().equals(texte)){
-					System.out.println("element ajouté = " + element);	
-					res.add(element);				
-				} 		
-			}	
+				for(Twit t : allTwits){
+					if(t.getTwiter().getUserTag().equals(texte))
+						res.add(t);
+					if(t.getText().contains(texte))
+						res.add(t);
+				}
+
+			} else {
+				System.out.println("rien trouvé");
+			}
 			
 			afficherTwitsToView(res);
 		}
 	}
 
 
-	/*
-	 *  rechercher un hashtag
-	 */
-	public Set<Twit> getHashtag(Set<Twit> res, String hashtag) {
 
-		Matcher matcher = hashtagPattern.matcher(hashtag);
-
-		if ( matcher.find() ) {
-			System.out.println("hashtag detecté, retour de la liste avec "+hashtag);
-			res = this.db.getTwitsWithTag(hashtag);		
-		}
-
-		return res;
-	}
-
-	// rechercher une mention
-	public void getMention(Set<Twit> res, String mention) {
-
-		Matcher matcher = mentionPattern.matcher(mention);
-
-		if ( matcher.find() ) {
-			System.out.println("mention detectée, retour de la liste des twits de "+mention);
-		}
-	}
-	
 	/*
 	 * affiche les twits de la recherche
 	 */
 	public void afficherTwitsToView(Set<Twit> listeTwits){
-		
+
 		Iterator<Twit> iterator = listeTwits.iterator();
 		System.out.println("Résultat de la recherche : ");
 		while (iterator.hasNext()) {
@@ -154,7 +167,7 @@ public class ConsultationTwitController implements IDatabaseObserver {
 			t.getConsultationTwitView().addTwitToView(element);
 		}
 	}
-	
+
 	/*
 	 * vide le panel de la vue twit 
 	 */
