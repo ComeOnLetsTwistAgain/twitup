@@ -8,9 +8,13 @@ import com.iup.tp.twitup.ihm.ConnexionCompteView;
 public class ConnexionController {
 
 	IDatabase db;
+	EntityManager em;
+	Twitup t;
 
-	public ConnexionController(IDatabase db){
+	public ConnexionController(IDatabase db, EntityManager em, Twitup twitup){
 		this.db = db;
+		this.em = em;
+		this.t = twitup;
 	}
 
 
@@ -29,6 +33,7 @@ public class ConnexionController {
 				System.out.println("Connecté au compte : " + user.getUserTag());
 				v.getT().setCurrentUser(user);
 				v.getT().afterConnexion();
+				t.switchToConsultationTwit();
 			}
 
 

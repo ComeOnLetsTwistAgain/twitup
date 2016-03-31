@@ -1,8 +1,11 @@
 package com.iup.tp.twitup.ihm;
 
 import java.awt.Color;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -10,6 +13,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.iup.tp.twitup.datamodel.Twit;
+
+
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 public class TwitComponentView extends JPanel {
 	
@@ -36,6 +46,8 @@ public class TwitComponentView extends JPanel {
 	
 	private void initGUI()
 	{
+		
+		 
 		this.setLayout(new GridBagLayout());
 		this.setBorder(BorderFactory.createLineBorder(Color.black));
 		
@@ -53,18 +65,27 @@ public class TwitComponentView extends JPanel {
 		dateLabel = new JLabel();
 
 		nameLabel.setText(t.getTwiter().getName());
-		userLabel.setText(t.getTwiter().getUserTag());
+		userLabel.setText("@"+t.getTwiter().getUserTag());
 		twitContentLabel.setText(t.getText());
 		dateLabel.setText(""+t.getEmissionDate());
 
 		// Image du twit
 		userIcon = new ImageIcon();
 		imageTwitIcon = new ImageIcon();
+		
 
-		this.add(nameLabel, c);
-		this.add(userLabel, c);
-		//this.add(twitContentLabel, c);
-		//this.add(dateLabel, c);
+		this.add(nameLabel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
+				GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(
+						5, 5, 0, 5), 0, 0));
+		this.add(userLabel, new GridBagConstraints(1, 0, 5, 1, 1, 1,
+				GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(
+						5, 5, 0, 5), 0, 0));
+		this.add(twitContentLabel, new GridBagConstraints(0, 1, 6, 1, 1, 1,
+				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
+						5, 5, 0, 5), 0, 0));
+		this.add(dateLabel, new GridBagConstraints(0, 2, 6, 1, 1, 1,
+				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
+						5, 5, 0, 5), 0, 0));
 		
 		this.setVisible(true);
 	}	

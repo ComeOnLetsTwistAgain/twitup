@@ -29,6 +29,9 @@ public class ConsultationTwitController implements IDatabaseObserver {
 		// TODO Auto-generated method stub
 		System.out.println("Ajouter un twit dans la liste");
 		t.getConsultationTwitView().addTwitToView(addedTwit);
+		
+		t.getConsultationTwitView().getParent().revalidate();
+		t.getConsultationTwitView().getParent().repaint();
 	}
 
 

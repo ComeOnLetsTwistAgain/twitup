@@ -116,7 +116,7 @@ public class Twitup
 		mDatabase.addObserver(observer);
 
 		//init des controllers et des vues
-		this.connexionController = new ConnexionController(this.mDatabase);
+		this.connexionController = new ConnexionController(this.mDatabase, this.mEntityManager, this);
 		this.creationCompteController = new CreationCompteController(this.mDatabase,this.mEntityManager);
 		this.creationTwitController = new CreationTwitController(this.mDatabase, this, this.mEntityManager);
 		this.consulterProfilController = new ConsulterProfilController(this.mDatabase, this.mEntityManager, this);
