@@ -1,8 +1,11 @@
 package com.iup.tp.twitup.ihm;
 
+import java.awt.Event;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.HashSet;
 import java.util.UUID;
 
@@ -42,6 +45,28 @@ public class ConnexionCompteView extends JPanel{
 		
 		fieldUsername = new JTextField();
 		fieldPassword = new JPasswordField();
+		
+		fieldPassword.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyChar() == Event.ENTER){
+					connexion();	
+				}
+			}
+		});
 		
 		buttonSubmit = new JButton( new AbstractAction("Connexion"){
 			@Override

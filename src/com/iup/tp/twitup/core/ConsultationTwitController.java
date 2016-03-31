@@ -24,9 +24,6 @@ public class ConsultationTwitController implements IDatabaseObserver {
 	public static String mentionRegex = "^@\\w+|\\s@\\w+";
 	public static Pattern mentionPattern = Pattern.compile(mentionRegex);
 
-	//	public static String urlRegex = "http+://[\\S]+|https+://[\\S]+";
-	//	public static Pattern urlPattern = Pattern.compile(urlRegex);
-
 	public ConsultationTwitController(IDatabase db, EntityManager em, Twitup twitup){
 		this.db = db;
 		this.em = em;

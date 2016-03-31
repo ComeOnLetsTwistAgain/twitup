@@ -2,10 +2,13 @@ package com.iup.tp.twitup.ihm;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Event;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
@@ -19,7 +22,6 @@ import javax.swing.JTextField;
 
 import com.iup.tp.twitup.core.AllUsersController;
 import com.iup.tp.twitup.core.Twitup;
-import com.iup.tp.twitup.datamodel.Twit;
 import com.iup.tp.twitup.datamodel.User;
 
 public class AllUsersView extends JPanel {
@@ -30,9 +32,8 @@ public class AllUsersView extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	AllUsersController controller;
-	Twitup t;
+	Twitup t;	
 	
-	int i = 1;
 	JScrollPane scrollPane ;
 	JLabel rechercherUserLabel;
 	JTextField rechercheUserTextField;
@@ -40,10 +41,11 @@ public class AllUsersView extends JPanel {
 	
 	JPanel listPane;
 	
-	public AllUsersView(AllUsersController controller, Twitup t){
-		this.controller = controller;
+	int i = 1;
+	
+	public AllUsersView(AllUsersController allUsersController, Twitup t){
+		this.controller = allUsersController;
 		this.t = t;
-		this.setLayout(new GridBagLayout());
 		this.initGUI();
 	}
 	
@@ -65,21 +67,44 @@ public class AllUsersView extends JPanel {
 		listScroller.setPreferredSize(new Dimension(800, 600));
 		listScroller.setEnabled(true);
 		listScroller.getVerticalScrollBar().setUnitIncrement(20);
-		listPane.setLayout(new BoxLayout(listPane, BoxLayout.Y_AXIS));
 		
-		
-		
+		listPane.setLayout(new BoxLayout(listPane, BoxLayout.Y_AXIS));	
 		listPane.add(Box.createVerticalGlue());
 		listPane.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 		
 		rechercherUserLabel = new JLabel("Rechercher");
 		rechercheUserTextField = new JTextField("");
-		rechercherUserButton = new JButton(new AbstractAction("Rechercher"){
+		
+		rechercheUserTextField.addKeyListener(new KeyListener() {
 
 			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyChar() == Event.ENTER){
+					System.out.println("Recherche de " + rechercheUserTextField.getText());
+					controller.rechercheUser(rechercheUserTextField.getText());				
+				}
+			}
+		});
+		
+		rechercherUserButton = new JButton(new AbstractAction("Rechercher"){
+		
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Recherche de "+ rechercheUserTextField);
-				
+
+				System.out.println("Recherche de " + rechercheUserTextField.getText());
+				controller.rechercheUser(rechercheUserTextField.getText());
+
 			}
 			
 		});
@@ -108,11 +133,15 @@ public class AllUsersView extends JPanel {
 	
 	public void addUserToView(User u)
 	{
-		ComponentUser compu = new ComponentUser(controller, u);
-		
-		
+		ComponentUser compu = new ComponentUser(controller, u);	
 		listPane.add(compu);
 		i++;
+	}
+
+	public void viderPanel() {
+		listPane.removeAll();	
+		listPane.revalidate();
+		listPane.repaint();		
 	}
 	
 }
