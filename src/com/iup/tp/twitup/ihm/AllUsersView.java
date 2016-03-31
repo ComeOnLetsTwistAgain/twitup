@@ -83,12 +83,6 @@ public class AllUsersView extends JPanel {
 			}
 			
 		});
-		
-		
-		scrollPane = new JScrollPane(panel);
-		scrollPane.setPreferredSize(new Dimension(800, 600));
-		scrollPane.setEnabled(true);
-		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 
 		JPanel panelNorth = new JPanel();
 		panelNorth.setLayout(new GridBagLayout());
@@ -103,9 +97,6 @@ public class AllUsersView extends JPanel {
 				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0));
 
-//		this.add(scrollPane, new GridBagConstraints(0, 1, 3, 1, 1, 1,
-//				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
-//						5, 5, 0, 5), 0, 0));
 		
 		this.add(panelNorth, BorderLayout.NORTH);
 		this.add(listScroller, BorderLayout.CENTER);
@@ -117,11 +108,6 @@ public class AllUsersView extends JPanel {
 	
 	public void addUserToView(User u)
 	{
-//		GridBagConstraints c = new GridBagConstraints(0, i, 1, 1, 1, 1,
-//				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
-//						5, 5, 0, 5), 0, 0);
-//	
-//		System.out.println("user " + u.toString());
 		ComponentUser compu = new ComponentUser(controller, u);
 		
 		
