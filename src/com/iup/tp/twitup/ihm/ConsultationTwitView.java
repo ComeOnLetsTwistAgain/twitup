@@ -55,8 +55,6 @@ public class ConsultationTwitView extends JPanel {
 
 		this.setLayout(new BorderLayout());
 		
-		
-		
 		listPane = new JPanel();
 		
 		JPanel panel = new JPanel(new GridBagLayout());
@@ -70,14 +68,10 @@ public class ConsultationTwitView extends JPanel {
 		listScroller.setPreferredSize(new Dimension(800, 600));
 		listScroller.setEnabled(true);
 		listScroller.getVerticalScrollBar().setUnitIncrement(20);
-		listPane.setLayout(new BoxLayout(listPane, BoxLayout.Y_AXIS));
 		
-		
-		
+		listPane.setLayout(new BoxLayout(listPane, BoxLayout.Y_AXIS));	
 		listPane.add(Box.createVerticalGlue());
 		listPane.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-		
-		
 
 		/*panel = new JPanel();
 		panel.setPreferredSize(new Dimension(800,600));
@@ -113,10 +107,10 @@ public class ConsultationTwitView extends JPanel {
 				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0));
 
-
 		panelNorth.add(rechercheTwitTextField, new GridBagConstraints(1, 0, 1, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0));
+		
 		panelNorth.add(rechercherTwitButton, new GridBagConstraints(2, 0, 1, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0));
