@@ -1,13 +1,23 @@
 package com.iup.tp.twitup.ihm;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.util.Set;
 
-import javax.swing.*;
+import javax.swing.AbstractAction;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 import com.iup.tp.twitup.core.ConsultationTwitController;
 import com.iup.tp.twitup.core.Twitup;
@@ -30,6 +40,8 @@ public class ConsultationTwitView extends JPanel {
 	JButton rechercherTwitButton;
 	
 	JButton button;
+	
+	JPanel listPane;
 
 	int i = 1 ;
 
@@ -41,15 +53,34 @@ public class ConsultationTwitView extends JPanel {
 
 	private void initGUI(){
 
-		this.setLayout(new GridBagLayout());
+		this.setLayout(new BorderLayout());
+		
+		
+		
+		listPane = new JPanel();
+		JScrollPane listScroller = new JScrollPane(listPane, 
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+		        JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		listScroller.setPreferredSize(new Dimension(800, 600));
+		listScroller.setEnabled(true);
+		listScroller.getVerticalScrollBar().setUnitIncrement(20);
+		listPane.setLayout(new BoxLayout(listPane, BoxLayout.Y_AXIS));
+		
+		
+		
+		listPane.add(Box.createVerticalGlue());
+		listPane.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+		
+		
 
-		panel = new JPanel();
+		/*panel = new JPanel();
 		panel.setPreferredSize(new Dimension(800,600));
 		panel.setLayout(new GridBagLayout());
 
 		scrollPane = new JScrollPane(panel);
 		scrollPane.setPreferredSize(new Dimension(800, 600));
-		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
+		scrollPane.setEnabled(true);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(20);*/
 
 		rechercherTwitLabel = new JLabel("Rechercher");
 		rechercheTwitTextField = new JTextField("");
@@ -63,21 +94,27 @@ public class ConsultationTwitView extends JPanel {
 
 		});
 
+		JPanel panelNorth = new JPanel();
+		panelNorth.setLayout(new GridBagLayout());
 
-		this.add(rechercherTwitLabel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
+		panelNorth.add(rechercherTwitLabel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0));
 	
-		this.add(rechercheTwitTextField, new GridBagConstraints(1, 0, 1, 1, 1, 1,
+		panelNorth.add(rechercheTwitTextField, new GridBagConstraints(1, 0, 1, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0));
-		this.add(rechercherTwitButton, new GridBagConstraints(2, 0, 1, 1, 1, 1,
+		panelNorth.add(rechercherTwitButton, new GridBagConstraints(2, 0, 1, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0));
+		
+		
+		this.add(panelNorth, BorderLayout.NORTH);
+		this.add(listScroller, BorderLayout.CENTER);
 
-		this.add(scrollPane, new GridBagConstraints(0, 1, 3, 1, 1, 1,
+		/*this.add(scrollPane, new GridBagConstraints(0, 1, 3, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
-						5, 5, 0, 5), 0, 0));
+						5, 5, 0, 5), 0, 0));*/
 
 
 	}
@@ -85,14 +122,15 @@ public class ConsultationTwitView extends JPanel {
 	public void addTwitToView(Twit t)
 	{
 
-		GridBagConstraints c = new GridBagConstraints(0, i, 1, 1, 1, 1,
-				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
-						5, 5, 0, 5), 0, 0);
+//		GridBagConstraints c = new GridBagConstraints(0, i, 1, 1, 1, 1,
+//				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
+//						5, 5, 0, 5), 0, 0);
 
-		System.out.println(t.getText());
+		//System.out.println(t.getText());
 		TwitComponentView tcv = new TwitComponentView(t);
 
-		panel.add(tcv, c);
+		listPane.add(tcv);
+		System.out.println();
 
 		i++;
 	}
