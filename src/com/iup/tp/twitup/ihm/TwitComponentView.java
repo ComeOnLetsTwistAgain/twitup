@@ -7,12 +7,19 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.iup.tp.twitup.datamodel.Twit;
 
+
+/*
+//import javafx.application.Platform;
+//import javafx.embed.swing.JFXPanel;
+//import javafx.fxml.FXMLLoader;
+//import javafx.scene.Parent;
+//import javafx.scene.Scene;
+*/
 public class TwitComponentView extends JPanel {
 	
 	/**
@@ -25,8 +32,8 @@ public class TwitComponentView extends JPanel {
 	private JLabel twitContentLabel;
 	private JLabel dateLabel;
 	
-	private ImageIcon userIcon;
-	private ImageIcon imageTwitIcon;
+	// private ImageIcon userIcon;
+	// private ImageIcon imageTwitIcon;
 	
 	private Twit t;
 	
@@ -70,9 +77,11 @@ public class TwitComponentView extends JPanel {
 		dateLabel.setText(""+t.getEmissionDate());
 
 		// Image du twit
-		userIcon = new ImageIcon();
-		imageTwitIcon = new ImageIcon();
-		
+
+		// userIcon = new ImageIcon();
+		// imageTwitIcon = new ImageIcon();
+
+
 
 		this.add(nameLabel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(
@@ -86,6 +95,7 @@ public class TwitComponentView extends JPanel {
 		this.add(dateLabel, new GridBagConstraints(0, 2, 6, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0));
+
 		
 		this.setVisible(true);
 	}	
