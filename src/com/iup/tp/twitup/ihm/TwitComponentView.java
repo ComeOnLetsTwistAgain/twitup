@@ -1,15 +1,17 @@
 package com.iup.tp.twitup.ihm;
 
 import java.awt.Color;
-
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.iup.tp.twitup.datamodel.Twit;
+
 
 /*
 //import javafx.application.Platform;
@@ -18,7 +20,6 @@ import com.iup.tp.twitup.datamodel.Twit;
 //import javafx.scene.Parent;
 //import javafx.scene.Scene;
 */
-
 public class TwitComponentView extends JPanel {
 	
 	/**
@@ -45,7 +46,15 @@ public class TwitComponentView extends JPanel {
 	private void initGUI()
 	{
 		
-		 
+		 /*try {
+	            Parent root = FXMLLoader.load(getClass().getResource("FXComponents.fxml"));
+	            Scene scene = new Scene(root, 250, 150);
+	            scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+	            jfxPanel.setScene(scene);
+	        } catch (IOException exc) {
+	            exc.printStackTrace();
+	            System.exit(1);
+	        }*/
 		this.setLayout(new GridBagLayout());
 		this.setBorder(BorderFactory.createLineBorder(Color.black));
 		
