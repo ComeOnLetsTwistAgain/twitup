@@ -41,8 +41,6 @@ public class ConsultationTwitView extends JPanel {
 
 	JPanel listPane;
 
-	int i = 1 ;
-
 	public ConsultationTwitView(ConsultationTwitController consultationTwitController, Twitup t){
 		this.controller = consultationTwitController;
 		this.t = t;
@@ -134,7 +132,7 @@ public class ConsultationTwitView extends JPanel {
 
 		TwitComponentView tcv = new TwitComponentView(t);
 		listPane.add(tcv);
-		i++;
+		// i++;
 	}
 
 	public void viderPanel()

@@ -79,7 +79,7 @@ public class AllUsersController implements IDatabaseObserver {
 
 	@Override
 	public void notifyUserAdded(User addedUser) {
-		// TODO Auto-generated method stub
+		
 		t.getAllUsersView().addUserToView(addedUser);
 
 		t.getAllUsersView().getParent().revalidate();
