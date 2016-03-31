@@ -5,7 +5,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.util.Set;
 
 import javax.swing.*;
 
@@ -28,7 +27,7 @@ public class ConsultationTwitView extends JPanel {
 	JLabel rechercherTwitLabel;
 	JTextField rechercheTwitTextField;
 	JButton rechercherTwitButton;
-	
+
 	JButton button;
 
 	int i = 1 ;
@@ -55,9 +54,16 @@ public class ConsultationTwitView extends JPanel {
 		rechercheTwitTextField = new JTextField("");
 		rechercherTwitButton = new JButton(new AbstractAction("Rechercher"){
 
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Recherche de " + rechercheTwitTextField);
+
+				System.out.println("Recherche de " + rechercheTwitTextField.getText());
+				controller.rechercheTwit(rechercheTwitTextField.getText());
 
 			}
 
@@ -67,7 +73,7 @@ public class ConsultationTwitView extends JPanel {
 		this.add(rechercherTwitLabel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0));
-	
+
 		this.add(rechercheTwitTextField, new GridBagConstraints(1, 0, 1, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0));
@@ -84,7 +90,6 @@ public class ConsultationTwitView extends JPanel {
 
 	public void addTwitToView(Twit t)
 	{
-
 		GridBagConstraints c = new GridBagConstraints(0, i, 1, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0);
@@ -96,5 +101,13 @@ public class ConsultationTwitView extends JPanel {
 
 		i++;
 	}
+
+	public void viderPanel()
+	{
+		panel.removeAll();	
+		panel.repaint();
+	}
+
+
 
 }

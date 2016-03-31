@@ -5,7 +5,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -23,8 +22,8 @@ public class TwitComponentView extends JPanel {
 	private JLabel twitContentLabel;
 	private JLabel dateLabel;
 	
-	private ImageIcon userIcon;
-	private ImageIcon imageTwitIcon;
+	// private ImageIcon userIcon;
+	// private ImageIcon imageTwitIcon;
 	
 	private Twit t;
 	
@@ -58,13 +57,13 @@ public class TwitComponentView extends JPanel {
 		dateLabel.setText(""+t.getEmissionDate());
 
 		// Image du twit
-		userIcon = new ImageIcon();
-		imageTwitIcon = new ImageIcon();
+		// userIcon = new ImageIcon();
+		// imageTwitIcon = new ImageIcon();
 
 		this.add(nameLabel, c);
 		this.add(userLabel, c);
-		//this.add(twitContentLabel, c);
-		//this.add(dateLabel, c);
+		this.add(twitContentLabel, c);
+		this.add(dateLabel, c);
 		
 		this.setVisible(true);
 	}	
