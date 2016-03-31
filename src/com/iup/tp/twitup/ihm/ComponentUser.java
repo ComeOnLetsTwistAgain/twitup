@@ -57,9 +57,6 @@ public class ComponentUser extends JPanel {
 
 		this.add(new JLabel("", img, JLabel.CENTER), c);
 		
-		
-			
-			System.out.println(controller.getT().getCurrentUser().isFollowing(u) ? "Ne plus suivre" : "Suivre");
 			String followButtonText = controller.getT().getCurrentUser().isFollowing(u) ? "Ne plus suivre" : "Suivre";
 			
 			followButton = new JButton(new AbstractAction(followButtonText){
@@ -74,17 +71,10 @@ public class ComponentUser extends JPanel {
 						controller.follow(u);
 						followButton.setText("Ne plus suivre");
 					}
-					
-					
-					
 				}
 				
 			});
 			
-		
-		
-		
-
 		this.add(username, c);
 		this.add(followButton);
 

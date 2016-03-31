@@ -32,8 +32,6 @@ public class AllUsersView extends JPanel {
 	AllUsersController controller;
 	Twitup t;
 	
-	int i = 1;
-	JScrollPane scrollPane ;
 	JLabel rechercherUserLabel;
 	JTextField rechercheUserTextField;
 	JButton rechercherUserButton;
@@ -43,7 +41,6 @@ public class AllUsersView extends JPanel {
 	public AllUsersView(AllUsersController controller, Twitup t){
 		this.controller = controller;
 		this.t = t;
-		this.setLayout(new GridBagLayout());
 		this.initGUI();
 	}
 	
@@ -70,11 +67,17 @@ public class AllUsersView extends JPanel {
 		
 		
 		listPane.add(Box.createVerticalGlue());
+		listPane.add(Box.createVerticalGlue());
 		listPane.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 		
 		rechercherUserLabel = new JLabel("Rechercher");
 		rechercheUserTextField = new JTextField("");
 		rechercherUserButton = new JButton(new AbstractAction("Rechercher"){
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -87,6 +90,7 @@ public class AllUsersView extends JPanel {
 
 		JPanel panelNorth = new JPanel();
 		panelNorth.setLayout(new GridBagLayout());
+		
 		panelNorth.add(rechercherUserLabel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0));
@@ -102,7 +106,6 @@ public class AllUsersView extends JPanel {
 		this.add(panelNorth, BorderLayout.NORTH);
 		this.add(listScroller, BorderLayout.CENTER);
 		
-
 		
 	}
 	
@@ -110,10 +113,9 @@ public class AllUsersView extends JPanel {
 	public void addUserToView(User u)
 	{
 		ComponentUser compu = new ComponentUser(controller, u);
-		
+		System.out.println("ajout d'un user dans la liste " + compu);
 		
 		listPane.add(compu);
-		i++;
 	}
 	
 }

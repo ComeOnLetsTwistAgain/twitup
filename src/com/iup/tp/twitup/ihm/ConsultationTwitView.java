@@ -43,8 +43,6 @@ public class ConsultationTwitView extends JPanel {
 	
 	JPanel listPane;
 
-	int i = 1 ;
-
 	public ConsultationTwitView(ConsultationTwitController consultationTwitController, Twitup t){
 		this.controller = consultationTwitController;
 		this.t = t;
@@ -72,15 +70,6 @@ public class ConsultationTwitView extends JPanel {
 		listPane.setLayout(new BoxLayout(listPane, BoxLayout.Y_AXIS));	
 		listPane.add(Box.createVerticalGlue());
 		listPane.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-
-		/*panel = new JPanel();
-		panel.setPreferredSize(new Dimension(800,600));
-		panel.setLayout(new GridBagLayout());
-
-		scrollPane = new JScrollPane(panel);
-		scrollPane.setPreferredSize(new Dimension(800, 600));
-		scrollPane.setEnabled(true);
-		scrollPane.getVerticalScrollBar().setUnitIncrement(20);*/
 
 		rechercherTwitLabel = new JLabel("Rechercher");
 		rechercheTwitTextField = new JTextField("");
@@ -129,17 +118,10 @@ public class ConsultationTwitView extends JPanel {
 	public void addTwitToView(Twit t)
 	{
 
-
-//		GridBagConstraints c = new GridBagConstraints(0, i, 1, 1, 1, 1,
-//				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
-//						5, 5, 0, 5), 0, 0);
-
-		//System.out.println(t.getText());
 		TwitComponentView tcv = new TwitComponentView(t);
 
 		listPane.add(tcv);
 
-		i++;
 	}
 
 	public void viderPanel()
