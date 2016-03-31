@@ -8,5 +8,6 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/twItUP/lib/junit/junit-4.12-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jfxrt"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

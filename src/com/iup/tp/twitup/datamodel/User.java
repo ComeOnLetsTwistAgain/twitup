@@ -215,4 +215,10 @@ public class User
 
     return sb.toString();
   }
+  
+  public int hashCode(){
+	  if(mUuid.hashCode() != 0)
+		  return mUuid.hashCode();
+	  return 0;
+  }
 }

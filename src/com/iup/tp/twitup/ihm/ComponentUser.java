@@ -56,25 +56,34 @@ public class ComponentUser extends JPanel {
 		img = new ImageIcon(bi);
 
 		this.add(new JLabel("", img, JLabel.CENTER), c);
+		
+		
+			
+			System.out.println(controller.getT().getCurrentUser().isFollowing(u) ? "Ne plus suivre" : "Suivre");
+			String followButtonText = controller.getT().getCurrentUser().isFollowing(u) ? "Ne plus suivre" : "Suivre";
+			
+			followButton = new JButton(new AbstractAction(followButtonText){
 
-
-
-
-
-		followButton = new JButton(new AbstractAction("Suivre"){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				if(controller.isAlreadyFollowing(u)){
-					System.out.println("unfollow " + u);
-				} else {
-					controller.follow(u);
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					if(controller.getT().getCurrentUser().isFollowing(u)){
+						controller.unfollow(u);
+						followButton.setText("Suivre");
+					} else {
+						controller.follow(u);
+						followButton.setText("Ne plus suivre");
+					}
+					
+					
+					
 				}
-			}
-
-		});
-
+				
+			});
+			
+		
+		
+		
 
 		this.add(username, c);
 		this.add(followButton);

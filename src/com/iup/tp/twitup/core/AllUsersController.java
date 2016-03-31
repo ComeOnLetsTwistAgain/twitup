@@ -2,10 +2,13 @@ package com.iup.tp.twitup.core;
 
 import java.util.Set;
 
+import javax.swing.JPanel;
+
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.IDatabaseObserver;
 import com.iup.tp.twitup.datamodel.Twit;
 import com.iup.tp.twitup.datamodel.User;
+import com.iup.tp.twitup.ihm.ComponentUser;
 
 public class AllUsersController implements IDatabaseObserver {
 	
@@ -19,28 +22,36 @@ public class AllUsersController implements IDatabaseObserver {
 		this.t = twitup;
 		
 		
-		System.out.println("following : " + t.getCurrentUser().getFollows());
+		//System.out.println("following : " + t.getCurrentUser().getFollows());
 	}
 	
 	public Set<User> getUsers(){
 		return db.getUsers();
 	}
 	
-	public boolean isAlreadyFollowing(User u){
-		if(t.getCurrentUser() != null)
-			for(String user : t.getCurrentUser().getFollows())
-				if(u.getUserTag().equals(user))
-					return true;
-		return false;
-	}
+	
 	
 	public void follow(User u){
 		if(t.getCurrentUser() != null){
 			t.getCurrentUser().addFollowing(u.getUserTag());
-			db.modifiyUser(t.getCurrentUser());
+			em.sendUser(t.getCurrentUser());
 			
+			
+			System.out.println("following : " + t.getCurrentUser().getFollows());
 		} else {
 			System.out.println("vous n'êtes pas connecté");
+		}
+	}
+	
+	public void unfollow(User u){
+		if(t.getCurrentUser() != null){
+			t.getCurrentUser().removeFollowing(u.getUserTag());
+			em.sendUser(t.getCurrentUser());
+			t.getmMainView().getFrame().repaint();
+			
+			System.out.println("following : " + t.getCurrentUser().getFollows());
+		} else {
+			System.out.println("Vous n'êtes pas connecté");
 		}
 	}
 
@@ -66,7 +77,9 @@ public class AllUsersController implements IDatabaseObserver {
 	public void notifyUserAdded(User addedUser) {
 		// TODO Auto-generated method stub
 		t.getAllUsersView().addUserToView(addedUser);
-		t.getmMainView().getFrame().pack();
+		
+		t.getAllUsersView().getParent().revalidate();
+		t.getAllUsersView().getParent().repaint();
 	}
 
 	@Override
