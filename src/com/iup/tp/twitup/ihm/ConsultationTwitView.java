@@ -58,7 +58,13 @@ public class ConsultationTwitView extends JPanel {
 		
 		
 		listPane = new JPanel();
-		JScrollPane listScroller = new JScrollPane(listPane, 
+		
+		JPanel panel = new JPanel(new GridBagLayout());
+		panel.add(listPane, new GridBagConstraints(0, 0, 1, 1, 1, 1,
+				GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(
+						5, 5, 0, 5), 0, 0));
+		
+		JScrollPane listScroller = new JScrollPane(panel, 
 				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
 		        JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		listScroller.setPreferredSize(new Dimension(800, 600));
@@ -98,7 +104,6 @@ public class ConsultationTwitView extends JPanel {
 				controller.rechercheTwit(rechercheTwitTextField.getText());
 
 			}
-
 		});
 
 		JPanel panelNorth = new JPanel();
@@ -109,9 +114,9 @@ public class ConsultationTwitView extends JPanel {
 						5, 5, 0, 5), 0, 0));
 
 
-		/*this.add(rechercheTwitTextField, new GridBagConstraints(1, 0, 1, 1, 1, 1,
+		panelNorth.add(rechercheTwitTextField, new GridBagConstraints(1, 0, 1, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
-						5, 5, 0, 5), 0, 0));*/
+						5, 5, 0, 5), 0, 0));
 		panelNorth.add(rechercherTwitButton, new GridBagConstraints(2, 0, 1, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0));
@@ -139,7 +144,6 @@ public class ConsultationTwitView extends JPanel {
 		TwitComponentView tcv = new TwitComponentView(t);
 
 		listPane.add(tcv);
-		System.out.println();
 
 		i++;
 	}

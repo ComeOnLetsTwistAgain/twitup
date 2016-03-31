@@ -1,5 +1,6 @@
 package com.iup.tp.twitup.ihm;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -7,6 +8,9 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -29,12 +33,12 @@ public class AllUsersView extends JPanel {
 	Twitup t;
 	
 	int i = 1;
-	
-	JPanel panel;
 	JScrollPane scrollPane ;
 	JLabel rechercherUserLabel;
 	JTextField rechercheUserTextField;
 	JButton rechercherUserButton;
+	
+	JPanel listPane;
 	
 	public AllUsersView(AllUsersController controller, Twitup t){
 		this.controller = controller;
@@ -45,8 +49,28 @@ public class AllUsersView extends JPanel {
 	
 	public void initGUI(){
 		
-		panel = new JPanel();
-		panel.setLayout(new GridBagLayout());
+		this.setLayout(new BorderLayout());
+		
+		
+		listPane = new JPanel();
+		
+		JPanel panel = new JPanel(new GridBagLayout());
+		panel.add(listPane, new GridBagConstraints(0, 0, 1, 1, 1, 1,
+				GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(
+						5, 5, 0, 5), 0, 0));
+		
+		JScrollPane listScroller = new JScrollPane(panel, 
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+		        JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		listScroller.setPreferredSize(new Dimension(800, 600));
+		listScroller.setEnabled(true);
+		listScroller.getVerticalScrollBar().setUnitIncrement(20);
+		listPane.setLayout(new BoxLayout(listPane, BoxLayout.Y_AXIS));
+		
+		
+		
+		listPane.add(Box.createVerticalGlue());
+		listPane.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 		
 		rechercherUserLabel = new JLabel("Rechercher");
 		rechercheUserTextField = new JTextField("");
@@ -65,21 +89,25 @@ public class AllUsersView extends JPanel {
 		scrollPane.setPreferredSize(new Dimension(800, 600));
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 
-		
-		this.add(rechercherUserLabel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
+		JPanel panelNorth = new JPanel();
+		panelNorth.setLayout(new GridBagLayout());
+		panelNorth.add(rechercherUserLabel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0));
 	
-		this.add(rechercheUserTextField, new GridBagConstraints(1, 0, 1, 1, 1, 1,
+		panelNorth.add(rechercheUserTextField, new GridBagConstraints(1, 0, 1, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0));
-		this.add(rechercherUserButton, new GridBagConstraints(2, 0, 1, 1, 1, 1,
+		panelNorth.add(rechercherUserButton, new GridBagConstraints(2, 0, 1, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
 						5, 5, 0, 5), 0, 0));
 
-		this.add(scrollPane, new GridBagConstraints(0, 1, 3, 1, 1, 1,
-				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
-						5, 5, 0, 5), 0, 0));
+//		this.add(scrollPane, new GridBagConstraints(0, 1, 3, 1, 1, 1,
+//				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
+//						5, 5, 0, 5), 0, 0));
+		
+		this.add(panelNorth, BorderLayout.NORTH);
+		this.add(listScroller, BorderLayout.CENTER);
 		
 
 		
@@ -88,15 +116,15 @@ public class AllUsersView extends JPanel {
 	
 	public void addUserToView(User u)
 	{
-		GridBagConstraints c = new GridBagConstraints(0, i, 1, 1, 1, 1,
-				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
-						5, 5, 0, 5), 0, 0);
-	
-		System.out.println("user " + u.toString());
+//		GridBagConstraints c = new GridBagConstraints(0, i, 1, 1, 1, 1,
+//				GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(
+//						5, 5, 0, 5), 0, 0);
+//	
+//		System.out.println("user " + u.toString());
 		ComponentUser compu = new ComponentUser(controller, u);
 		
 		
-		panel.add(compu, c);
+		listPane.add(compu);
 		i++;
 	}
 	
