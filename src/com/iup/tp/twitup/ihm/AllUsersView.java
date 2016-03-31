@@ -86,7 +86,6 @@ public class AllUsersView extends JPanel {
 			}
 			
 		});
-		
 
 		JPanel panelNorth = new JPanel();
 		panelNorth.setLayout(new GridBagLayout());
