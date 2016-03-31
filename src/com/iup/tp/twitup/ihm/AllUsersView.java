@@ -87,6 +87,7 @@ public class AllUsersView extends JPanel {
 		
 		scrollPane = new JScrollPane(panel);
 		scrollPane.setPreferredSize(new Dimension(800, 600));
+		scrollPane.setEnabled(true);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 
 		JPanel panelNorth = new JPanel();
