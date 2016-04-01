@@ -199,9 +199,9 @@ public class Twitup
 	}
 	
 	public void switchToAllUsers(){
-		this.allUsersView.initGUI();
+		// this.allUsersView.initGUI();
 		((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), ALLUSERS);
-		//this.mMainView.getFrame().pack();
+		this.mMainView.getFrame().pack();
 	}
 	
 	

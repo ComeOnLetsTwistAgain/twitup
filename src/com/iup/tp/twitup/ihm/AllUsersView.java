@@ -48,7 +48,7 @@ public class AllUsersView extends JPanel {
 		this.initGUI();
 	}
 	
-	public void initGUI(){
+	private void initGUI(){
 		
 		this.setLayout(new BorderLayout());
 		
@@ -139,7 +139,7 @@ public class AllUsersView extends JPanel {
 	public void addUserToView(User u)
 	{
 		ComponentUser compu = new ComponentUser(controller, u);
-		System.out.println("ajout d'un user dans la liste " + compu);
+		// System.out.println("ajout d'un user dans la liste " + compu);
 		listPane.add(compu);
 	}
 
