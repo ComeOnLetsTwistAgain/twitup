@@ -179,7 +179,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 			}
 		});
 		
-		itemConsultationTwit = new JMenuItem(new AbstractAction("Consulter un twit"){
+		itemConsultationTwit = new JMenuItem(new AbstractAction("Tous les twits"){
 			public void actionPerformed(ActionEvent e) {
 				controller.switchToConsultationTwit();
 			}
