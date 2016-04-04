@@ -42,7 +42,7 @@ public class ParametersView extends JPanel{
 
 		choixLookAndFeelLabel = new JLabel("Choix Look & feel :");
 		liste = new JComboBox(hm.keySet().toArray());
-		liste.setEditable(true);
+		liste.setEditable(false);
 
 		liste.addActionListener(new ActionListener(){
 
@@ -55,6 +55,15 @@ public class ParametersView extends JPanel{
 				}
 			}
 		});
+		
+		
+		
+		/*liste.addItemListener(new ItemListener() {
+	        public void itemStateChanged(ItemEvent arg0) {
+	            //Do Something
+	        }
+	    });*/
+		
 
 		choixDossier = new JLabel("Choix dossier :");
 

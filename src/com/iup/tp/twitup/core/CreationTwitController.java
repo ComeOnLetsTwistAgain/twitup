@@ -1,5 +1,8 @@
 package com.iup.tp.twitup.core;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 import com.iup.tp.twitup.datamodel.IDatabase;
@@ -27,7 +30,10 @@ public class CreationTwitController {
 		if (user != null)
 		{
 
-			long millis = System.currentTimeMillis();					
+			long millis = System.currentTimeMillis();		
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyy HH:mm");
+			Date date = new Date();
+			
 			Twit twit = new Twit(
 					UUID.randomUUID(), 
 					user, 

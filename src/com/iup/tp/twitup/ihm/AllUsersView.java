@@ -52,7 +52,6 @@ public class AllUsersView extends JPanel {
 		
 		this.setLayout(new BorderLayout());
 		
-		
 		listPane = new JPanel();
 		
 		JPanel panel = new JPanel(new GridBagLayout());
@@ -132,14 +131,12 @@ public class AllUsersView extends JPanel {
 		this.add(panelNorth, BorderLayout.NORTH);
 		this.add(listScroller, BorderLayout.CENTER);
 		
-		
 	}
 	
 	
 	public void addUserToView(User u)
 	{
 		ComponentUser compu = new ComponentUser(controller, u);
-		// System.out.println("ajout d'un user dans la liste " + compu);
 		listPane.add(compu);
 	}
 

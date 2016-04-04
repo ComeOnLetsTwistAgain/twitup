@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.*;
 import java.io.File;
 import java.util.*;
@@ -107,42 +108,25 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		}
 		
 		
-		
-		
-		
-		
 	    this.frame.setTitle("TwitUp");
-	    this.frame.setSize(500, 400);
+	    this.frame.setSize(800, 600);
+	    this.frame.setResizable(false);
 	    this.frame.setLocationRelativeTo(null);
 	    this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.frame.setIconImage( new ImageIcon("src/resources/images/logoIUP_20.png").getImage());
 	    
 	    
-	    
-	    
 	    this.panel.setLayout(new GridBagLayout());
 	    
 	    this.cards = new JPanel(new CardLayout());
-	    
-	    
-	    //adding layout
-	    /*JPanel parametersView = new ParametersView();
-	    JPanel creationTwitView = new CreationTwitView(db, controller);
-	    JPanel creationCompteView = new CreationCompteView(db);
-	    JPanel connexionView = new ConnexionCompteView(db, controller);*/
-	    
-	    /*this.cards.add(connexionView, CONNEXION);
-	    this.cards.add(parametersView, PARAMETERS);
-	    this.cards.add(creationTwitView, CREATETWIT);
-	    this.cards.add(creationCompteView, CREATEACCOUNT);*/
-	    //
-		
-	    
+	   	    
 	    this.panel.add(this.cards);
 	    
 	    this.frame.setContentPane(panel);
 	    
 	    this.frame.setVisible(true);
+	    
+	    
 	}
 	
 	public void initMenu(){
@@ -267,6 +251,8 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		menuTwits.setVisible(false);
 		itemDeconnexionCompte.setVisible(false);
 		itemMonProfil.setVisible(false);
+		
+		
 		
 		frame.setJMenuBar(menuBar);
 	}
