@@ -30,7 +30,7 @@ public class Twitup
 	AllUsersController allUsersController;
 	
 	JPanel parametersView;
-	JPanel connexionView;
+	ConnexionCompteView connexionView;
 	JPanel creationCompteView;
 	JPanel consulterProfilView;
 	JPanel creationTwitView;
@@ -433,7 +433,7 @@ public class Twitup
 		return connexionView;
 	}
 
-	public void setConnexionView(JPanel connexionView) {
+	public void setConnexionView(ConnexionCompteView connexionView) {
 		this.connexionView = connexionView;
 	}
 
@@ -504,6 +504,8 @@ public class Twitup
 	public static String getAllusers() {
 		return ALLUSERS;
 	}
+	
+	
 
 	
 
