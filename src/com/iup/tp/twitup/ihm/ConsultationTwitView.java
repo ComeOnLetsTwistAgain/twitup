@@ -16,6 +16,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -143,6 +144,11 @@ public class ConsultationTwitView extends JPanel {
 		listPane.revalidate();
 		listPane.repaint();
 
+	}
+
+	public void creerPopupNouveauTwit(String name) {
+		// créer une popup pour préviendre
+		JOptionPane.showMessageDialog(null, "Un twit a été ajouté par "+ name + " - CONSULTEZ LE !!! ", "Un tiwt a été ajouté!!!! ", JOptionPane.INFORMATION_MESSAGE);		
 	}
 
 

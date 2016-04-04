@@ -1,6 +1,5 @@
 package com.iup.tp.twitup.core;
 
-import com.iup.tp.twitup.datamodel.Database;
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.ihm.ConnexionCompteView;
