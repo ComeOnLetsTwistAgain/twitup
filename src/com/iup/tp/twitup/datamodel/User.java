@@ -217,8 +217,10 @@ public class User
   }
   
   public int hashCode(){
-	  if(mUuid.hashCode() != 0)
+	  if(mUuid ==  null)
+		  return 0;	
+	  else
 		  return mUuid.hashCode();
-	  return 0;
+	  
   }
 }
