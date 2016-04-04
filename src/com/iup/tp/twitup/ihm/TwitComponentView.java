@@ -15,13 +15,13 @@ import javax.swing.JPanel;
 import com.iup.tp.twitup.datamodel.Twit;
 
 
-/*
-//import javafx.application.Platform;
-//import javafx.embed.swing.JFXPanel;
-//import javafx.fxml.FXMLLoader;
-//import javafx.scene.Parent;
-//import javafx.scene.Scene;
-*/
+
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+
 public class TwitComponentView extends JPanel {
 	
 	/**
@@ -33,6 +33,8 @@ public class TwitComponentView extends JPanel {
 	private JLabel userLabel;
 	private JLabel twitContentLabel;
 	private JLabel dateLabel;
+	
+	JFXPanel jfxPanel;
 	
 	// private ImageIcon userIcon;
 	// private ImageIcon imageTwitIcon;
@@ -49,10 +51,13 @@ public class TwitComponentView extends JPanel {
 	{
 		
 		 /*try {
+			 	jfxPanel = new JFXPanel();
+			 
 	            Parent root = FXMLLoader.load(getClass().getResource("FXComponents.fxml"));
 	            Scene scene = new Scene(root, 250, 150);
 	            scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-	            jfxPanel.setScene(scene);
+	            
+				jfxPanel.setScene(scene);
 	        } catch (IOException exc) {
 	            exc.printStackTrace();
 	            System.exit(1);
