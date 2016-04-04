@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -74,7 +76,12 @@ public class TwitComponentView extends JPanel {
 		nameLabel.setText(t.getTwiter().getName());
 		userLabel.setText("@"+t.getTwiter().getUserTag());
 		twitContentLabel.setText(t.getText());
-		dateLabel.setText(""+t.getEmissionDate());
+		
+		// converti les millisecond en date 
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm"); 
+		String dateString = formatter.format(new Date(t.getEmissionDate()));
+		
+		dateLabel.setText(""+dateString);
 
 		// Image du twit
 

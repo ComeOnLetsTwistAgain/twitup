@@ -82,6 +82,8 @@ public class ConsultationTwitView extends JPanel {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
+				System.out.println("Recherche de " + rechercheTwitTextField.getText());
+				controller.rechercheTwit(rechercheTwitTextField.getText());		
 
 			}
 

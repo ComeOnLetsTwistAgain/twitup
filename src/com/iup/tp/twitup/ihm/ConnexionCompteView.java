@@ -52,7 +52,7 @@ public class ConnexionCompteView extends JPanel{
 		
 		header.setHorizontalAlignment(JTextField.CENTER);
 		
-		fieldUsername = new JTextField();
+		fieldUsername = new JTextField();	
 		fieldPassword = new JPasswordField();
 		
 		fieldPassword.addKeyListener(new KeyListener() {
@@ -103,10 +103,10 @@ public class ConnexionCompteView extends JPanel{
 		
 		this.add(buttonSubmit, c);
 		
+
 		this.add(error, c);
-		
-		
 		this.setVisible(true);
+
 	}
 	
 	private void connexion(){
@@ -184,7 +184,6 @@ public class ConnexionCompteView extends JPanel{
 	public void setError(JLabel error) {
 		this.error = error;
 	}
-	
 	
 	
 	

@@ -24,6 +24,7 @@ public class ConnexionController {
 		boolean inputNotValid = v.getFieldUsername().getText().equals("") || v.getFieldPassword().getText().equals("");
 		boolean isUserNotValid = isUserNotValid(v.getFieldUsername().getText());
 
+		
 		if(inputNotValid){
 			System.err.println("[AUTH ERR] - Les champs doivent être renseignés");
 			v.getError().setText("Les champs doivent être renseignés");
@@ -41,8 +42,6 @@ public class ConnexionController {
 				v.getT().afterConnexion();
 				t.switchToConsultationTwit();
 			}
-
-
 		}
 	}
 
@@ -59,5 +58,8 @@ public class ConnexionController {
 				return u;
 		return null;
 	}
+
+	
+	
 
 }
