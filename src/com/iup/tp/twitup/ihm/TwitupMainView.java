@@ -267,6 +267,8 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		itemConnexionCompte.setVisible(false);
 		itemCreationCompte.setVisible(false);
 		
+		menuCompte.setText("Compte : " + controller.getCurrentUser().getName());
+		
 	}
 	
 	public void afterDeconnexion(){
@@ -277,6 +279,8 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		
 		itemConnexionCompte.setVisible(true);
 		itemCreationCompte.setVisible(true);
+		
+		menuCompte.setText("Compte");
 	}
 	
 	public void initLookFeel(){

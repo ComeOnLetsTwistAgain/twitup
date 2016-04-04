@@ -123,7 +123,7 @@ public class Database implements IDatabase
 			{
 				observer.notifyUserModified(userToAdd);
 			}
-		} else{
+		} else {
 			// Ajout de l'utilisateur
 			this.mUsers.add(userToAdd);
 
