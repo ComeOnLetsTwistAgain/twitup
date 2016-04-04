@@ -10,6 +10,8 @@ public class ConnexionController {
 	IDatabase db;
 	EntityManager em;
 	Twitup t;
+	
+	
 
 	public ConnexionController(IDatabase db, EntityManager em, Twitup twitup){
 		this.db = db;
@@ -24,8 +26,12 @@ public class ConnexionController {
 
 		if(inputNotValid){
 			System.err.println("[AUTH ERR] - Les champs doivent être renseignés");
+			v.getError().setText("Les champs doivent être renseignés");
+			v.getError().setVisible(true);
 		} else if(isUserNotValid){
 			System.err.println("[AUTH ERR] - Le mot de passe ou l'utilisateur est invalide");
+			v.getError().setText("Le mot de passe ou l'utilisateur est invalide");
+			v.getError().setVisible(true);
 		} 
 		else {
 			User user = getUserByTag(v.getFieldUsername().getText());

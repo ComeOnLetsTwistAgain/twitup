@@ -1,8 +1,10 @@
 package com.iup.tp.twitup.ihm;
 
+import java.awt.Color;
 import java.awt.Event;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -27,6 +29,8 @@ public class ConnexionCompteView extends JPanel{
 	JTextField fieldUsername;
 	JTextField fieldPassword;
 	
+	JLabel error;
+	
 	JButton buttonSubmit; 
 	
 	public ConnexionCompteView(ConnexionController controller, Twitup t){
@@ -41,6 +45,11 @@ public class ConnexionCompteView extends JPanel{
 		header = new JLabel("Connexion");
 		username = new JLabel("Nom d'utilisateur");
 		password = new JLabel("Mot de passe");
+		error = new JLabel();
+		
+		error.setVisible(false);
+		error.setForeground(Color.red);
+		
 		header.setHorizontalAlignment(JTextField.CENTER);
 		
 		fieldUsername = new JTextField();
@@ -93,6 +102,8 @@ public class ConnexionCompteView extends JPanel{
 		this.add(fieldPassword, c);
 		
 		this.add(buttonSubmit, c);
+		
+		this.add(error, c);
 		
 		
 		this.setVisible(true);
@@ -165,6 +176,16 @@ public class ConnexionCompteView extends JPanel{
 	public void setButtonSubmit(JButton buttonSubmit) {
 		this.buttonSubmit = buttonSubmit;
 	}
+
+	public JLabel getError() {
+		return error;
+	}
+
+	public void setError(JLabel error) {
+		this.error = error;
+	}
+	
+	
 	
 	
 	

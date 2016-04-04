@@ -25,8 +25,10 @@ public class CreationCompteView extends JPanel {
 
 	JLabel header;
 	JLabel username;
+	JLabel tag;
 	JLabel password;
 	JTextField fieldUsername;
+	JTextField fieldTag;
 	JTextField fieldPassword;
 
 	JButton buttonSubmit; 
@@ -43,10 +45,12 @@ public class CreationCompteView extends JPanel {
 
 		header = new JLabel("Création d'un compte");
 		username = new JLabel("Nom d'utilisateur");
+		tag = new JLabel("Tag (@)");
 		password = new JLabel("Mot de passe");
 		header.setHorizontalAlignment(JTextField.CENTER);
 
 		fieldUsername = new JTextField();
+		fieldTag = new JTextField();
 		fieldPassword = new JPasswordField();
 
 		buttonSubmit = new JButton( new AbstractAction("Créer le compte"){
@@ -75,6 +79,9 @@ public class CreationCompteView extends JPanel {
 
 		this.add(username, c);
 		this.add(fieldUsername, c);
+		
+		this.add(tag, c);
+		this.add(fieldTag, c);
 
 		this.add(password, c);
 		this.add(fieldPassword, c);
@@ -139,6 +146,38 @@ public class CreationCompteView extends JPanel {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public CreationCompteController getController() {
+		return controller;
+	}
+
+	public void setController(CreationCompteController controller) {
+		this.controller = controller;
+	}
+
+	public Twitup getT() {
+		return t;
+	}
+
+	public void setT(Twitup t) {
+		this.t = t;
+	}
+
+	public JLabel getTag() {
+		return tag;
+	}
+
+	public void setTag(JLabel tag) {
+		this.tag = tag;
+	}
+
+	public JTextField getFieldTag() {
+		return fieldTag;
+	}
+
+	public void setFieldTag(JTextField fieldTag) {
+		this.fieldTag = fieldTag;
 	}
 	
 	

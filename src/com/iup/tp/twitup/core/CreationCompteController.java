@@ -30,7 +30,7 @@ public class CreationCompteController {
 			
 			User user = new User(
 									UUID.randomUUID(), //uuid
-									v.getFieldUsername().getText(), //tag
+									v.getFieldTag().getText(), //tag
 									v.getFieldPassword().getText(), //pass
 									v.getFieldUsername().getText(), //name
 									new HashSet<String>(), //follows

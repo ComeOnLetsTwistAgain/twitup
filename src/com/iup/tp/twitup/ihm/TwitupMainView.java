@@ -288,6 +288,9 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		menuTwits.setVisible(false);
 		itemDeconnexionCompte.setVisible(false);
 		itemMonProfil.setVisible(false);
+		
+		itemConnexionCompte.setVisible(true);
+		itemCreationCompte.setVisible(true);
 	}
 	
 	public void initLookFeel(){
