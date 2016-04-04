@@ -21,8 +21,7 @@ public class DatabaseObserver implements IDatabaseObserver {
 
 	@Override
 	public void notifyTwitDeleted(Twit deletedTwit) {
-		System.out.println("twit deleted : " + deletedTwit);
-		
+		System.out.println("twit deleted : " + deletedTwit);		
 	}
 
 	@Override

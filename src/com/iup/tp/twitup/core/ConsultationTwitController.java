@@ -39,11 +39,30 @@ public class ConsultationTwitController implements IDatabaseObserver {
 	public void notifyTwitAdded(Twit addedTwit) {
 		// TODO Auto-generated method stub
 		System.out.println("Ajouter un twit dans la liste");
-		t.getConsultationTwitView().addTwitToView(addedTwit);
 
+		t.getConsultationTwitView().addTwitToView(addedTwit);
 		t.getConsultationTwitView().getParent().revalidate();
 		t.getConsultationTwitView().getParent().repaint();
+
+
+		// parcours les followers du current user
+		Set<String> following;
+
+		if (this.t.getCurrentUser() != null ){
+			following = this.t.getCurrentUser().getFollows();
+
+			for(String f : following)
+			{
+				if(f.equals(addedTwit.getTwiter().getName()))
+				{
+					t.getConsultationTwitView().creerPopupNouveauTwit(addedTwit.getTwiter().getName());
+				}
+			}	
+		}
+
+
 	}
+
 
 
 	@Override
@@ -130,11 +149,11 @@ public class ConsultationTwitController implements IDatabaseObserver {
 				}
 
 			} else if
-			
+
 			// si il n'y a aucun des deux symboles ci-dessus on recherche sur tout
 			( !matchHashtag.find() && !matchMention.find()) {
 				System.out.println("pas de hashtag et pas de mention détectée recherche sur tout");
-				
+
 				for(Twit t : allTwits){
 					if(t.getTwiter().getUserTag().equals(texte))
 						res.add(t);
@@ -145,7 +164,7 @@ public class ConsultationTwitController implements IDatabaseObserver {
 			} else {
 				System.out.println("rien trouvé");
 			}
-			
+
 			afficherTwitsToView(res);
 		}
 	}
