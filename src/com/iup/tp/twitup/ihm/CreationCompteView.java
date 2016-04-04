@@ -2,6 +2,8 @@ package com.iup.tp.twitup.ihm;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.HashSet;
 import java.util.UUID;
 
@@ -19,7 +21,7 @@ public class CreationCompteView extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	CreationCompteController controller;
 	Twitup t;
 
@@ -60,6 +62,29 @@ public class CreationCompteView extends JPanel {
 		error.setVisible(false);
 		error.setForeground(Color.red);
 
+		fieldPassword.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyChar() == Event.ENTER){
+					createCompte();	
+				}
+			}
+		});
+
+
 		buttonSubmit = new JButton( new AbstractAction("Créer le compte"){
 			/**
 			 * 
@@ -70,7 +95,7 @@ public class CreationCompteView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				createCompte();
-				
+
 			}
 		});
 
@@ -86,7 +111,7 @@ public class CreationCompteView extends JPanel {
 
 		this.add(username, c);
 		this.add(fieldUsername, c);
-		
+
 		this.add(tag, c);
 		this.add(fieldTag, c);
 
@@ -98,7 +123,7 @@ public class CreationCompteView extends JPanel {
 		this.add(error, c);
 		this.setVisible(true);
 	}
-	
+
 	private void createCompte(){
 		controller.createCompte(this);
 	}
@@ -194,10 +219,6 @@ public class CreationCompteView extends JPanel {
 	public void setError(JLabel error) {
 		this.error = error;
 	}
-	
-	
-	
-	
-	
+
 
 }
