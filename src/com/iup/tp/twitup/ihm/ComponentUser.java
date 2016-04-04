@@ -76,7 +76,12 @@ public class ComponentUser extends JPanel {
 					}
 				}
 				
-			});
+		});
+			
+		if(this.controller.getT().getCurrentUser().getUserTag() == u.getUserTag()){
+			followButton.setVisible(false);
+		}
+			
 			
 		this.add(username, new GridBagConstraints(2, 0, 1, 1, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(
