@@ -93,6 +93,8 @@ public class Twitup
 	 */
 	public Twitup()
 	{
+		
+		//new MockController(this.mDatabase).startMock();
 
 		// Initialisation de la base de données
 		this.initDatabase();
