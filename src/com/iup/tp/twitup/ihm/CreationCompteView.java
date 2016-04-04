@@ -30,6 +30,8 @@ public class CreationCompteView extends JPanel {
 	JTextField fieldUsername;
 	JTextField fieldTag;
 	JTextField fieldPassword;
+	
+	JLabel error;
 
 	JButton buttonSubmit; 
 
@@ -52,6 +54,11 @@ public class CreationCompteView extends JPanel {
 		fieldUsername = new JTextField();
 		fieldTag = new JTextField();
 		fieldPassword = new JPasswordField();
+		
+		error = new JLabel();
+		
+		error.setVisible(false);
+		error.setForeground(Color.red);
 
 		buttonSubmit = new JButton( new AbstractAction("Créer le compte"){
 			/**
@@ -88,7 +95,7 @@ public class CreationCompteView extends JPanel {
 
 		this.add(buttonSubmit, c);
 
-
+		this.add(error, c);
 		this.setVisible(true);
 	}
 	
@@ -179,6 +186,16 @@ public class CreationCompteView extends JPanel {
 	public void setFieldTag(JTextField fieldTag) {
 		this.fieldTag = fieldTag;
 	}
+
+	public JLabel getError() {
+		return error;
+	}
+
+	public void setError(JLabel error) {
+		this.error = error;
+	}
+	
+	
 	
 	
 	

@@ -23,8 +23,12 @@ public class CreationCompteController {
 		
 		if(inputNotValid){
 			System.err.println("[AUTH ERR] - Les champs doivent être renseignés");
+			v.getError().setText("Les champs doivent être renseignés");
+			v.getError().setVisible(true);
 		} else if(isTagUnique) {
 			System.err.println("[AUTH ERR] - Le tag existe déjà");
+			v.getError().setText("Le tag existe déjà");
+			v.getError().setVisible(true);
 		}
 		else {
 			
@@ -38,7 +42,6 @@ public class CreationCompteController {
 								); 
 			em.sendUser(user);
 		}
-		
 	}
 	
 	private boolean isTagUnique(String tag){

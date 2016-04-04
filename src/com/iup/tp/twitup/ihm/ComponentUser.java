@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 
@@ -55,7 +56,9 @@ public class ComponentUser extends JPanel {
 		g.drawImage(i, 0, 0, 20, 20, null, null);
 		img = new ImageIcon(bi);
 
-		this.add(new JLabel("", img, JLabel.CENTER), c);
+		this.add(new JLabel("", img, JLabel.CENTER), new GridBagConstraints(0, 0, 2, 2, 1, 1,
+				GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(
+						5, 5, 0, 5), 0, 0));
 		
 			String followButtonText = controller.getT().getCurrentUser().isFollowing(u) ? "Ne plus suivre" : "Suivre";
 			
@@ -75,8 +78,12 @@ public class ComponentUser extends JPanel {
 				
 			});
 			
-		this.add(username, c);
-		this.add(followButton);
+		this.add(username, new GridBagConstraints(2, 0, 1, 1, 1, 1,
+				GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(
+						5, 5, 0, 5), 0, 0));
+		this.add(followButton, new GridBagConstraints(3, 0, 1, 1, 1, 1,
+				GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(
+						5, 5, 0, 5), 0, 0));
 
 		this.setVisible(true);
 	}
