@@ -124,7 +124,7 @@ public class Twitup
 		this.consultationTwitController = new ConsultationTwitController(this.mDatabase, this.mEntityManager, this);
 		//
 		
-		this.parametersView = new ParametersView();
+		this.parametersView = new ParametersView(this);
 		this.connexionView = new ConnexionCompteView(connexionController, this);
 		this.creationCompteView = new CreationCompteView(creationCompteController, this);
 		this.creationTwitView = new CreationTwitView(creationTwitController, this);

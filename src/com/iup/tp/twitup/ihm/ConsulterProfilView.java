@@ -1,13 +1,14 @@
 package com.iup.tp.twitup.ihm;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -76,17 +77,10 @@ public class ConsulterProfilView extends JPanel {
 			fieldPassword = new JPasswordField(t.getCurrentUser().getUserPassword());
 			fieldAvatar = new JTextField(t.getCurrentUser().getAvatarPath());
 			
-			img = new ImageIcon(t.getCurrentUser().getAvatarPath());
 			
-			
-			Image i = img.getImage();
-			BufferedImage bi = new BufferedImage(i.getWidth(null), i.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-			Graphics g = bi.createGraphics();
-			g.drawImage(i, 0, 0, 40, 40, null, null);
-			img = new ImageIcon(bi);
-			
-			labelimg = new JLabel("", img, JLabel.CENTER);
-			
+			labelimg = new JLabel();
+			ImageIcon imageIcon = new ImageIcon(new ImageIcon(t.getCurrentUser().getAvatarPath()).getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+			labelimg.setIcon(imageIcon);
 			
 			
 			buttonSubmit = new JButton( new AbstractAction("Modifier"){

@@ -5,13 +5,23 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Properties;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 import com.iup.tp.twitup.common.PropertiesManager;
+import com.iup.tp.twitup.core.Twitup;
 
 public class ParametersView extends JPanel{
+	
+	Twitup t;
 
 	JLabel choixLookAndFeelLabel;
 	JLabel choixDossier;
@@ -25,7 +35,8 @@ public class ParametersView extends JPanel{
 	Properties prop;
 
 
-	public ParametersView(){
+	public ParametersView(Twitup t){
+		this.t = t;
 		initGUI();
 	}
 
@@ -50,6 +61,9 @@ public class ParametersView extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					UIManager.setLookAndFeel(hm.get(liste.getSelectedItem()));
+//					t.getmMainView().getFrame().revalidate();
+//					t.getmMainView().getFrame().repaint();
+					
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
