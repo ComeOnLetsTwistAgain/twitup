@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import com.iup.tp.twitup.ihm.TwitupIcon;
 
 public class MockFrame extends JFrame {
 
@@ -36,7 +35,6 @@ public class MockFrame extends JFrame {
 		mFrame = new JFrame("Mock");
 		mFrame.setLayout(new GridBagLayout());
 		mFrame.setBackground(Color.lightGray);
-		mFrame.setIconImage(TwitupIcon.LOGO_IUP_ICON_50.getImage());
 		mFrame.setResizable(false);
 		mFrame.setSize(400, 400);
 	}

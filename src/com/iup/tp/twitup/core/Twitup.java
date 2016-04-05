@@ -14,6 +14,7 @@ import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.events.file.IWatchableDirectory;
 import com.iup.tp.twitup.events.file.WatchableDirectory;
 import com.iup.tp.twitup.ihm.*;
+import com.iup.tp.twitup.mock.MockController;
 
 /**
  * Classe principale l'application.
@@ -94,8 +95,6 @@ public class Twitup
 	public Twitup()
 	{
 		
-		//new MockController(this.mDatabase).startMock();
-
 		// Initialisation de la base de données
 		this.initDatabase();
 

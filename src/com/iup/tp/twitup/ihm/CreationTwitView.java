@@ -38,45 +38,7 @@ public class CreationTwitView extends JPanel {
 		this.initGUI();
 	}
 
-	public CreationTwitController getController() {
-		return controller;
-	}
-
-	public void setController(CreationTwitController controller) {
-		this.controller = controller;
-	}
-
-	public Twitup getT() {
-		return t;
-	}
-
-	public void setT(Twitup t) {
-		this.t = t;
-	}
-
-	public JLabel getHeader() {
-		return header;
-	}
-
-	public void setHeader(JLabel header) {
-		this.header = header;
-	}
-
-	public JLabel getTwitLabel() {
-		return twitLabel;
-	}
-
-	public void setTwitLabel(JLabel twitLabel) {
-		this.twitLabel = twitLabel;
-	}
-
-	public JTextField getTwitContent() {
-		return twitContent;
-	}
-
-	public void setTwitContent(JTextField twitContent) {
-		this.twitContent = twitContent;
-	}
+	
 
 	private void initGUI(){
 		this.setLayout(new GridBagLayout());
@@ -117,6 +79,7 @@ public class CreationTwitView extends JPanel {
 
 		this.add(twitLabel, c);
 		c.ipady = 40;
+		c.ipadx = 150;
 		this.add(twitContent, c);
 		c.ipady = 1;
 		this.add(buttonSubmit, c);
@@ -127,6 +90,46 @@ public class CreationTwitView extends JPanel {
 	
 	private void createTwit() {
 		controller.creationTwit(this);
+	}
+	
+	public CreationTwitController getController() {
+		return controller;
+	}
+
+	public void setController(CreationTwitController controller) {
+		this.controller = controller;
+	}
+
+	public Twitup getT() {
+		return t;
+	}
+
+	public void setT(Twitup t) {
+		this.t = t;
+	}
+
+	public JLabel getHeader() {
+		return header;
+	}
+
+	public void setHeader(JLabel header) {
+		this.header = header;
+	}
+
+	public JLabel getTwitLabel() {
+		return twitLabel;
+	}
+
+	public void setTwitLabel(JLabel twitLabel) {
+		this.twitLabel = twitLabel;
+	}
+
+	public JTextField getTwitContent() {
+		return twitContent;
+	}
+
+	public void setTwitContent(JTextField twitContent) {
+		this.twitContent = twitContent;
 	}
 
 }

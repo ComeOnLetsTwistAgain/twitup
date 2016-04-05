@@ -281,14 +281,13 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		itemCreationCompte.setVisible(true);
 		
 		menuCompte.setText("Compte");
+		
 	}
 	
 	public void initLookFeel(){
 		
 		try {
-			
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			//System.setProperty("apple.laf.useScreenMenuBar", "true");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

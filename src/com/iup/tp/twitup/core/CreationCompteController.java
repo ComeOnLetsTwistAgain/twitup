@@ -25,7 +25,7 @@ public class CreationCompteController {
 			System.err.println("[AUTH ERR] - Les champs doivent être renseignés");
 			v.getError().setText("Les champs doivent être renseignés");
 			v.getError().setVisible(true);
-		} else if(isTagUnique) {
+		} else if(!isTagUnique) {
 			System.err.println("[AUTH ERR] - Le tag existe déjà");
 			v.getError().setText("Le tag existe déjà");
 			v.getError().setVisible(true);
