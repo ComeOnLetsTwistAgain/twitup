@@ -27,7 +27,7 @@ public class ConsulterProfilController {
 		
 		User userToModify = new User(
 				t.getCurrentUser().getUuid(),
-				v.getFieldUsername().getText(), //tag
+				t.getCurrentUser().getUserTag(), //tag
 				v.getFieldPassword().getText(), //pass
 				v.getFieldUsername().getText(), //name
 				t.getCurrentUser().getFollows(),
