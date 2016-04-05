@@ -42,7 +42,7 @@ public class TwitComponentView extends JPanel {
 	private Twit t;
 	
 	public TwitComponentView (Twit t)
-	{
+	{ 
 		this.t = t;
 		this.initGUI();
 	}
