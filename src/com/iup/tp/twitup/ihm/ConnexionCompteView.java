@@ -4,22 +4,21 @@ import java.awt.Color;
 import java.awt.Event;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.HashSet;
-import java.util.UUID;
 
 import javax.swing.*;
 
 import com.iup.tp.twitup.core.ConnexionController;
 import com.iup.tp.twitup.core.Twitup;
-import com.iup.tp.twitup.datamodel.IDatabase;
-import com.iup.tp.twitup.datamodel.User;
 
 public class ConnexionCompteView extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ConnexionController controller;
 	Twitup t;
 	
@@ -59,13 +58,11 @@ public class ConnexionCompteView extends JPanel{
 
 			@Override
 			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
@@ -78,6 +75,11 @@ public class ConnexionCompteView extends JPanel{
 		});
 		
 		buttonSubmit = new JButton( new AbstractAction("Connexion"){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				connexion();

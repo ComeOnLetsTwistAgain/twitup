@@ -28,6 +28,11 @@ import com.iup.tp.twitup.datamodel.User;
  */
 public class TwitupMainView extends JFrame implements IDatabaseObserver
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//controller
 	private Twitup controller;
 	
@@ -78,8 +83,10 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	
 	public void initGUI(){
 		
-		//selection du répertoire d'échange si il n'est pas renseigné dans le fichier de conf
-		Properties p = propertiesManager.loadProperties("src/resources/configuration.properties");
+		/*
+		 * selection du répertoire d'échange si il n'est pas renseigné dans le fichier de conf
+		 */
+		Properties p = PropertiesManager.loadProperties("src/resources/configuration.properties");
 		if(controller.getmExchangeDirectoryPath().equals("")){
 			try {
 				
@@ -91,7 +98,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 				    File selectedFile = fileChooser.getSelectedFile();
 				    
 				    p.setProperty("EXCHANGE_DIRECTORY", selectedFile.getAbsolutePath());
-				    propertiesManager.writeProperties(p, "src/resources/configuration.properties");
+				    PropertiesManager.writeProperties(p, "src/resources/configuration.properties");
 				    
 				    this.exchangeDir = p.getProperty("EXCHANGE_DIRECTORY");
 				    controller.setEchangeDirectory(this.exchangeDir);
@@ -140,6 +147,11 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		
 		//Fichier		
 		itemQuitter = new JMenuItem(new AbstractAction("Quitter", new ImageIcon("src/resources/images/exitIcon_20.png")){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			public void actionPerformed(ActionEvent e) {
 				frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 			}
@@ -147,6 +159,11 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		itemQuitter.getAccessibleContext().setAccessibleDescription("Quitter l'application");
 		
 		itemParametres = new JMenuItem(new AbstractAction("Paramètres"){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			public void actionPerformed(ActionEvent e) {
 				controller.switchToParameters();
 			}
@@ -155,18 +172,33 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		
 		//Compte
 		itemConnexionCompte = new JMenuItem(new AbstractAction("Se connecter"){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			public void actionPerformed(ActionEvent e) {
 				controller.switchToConnexion();
 			}
 		});
 		
 		itemDeconnexionCompte = new JMenuItem(new AbstractAction("Se Déconnecter"){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			public void actionPerformed(ActionEvent e) {
 				controller.logout();
 			}
 		});
 		
 		itemCreationCompte = new JMenuItem(new AbstractAction("Créer un compte"){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			public void actionPerformed(ActionEvent e) {
 				controller.switchToCreationCompte();
 			}
@@ -174,12 +206,22 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		
 		// Twits
 		itemCreationTwit = new JMenuItem(new AbstractAction("Créer un twit"){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			public void actionPerformed(ActionEvent e) {
 				controller.switchToCreationTwit();
 			}
 		});
 		
 		itemConsultationTwit = new JMenuItem(new AbstractAction("Tous les twits"){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			public void actionPerformed(ActionEvent e) {
 				controller.switchToConsultationTwit();
 			}
@@ -188,6 +230,11 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		
 		//?
 		itemAPropos = new JMenuItem(new AbstractAction("A Propos"){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "à propos de TwitUp ...", "A Propos", JOptionPane.INFORMATION_MESSAGE);
@@ -197,6 +244,11 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		
 		//Profil
 		itemMonProfil = new JMenuItem(new AbstractAction("Mon profil"){
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -211,6 +263,11 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 		
 		//utilisateurs
 		itemTousLesUtilisateurs = new JMenuItem(new AbstractAction("Tous les utilisateurs"){
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -295,7 +352,7 @@ public class TwitupMainView extends JFrame implements IDatabaseObserver
 	}
 	
 	private String getExchangeDirectory(){
-		return propertiesManager.loadProperties("src/resources/configuration.properties").getProperty("EXCHANGE_DIRECTORY");
+		return PropertiesManager.loadProperties("src/resources/configuration.properties").getProperty("EXCHANGE_DIRECTORY");
 	}
 	
 	

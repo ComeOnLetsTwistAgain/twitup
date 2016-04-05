@@ -21,6 +21,11 @@ import com.iup.tp.twitup.core.Twitup;
 
 public class ParametersView extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	Twitup t;
 
 	JLabel choixLookAndFeelLabel;

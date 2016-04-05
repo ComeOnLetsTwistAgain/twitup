@@ -18,7 +18,7 @@ public class TwitupLauncher
   public static void main(String[] args)
   {
     // TODO Auto-generated method stub
-    Twitup twitup = new Twitup();
+	new Twitup();
     
   }
 

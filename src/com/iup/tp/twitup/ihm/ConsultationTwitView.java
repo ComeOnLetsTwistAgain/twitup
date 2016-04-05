@@ -76,13 +76,11 @@ public class ConsultationTwitView extends JPanel {
 
 			@Override
 			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
 				System.out.println("Recherche de " + rechercheTwitTextField.getText());
 				controller.rechercheTwit(rechercheTwitTextField.getText());		
 
@@ -98,6 +96,11 @@ public class ConsultationTwitView extends JPanel {
 		});
 
 		rechercherTwitButton = new JButton(new AbstractAction("Rechercher"){
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -148,7 +151,7 @@ public class ConsultationTwitView extends JPanel {
 
 	public void creerPopupNouveauTwit(String name) {
 		// créer une popup pour préviendre
-		JOptionPane.showMessageDialog(null, "Un twit a été ajouté par "+ name + " - CONSULTEZ LE !!! ", "Un tiwt a été ajouté!!!! ", JOptionPane.INFORMATION_MESSAGE);		
+		JOptionPane.showMessageDialog(null, "Un twit a été ajouté par "+ name + " - CONSULTEZ LE !!! ", "Un twit a été ajouté!!!! ", JOptionPane.INFORMATION_MESSAGE);		
 	}
 
 

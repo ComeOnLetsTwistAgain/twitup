@@ -14,7 +14,6 @@ import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.events.file.IWatchableDirectory;
 import com.iup.tp.twitup.events.file.WatchableDirectory;
 import com.iup.tp.twitup.ihm.*;
-import com.iup.tp.twitup.mock.MockController;
 
 /**
  * Classe principale l'application.
@@ -23,6 +22,9 @@ import com.iup.tp.twitup.mock.MockController;
  */
 public class Twitup
 {
+	/*
+	 * Initialisation des controllers et des vues.
+	 */
 	ConnexionController connexionController;
 	CreationCompteController creationCompteController;
 	ConsulterProfilController consulterProfilController;
@@ -38,6 +40,10 @@ public class Twitup
 	ConsultationTwitView consultationTwitView;
 	AllUsersView allUsersView;
 	
+	/*
+	 * On utilise un cardlayout pour gérer les switch entre les vues.
+	 * Les variables ci-dessous sont les clés des vues.
+	 */
 	final static String PARAMETERS = "parametres";
 	final static String CREATETWIT = "vue de création de twit";
 	final static String CREATEACCOUNT = "vue de création de compte";
@@ -131,7 +137,10 @@ public class Twitup
 		this.consulterProfilView = new ConsulterProfilView(consulterProfilController, this);
 		this.consultationTwitView = new ConsultationTwitView(consultationTwitController, this);
 		//
-
+		
+		/*
+		 * Ajout des vues dans le cardlayout
+		 */
 		this.mMainView.getCards().add(connexionView, CONNEXION);
 		this.mMainView.getCards().add(parametersView, PARAMETERS);
 		this.mMainView.getCards().add(creationCompteView, CREATEACCOUNT);
@@ -140,11 +149,13 @@ public class Twitup
 		
 		
 		//ajout de certain controller en observateur de la base
-		//
 		this.mDatabase.addObserver(this.consultationTwitController);
 
 	}
 	
+	/*
+	 * Fonction appelée après connexion d'un utilisateur
+	 */
 	public void afterConnexion(){
 		//on rajoute les liens de menu
 		this.getmMainView().afterConnexion();
@@ -161,7 +172,6 @@ public class Twitup
 	/*
 	 * Fonctions de switch de vue
 	 */
-
 	public void switchToParameters(){
 		((CardLayout) this.mMainView.getCards().getLayout()).show(this.mMainView.getCards(), PARAMETERS);
 		this.mMainView.getFrame().pack();
@@ -188,7 +198,10 @@ public class Twitup
 	}
 	
 	public void switchToConsulterProfil(){
-
+		
+		/*
+		 * On initialise le controller et la vue de consultation de profil a chaque fois qu'on switch de vue
+		 */
 		this.consulterProfilController = new ConsulterProfilController(this.mDatabase, this.mEntityManager, this);
 		this.consulterProfilView = new ConsulterProfilView(consulterProfilController, this);
 		this.mMainView.getCards().add(consulterProfilView, CONSULTERPROFIL);
@@ -205,7 +218,9 @@ public class Twitup
 		this.mMainView.getFrame().pack();
 	}
 	
-	
+	/*
+	 * Fonction appelée après la déconnexion
+	 */
 	public void logout(){
 		this.currentUser = null;
 		this.mMainView.afterDeconnexion();
@@ -287,6 +302,10 @@ public class Twitup
 		mWatchableDirectory.initWatching();
 		mWatchableDirectory.addObserver(mEntityManager);
 	}
+	
+	/*
+	 * GETTER et SETTER
+	 */
 
 	public String getExchangeDirectory(){
 		return this.mExchangeDirectoryPath;

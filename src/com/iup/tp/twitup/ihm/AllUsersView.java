@@ -78,20 +78,13 @@ public class AllUsersView extends JPanel {
 
 			@Override
 			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
 
 			}
-
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -104,6 +97,11 @@ public class AllUsersView extends JPanel {
 		
 		rechercherUserButton = new JButton(new AbstractAction("Rechercher"){
 		
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			public void actionPerformed(ActionEvent e) {
 
 				System.out.println("Recherche de " + rechercheUserTextField.getText());

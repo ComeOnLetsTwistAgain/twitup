@@ -20,6 +20,11 @@ import com.iup.tp.twitup.core.AllUsersController;
 import com.iup.tp.twitup.datamodel.User;
 
 public class ComponentUser extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	AllUsersController controller;
 
 	User u;
@@ -67,6 +72,11 @@ public class ComponentUser extends JPanel {
 				followButtonText = controller.getT().getCurrentUser().isFollowing(u) ? "Ne plus suivre" : "Suivre";
 				
 				followButton = new JButton(new AbstractAction(followButtonText){
+
+					/**
+					 * 
+					 */
+					private static final long serialVersionUID = 1L;
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
