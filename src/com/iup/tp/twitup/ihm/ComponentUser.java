@@ -29,6 +29,8 @@ public class ComponentUser extends JPanel {
 	JButton followButton;
 
 	JLabel username;
+	
+	String followButtonText;
 
 	public ComponentUser(AllUsersController controller, User u){
 		this.u = u;
@@ -59,24 +61,28 @@ public class ComponentUser extends JPanel {
 		this.add(new JLabel("", img, JLabel.CENTER), new GridBagConstraints(0, 0, 2, 2, 1, 1,
 				GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(
 						5, 5, 0, 5), 0, 0));
-		
-			String followButtonText = controller.getT().getCurrentUser().isFollowing(u) ? "Ne plus suivre" : "Suivre";
 			
-			followButton = new JButton(new AbstractAction(followButtonText){
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					
-					if(controller.getT().getCurrentUser().isFollowing(u)){
-						controller.unfollow(u);
-						followButton.setText("Suivre");
-					} else {
-						controller.follow(u);
-						followButton.setText("Ne plus suivre");
-					}
-				}
+			if(controller.getT().getCurrentUser() != null) {
 				
-		});
+				followButtonText = controller.getT().getCurrentUser().isFollowing(u) ? "Ne plus suivre" : "Suivre";
+				
+				followButton = new JButton(new AbstractAction(followButtonText){
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						
+						if(controller.getT().getCurrentUser().isFollowing(u)){
+							controller.unfollow(u);
+							followButton.setText("Suivre");
+						} else {
+							controller.follow(u);
+							followButton.setText("Ne plus suivre");
+						}
+					}
+				});
+				
+			}
+				
 			
 		if(this.controller.getT().getCurrentUser().getUserTag() == u.getUserTag()){
 			followButton.setVisible(false);

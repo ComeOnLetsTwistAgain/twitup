@@ -21,13 +21,13 @@ public class CreationCompteController {
 	public void createCompte(CreationCompteView v){
 
 		boolean inputNotValid = v.getFieldUsername().getText().equals("") || v.getFieldPassword().getText().equals("");
-		boolean isTagUnique = isTagUnique(v.getUsername().getText());
+		boolean isTagUnique = isTagUnique(v.getFieldTag().getText());
 
 		if(inputNotValid){
 			System.err.println("[AUTH ERR] - Les champs doivent être renseignés");
 			v.getError().setText("Les champs doivent être renseignés");
 			v.getError().setVisible(true);
-		} else if(!isTagUnique) {
+		} else if(isTagUnique) {
 			System.err.println("[AUTH ERR] - Le tag existe déjà");
 			v.getError().setText("Le tag existe déjà");
 			v.getError().setVisible(true);

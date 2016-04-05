@@ -21,19 +21,18 @@ public class ConnexionController {
 
 	public void connexion(ConnexionCompteView v){
 		boolean inputNotValid = v.getFieldUsername().getText().equals("") || v.getFieldPassword().getText().equals("");
-		boolean isUserNotValid = isUserNotValid(v.getFieldUsername().getText());
+		boolean isUserValid = isUserValid(v.getFieldUsername().getText(), v.getFieldPassword().getText());
 
 		
 		if(inputNotValid){
 			System.err.println("[AUTH ERR] - Les champs doivent être renseignés");
 			v.getError().setText("Les champs doivent être renseignés");
 			v.getError().setVisible(true);
-		} else if(isUserNotValid){
+		} else if(!isUserValid){
 			System.err.println("[AUTH ERR] - Le mot de passe ou l'utilisateur est invalide");
 			v.getError().setText("Le mot de passe ou l'utilisateur est invalide");
 			v.getError().setVisible(true);
-		} 
-		else {
+		} else {
 			User user = getUserByTag(v.getFieldUsername().getText());
 			if(user != null){
 				System.out.println("Connecté au compte : " + user.getUserTag());
@@ -44,12 +43,14 @@ public class ConnexionController {
 		}
 	}
 
-	private boolean isUserNotValid(String tag){
+	private boolean isUserValid(String name, String pass){
 		for(User u : db.getUsers())
-			if(u.getUserTag().equals(tag))
-				return false;
-		return true;
+			if(u.getName().equals(name) && u.getUserPassword().equals(pass))
+				return true;
+		return false;
 	}
+	
+	
 
 	private User getUserByTag(String tag){
 		for(User u : db.getUsers())
